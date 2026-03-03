@@ -1,0 +1,194 @@
+[project]
+site_name = "Textual AI"
+site_description = "Notes related to NLP and Textual AI."
+site_author = "Danish Ahmed"
+# site_url = "https://www.example.com/"
+
+copyright = """
+Copyright &copy; 2026 Arc Systems
+"""
+
+nav = [
+    { "Home" = "README.md" },
+
+    { "Overview" = [
+        "overview/README.md",
+        { "Evolution of NLP" = "overview/evolution-of-nlp.md" },
+        { "Language Challenges" = "overview/language-challenges.md" },
+        { "LLM Paradigm Shift" = "overview/llm-paradigm-shift.md" },
+    ] },
+
+    { "Fundamentals" = [
+        "fundamentals/README.md",
+        { "Tokenization" = "fundamentals/tokenization.md" },
+        { "Text Preprocessing" = "fundamentals/text-preprocessing.md" },
+        { "Linguistic Foundations" = "fundamentals/linguistic-foundations.md" },
+    ] },
+
+    { "Classical NLP" = [
+        "classical-nlp/README.md",
+        { "N-grams and Language Models" = "classical_nlp/ngrams-and-lm.md" },
+        { "Vector Space Models" = "classical_nlp/vector-space-models.md" },
+        { "Classical Classification" = "classical_nlp/classical-classification.md" },
+        { "Topic Modeling" = "classical_nlp/topic-modeling.md" },
+    ] },
+
+    { "Embeddings" = [
+        "embeddings/README.md",
+        { "Embedding Spaces" = "embeddings/embedding-spaces.md" },
+        { "Word Embeddings" = "embeddings/word-embeddings.md" },
+        { "Sentence Embeddings" = "embeddings/sentence-embeddings.md" },
+        { "Contextual Embeddings" = "embeddings/contextual-embeddings.md" },
+    ] },
+
+    { "Language Models" = [
+        "language-models/README.md",
+        { "LM Fundamentals" = "language-models/lm-fundamentals.md" },
+        { "Autoregressive Models" = "language-models/autoregressive-models.md" },
+        { "Masked Models" = "language-models/masked-models.md" },
+        { "Encoder-Decoder Models" = "language-models/encoder-decoder-models.md" },
+        { "Pretraining and Transfer" = "language-models/pretraining-transfer.md" },
+    ] },
+
+    { "LLM Concepts" = [
+        "llm-concepts/README.md",
+        { "Capabilities and Limitations" = "llm-concepts/capabilities-limitations.md" },
+        { "Scale and Emergence" = "llm-concepts/scale-and-emergence.md" },
+        { "In-Context Learning" = "llm-concepts/in-context-learning.md" },
+        { "Instruction Tuning" = "llm-concepts/instruction-tuning.md" },
+        { "Chain of Thought" = "llm-concepts/chain-of-thought.md" },
+    ] },
+
+    { "Prompt Engineering" = [
+        "prompt-engineering/README.md",
+        { "Prompting Fundamentals" = "prompt-engineering/prompting-fundamentals.md" },
+        { "Few-Shot Learning" = "prompt-engineering/few-shot-learning.md" },
+        { "Chain-of-Thought Prompting" = "prompt-engineering/cot-prompting.md" },
+        { "Advanced Patterns" = "prompt-engineering/advanced-patterns.md" },
+        { "Prompt Optimization" = "prompt-engineering/prompt-optimization.md" },
+        { "Structured Output" = "prompt-engineering/structured-output.md" },
+    ] },
+
+    { "Retrieval Augmented Generation" = [
+        "retrieval-augmented-generation/README.md",
+        { "RAG Architecture" = "retrieval-augmented-generation/rag-architecture.md" },
+        { "Retrieval Strategies" = "retrieval-augmented-generation/retrieval-strategies.md" },
+        { "Embedding and Chunking" = "retrieval-augmented-generation/embedding-chunking.md" },
+        { "Vector Databases" = "retrieval-augmented-generation/vector-databases.md" },
+        { "Reranking and Fusion" = "retrieval-augmented-generation/reranking-fusion.md" },
+        { "RAG Evaluation" = "retrieval-augmented-generation/rag-evaluation.md" },
+    ] },
+
+    { "RLHF and Alignment" = [
+        "rlhf-and-alignment/README.md",
+        { "Alignment Problem" = "rlhf-and-alignment/alignment-problem.md" },
+        { "RLHF" = "rlhf-and-alignment/rlhf.md" },
+        { "Constitutional AI" = "rlhf-and-alignment/constitutional-ai.md" },
+        { "Instruction Following" = "rlhf-and-alignment/instruction-following.md" },
+        { "Honesty and Calibration" = "rlhf-and-alignment/honesty-calibration.md" },
+        { "Safety and Harmlessness" = "rlhf-and-alignment/safety-harmlessness.md" },
+    ] },
+
+    { "Evaluation" = [
+        "evaluation/README.md",
+        { "Benchmarks" = "evaluation/benchmarks.md" },
+        { "Traditional Metrics" = "evaluation/traditional-metrics.md" },
+        { "Neural Metrics" = "evaluation/neural-metrics.md" },
+        { "LLM Evaluation" = "evaluation/llm-evaluation.md" },
+        { "Human Evaluation" = "evaluation/human-evaluation.md" },
+        { "Failure Analysis" = "evaluation/failure-analysis.md" },
+    ] },
+
+    { "Application Patterns" = [
+        "application-patterns/README.md",
+        { "Text Classification" = "application-patterns/text-classification.md" },
+        { "Summarization" = "application-patterns/summarization.md" },
+        { "Question Answering" = "application-patterns/question-answering.md" },
+        { "Semantic Search" = "application-patterns/semantic-search.md" },
+        { "Information Extraction" = "application-patterns/information-extraction.md" },
+        { "Text Generation" = "application-patterns/text-generation.md" },
+        { "Conversational AI" = "application-patterns/conversational-ai.md" },
+    ] },
+
+    { "Resources" = "resources.md" },
+]
+
+# extra_css = ["stylesheets/extra.css"]
+# extra_javascript = ["javascripts/extra.js"]
+
+[project.theme]
+# variant = "classic"
+# custom_dir = "overrides"
+# favicon = "images/favicon.png"
+language = "en"
+
+features = [
+    "announce.dismiss",
+    # "content.action.edit",
+    # "content.action.view",
+    "content.code.annotate",
+    "content.code.copy",
+    "content.code.select",
+    "content.footnote.tooltips",
+    "content.tabs.link",
+    "content.tooltips",
+    # "header.autohide",
+    # "navigation.expand",
+    "navigation.footer",
+    "navigation.indexes",
+    "navigation.instant",
+    "navigation.instant.prefetch",
+    "navigation.instant.progress",
+    "navigation.path",
+    "navigation.prune",
+    # "navigation.sections",
+    # "navigation.tabs",
+    # "navigation.tabs.sticky",
+    "navigation.top",
+    "navigation.tracking",
+    "search.highlight",
+    "toc.follow",
+    # "toc.integrate",
+]
+
+[project.theme.palette]
+scheme = "slate"
+primary = "red"
+accent = "red"
+
+[project.theme.font]
+text = "Roboto"
+code = "Jetbrains Mono"
+
+# [project.theme.icon]
+# logo = "lucide/smile"
+# repo = "lucide/smile"
+
+# [[project.extra.social]]
+# icon = "fontawesome/brands/github"
+# link = "https://github.com/user/repo"
+
+[project.markdown_extensions.pymdownx.superfences]
+custom_fences = [
+    { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" },
+]
+
+[project.markdown_extensions.pymdownx.tabbed.slugify]
+object = "pymdownx.slugs.slugify"
+kwds = { case = "lower" }
+[project.markdown_extensions.pymdownx.tabbed]
+alternate_style = true
+
+[project.markdown_extensions.admonition]
+[project.markdown_extensions.pymdownx.details]
+
+[project.extra]
+generator = false
+
+[project.markdown_extensions.pymdownx.highlight]
+anchor_linenums = true
+
+line_spans = "__span"
+pygments_lang_class = true
+[project.markdown_extensions.pymdownx.inlinehilite]
+[project.markdown_extensions.pymdownx.snippets]
