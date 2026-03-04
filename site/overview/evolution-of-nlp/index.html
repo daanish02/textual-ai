@@ -1,0 +1,2569 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Notes related to NLP and Textual AI.">
+      
+      
+        <meta name="author" content="Danish Ahmed">
+      
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../language-challenges/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.24">
+    
+    
+      
+        <title>Evolution of NLP - Textual AI</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.28978c9b.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/modern/palette.dfe2e883.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i%7CJetbrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Jetbrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,a=__md_scope)=>JSON.parse(t.getItem(a.pathname+"."+e)),__md_set=(e,t,a=localStorage,_=__md_scope)=>{try{a.setItem(_.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="red">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#evolution-of-nlp" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Textual AI" class="md-header__button md-logo" aria-label="Textual AI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Textual AI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Evolution of NLP
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="red"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Textual AI" class="md-nav__button md-logo" aria-label="Textual AI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    Textual AI
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Overview
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evolution of NLP
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evolution of NLP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-rule-based-era-1950s-1980s" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Rule-Based Era (1950s-1980s)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Rule-Based Era (1950s-1980s)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-philosophy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Philosophy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approach
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strengths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strengths
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limitations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-insight" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Insight
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-statistical-revolution-1990s-2000s" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Statistical Revolution (1990s-2000s)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Statistical Revolution (1990s-2000s)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-philosophy_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Philosophy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approach_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approach
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strengths_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strengths
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limitations_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limitations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-insight_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Insight
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-neural-era-2010s" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Neural Era (2010s)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Neural Era (2010s)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-philosophy_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Philosophy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approach_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approach
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strengths_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strengths
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limitations_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limitations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-insight_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Insight
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-transformer-revolution-2017-2019" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Transformer Revolution (2017-2019)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Transformer Revolution (2017-2019)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-philosophy_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Philosophy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approach_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approach
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paradigm-shift" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paradigm Shift
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strengths_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strengths
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limitations_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limitations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-insight_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Insight
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-llm-era-2020-present" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The LLM Era (2020-Present)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The LLM Era (2020-Present)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-philosophy_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Philosophy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approach_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approach
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paradigm-shift_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paradigm Shift
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emergent-abilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Emergent Abilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strengths_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strengths
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limitations_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limitations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-insight_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Insight
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-paradigm-shifts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Paradigm Shifts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Paradigm Shifts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-rules-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Rules → Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-features-representations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Features → Representations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-training-pretraining" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Training → Pretraining
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-finetuning-prompting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Finetuning → Prompting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-task-specific-general-purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Task-Specific → General-Purpose
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../language-challenges/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Language Challenges
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../llm-paradigm-shift/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Paradigm Shift
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../fundamentals/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fundamentals
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../classical-nlp/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classical NLP
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../embeddings/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Embeddings
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../language-models/README.md" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    none
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../llm-concepts/README.md" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    none
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../prompt-engineering/README.md" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    none
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../retrieval-augmented-generation/README.md" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    none
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../rlhf-and-alignment/README.md" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    none
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../evaluation/README.md" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    none
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../application-patterns/README.md" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    none
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-rule-based-era-1950s-1980s" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Rule-Based Era (1950s-1980s)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Rule-Based Era (1950s-1980s)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-philosophy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Philosophy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approach
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strengths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strengths
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limitations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-insight" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Insight
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-statistical-revolution-1990s-2000s" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Statistical Revolution (1990s-2000s)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Statistical Revolution (1990s-2000s)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-philosophy_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Philosophy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approach_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approach
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strengths_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strengths
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limitations_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limitations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-insight_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Insight
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-neural-era-2010s" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Neural Era (2010s)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Neural Era (2010s)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-philosophy_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Philosophy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approach_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approach
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strengths_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strengths
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limitations_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limitations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-insight_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Insight
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-transformer-revolution-2017-2019" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Transformer Revolution (2017-2019)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Transformer Revolution (2017-2019)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-philosophy_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Philosophy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approach_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approach
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paradigm-shift" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paradigm Shift
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strengths_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strengths
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limitations_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limitations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-insight_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Insight
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-llm-era-2020-present" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The LLM Era (2020-Present)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The LLM Era (2020-Present)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-philosophy_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Philosophy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approach_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approach
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paradigm-shift_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paradigm Shift
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emergent-abilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Emergent Abilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strengths_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strengths
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limitations_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limitations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-insight_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Insight
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-paradigm-shifts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Paradigm Shifts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key Paradigm Shifts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-rules-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Rules → Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-features-representations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Features → Representations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-training-pretraining" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Training → Pretraining
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-finetuning-prompting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Finetuning → Prompting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-task-specific-general-purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Task-Specific → General-Purpose
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Overview
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+<h1 id="evolution-of-nlp">Evolution of NLP</h1>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#the-rule-based-era-1950s-1980s">The Rule-Based Era (1950s-1980s)</a></li>
+<li><a href="#the-statistical-revolution-1990s-2000s">The Statistical Revolution (1990s-2000s)</a></li>
+<li><a href="#the-neural-era-2010s">The Neural Era (2010s)</a></li>
+<li><a href="#the-transformer-revolution-2017-2019">The Transformer Revolution (2017-2019)</a></li>
+<li><a href="#the-llm-era-2020-present">The LLM Era (2020-Present)</a></li>
+<li><a href="#key-paradigm-shifts">Key Paradigm Shifts</a></li>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#next-steps">Next Steps</a></li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<p>Natural language processing has undergone several fundamental transformations over the past 70 years. Each era brought new assumptions about how to approach language, new methodologies, and new capabilities. Understanding this evolution helps you appreciate why modern approaches work, what problems they solve, and where they still fall short.</p>
+<p>The progression isn't just a history lesson -- it's a story of increasingly powerful abstractions and how data, compute, and architectural innovations have repeatedly reshaped what's possible with language AI.</p>
+<h2 id="the-rule-based-era-1950s-1980s">The Rule-Based Era (1950s-1980s)</h2>
+<h3 id="core-philosophy">Core Philosophy</h3>
+<p>Language could be understood through explicit rules written by linguists and domain experts. If we could codify grammar, semantics, and world knowledge, machines could process language.</p>
+<p><strong>Representative Work:</strong></p>
+<ul>
+<li><strong>ELIZA (1966)</strong>: Pattern matching chatbot that simulated conversation</li>
+<li><strong>SHRDLU (1970)</strong>: Natural language understanding in a blocks world</li>
+<li><strong>Expert systems</strong>: Hand-coded knowledge bases and inference rules</li>
+</ul>
+<h3 id="approach">Approach</h3>
+<ul>
+<li>Hand-crafted grammars (context-free grammars, augmented transition networks)</li>
+<li>Explicit semantic representations (first-order logic, semantic networks)</li>
+<li>Rule-based parsing and generation</li>
+<li>Knowledge bases manually constructed by experts</li>
+</ul>
+<h3 id="strengths">Strengths</h3>
+<ul>
+<li><strong>Interpretable</strong>: Every decision could be traced to a specific rule</li>
+<li><strong>Precise</strong>: Within narrow domains, very accurate</li>
+<li><strong>Controllable</strong>: Behavior was deterministic and predictable</li>
+</ul>
+<h3 id="limitations">Limitations</h3>
+<ul>
+<li><strong>Brittle</strong>: Failed on inputs that didn't match the rules</li>
+<li><strong>Domain-specific</strong>: Rules rarely transferred across domains</li>
+<li><strong>Labor-intensive</strong>: Required extensive manual effort from linguists</li>
+<li><strong>Didn't scale</strong>: Couldn't handle the ambiguity and variability of real-world language</li>
+<li><strong>Coverage problem</strong>: Impossible to write rules for every linguistic phenomenon</li>
+</ul>
+<h3 id="key-insight">Key Insight</h3>
+<p><strong>Language is too complex and variable to be fully captured by hand-written rules.</strong> The long tail of linguistic phenomena -- idioms, metaphors, context-dependent meanings, ungrammatical but understandable utterances -- made comprehensive rule systems impractical.</p>
+<h2 id="the-statistical-revolution-1990s-2000s">The Statistical Revolution (1990s-2000s)</h2>
+<h3 id="core-philosophy_1">Core Philosophy</h3>
+<p>Instead of writing rules, learn patterns from data. Let probability models capture regularities in language by observing real-world usage.</p>
+<p><strong>Representative Work:</strong></p>
+<ul>
+<li><strong>Hidden Markov Models</strong>: Speech recognition, POS tagging</li>
+<li><strong>Statistical machine translation</strong>: IBM models, phrase-based MT</li>
+<li><strong>Probabilistic context-free grammars</strong>: Statistical parsing</li>
+<li><strong>Maximum entropy models</strong>: Text classification, sequence labeling</li>
+</ul>
+<h3 id="approach_1">Approach</h3>
+<ul>
+<li>Learn from corpora rather than hand-crafted rules</li>
+<li>Probabilistic models (n-grams, HMMs, CRFs)</li>
+<li>Feature engineering: transforming raw text into numerical features</li>
+<li>Supervised learning with labeled data</li>
+<li>Evaluation metrics: BLEU, perplexity, accuracy</li>
+</ul>
+<h3 id="strengths_1">Strengths</h3>
+<ul>
+<li><strong>Data-driven</strong>: Captured patterns from actual language use</li>
+<li><strong>Robust</strong>: Handled unseen inputs better through probability distributions</li>
+<li><strong>Scalable</strong>: Could learn from large corpora</li>
+<li><strong>Empirical</strong>: Performance measurable with quantitative metrics</li>
+</ul>
+<h3 id="limitations_1">Limitations</h3>
+<ul>
+<li><strong>Feature engineering bottleneck</strong>: Required manual design of features</li>
+<li><strong>Context limitations</strong>: N-gram models had limited context windows</li>
+<li><strong>Independence assumptions</strong>: Many models assumed features were independent</li>
+<li><strong>Sparse data problem</strong>: Rare events difficult to model</li>
+<li><strong>Shallow representations</strong>: Struggled with semantic understanding</li>
+</ul>
+<h3 id="key-insight_1">Key Insight</h3>
+<p><strong>Language patterns can be learned from data, but hand-crafted features limit what models can learn.</strong> Statistical methods proved data beats hand-coded rules, but feature engineering became the bottleneck.</p>
+<h2 id="the-neural-era-2010s">The Neural Era (2010s)</h2>
+<h3 id="core-philosophy_2">Core Philosophy</h3>
+<p>Learn representations automatically from raw data using neural networks. Let the model discover the right features through backpropagation.</p>
+<p><strong>Representative Work:</strong></p>
+<ul>
+<li><strong>Word2Vec (2013)</strong>: Learning word embeddings from context</li>
+<li><strong>Sequence-to-sequence models (2014)</strong>: Encoder-decoder architectures</li>
+<li><strong>Attention mechanisms (2015)</strong>: Dynamic focus on relevant input parts</li>
+<li><strong>Neural machine translation</strong>: End-to-end translation without explicit alignment</li>
+<li><strong>ELMo (2018)</strong>: Contextualized word representations</li>
+</ul>
+<h3 id="approach_2">Approach</h3>
+<ul>
+<li>Representation learning: embeddings capture semantic information</li>
+<li>Recurrent neural networks (RNNs, LSTMs, GRUs) for sequences</li>
+<li>End-to-end learning: from raw text to task output</li>
+<li>Distributed representations: dense vectors instead of sparse features</li>
+<li>Transfer learning: pretrain embeddings, finetune on tasks</li>
+</ul>
+<h3 id="strengths_2">Strengths</h3>
+<ul>
+<li><strong>Automatic feature learning</strong>: No manual feature engineering</li>
+<li><strong>Rich representations</strong>: Dense embeddings captured semantic relationships</li>
+<li><strong>Better generalization</strong>: Learned abstractions transferred across examples</li>
+<li><strong>End-to-end optimization</strong>: All components jointly trained</li>
+<li><strong>Compositional</strong>: Could handle longer contexts and dependencies</li>
+</ul>
+<h3 id="limitations_2">Limitations</h3>
+<ul>
+<li><strong>Sequential processing</strong>: RNNs processed text left-to-right, limiting parallelization</li>
+<li><strong>Long-range dependencies</strong>: Gradient vanishing made long-distance relationships hard</li>
+<li><strong>Data hungry</strong>: Required large amounts of labeled data</li>
+<li><strong>Task-specific</strong>: Each task needed separate model training</li>
+<li><strong>Limited context</strong>: Practical context windows still relatively short</li>
+</ul>
+<h3 id="key-insight_2">Key Insight</h3>
+<p><strong>Neural networks can learn powerful representations automatically, but sequential processing and task-specific training limit scalability.</strong> The shift from feature engineering to representation learning was profound, but architectural constraints remained.</p>
+<h2 id="the-transformer-revolution-2017-2019">The Transformer Revolution (2017-2019)</h2>
+<h3 id="core-philosophy_3">Core Philosophy</h3>
+<p>Self-attention mechanisms allow parallel processing and long-range dependencies. Massive pretraining on unlabeled text, then transfer to downstream tasks.</p>
+<p><strong>Representative Work:</strong></p>
+<ul>
+<li><strong>Transformer (2017)</strong>: "Attention is All You Need" -- self-attention without recurrence</li>
+<li><strong>BERT (2018)</strong>: Bidirectional pretraining with masked language modeling</li>
+<li><strong>GPT-2 (2019)</strong>: Large-scale autoregressive pretraining</li>
+<li><strong>T5 (2019)</strong>: Unified text-to-text framework</li>
+</ul>
+<h3 id="approach_3">Approach</h3>
+<ul>
+<li><strong>Self-attention</strong>: Attend to all positions in parallel</li>
+<li><strong>Positional encoding</strong>: Inject sequence order information</li>
+<li><strong>Pretraining</strong>: Unsupervised learning on massive text corpora</li>
+<li><strong>Fine-tuning</strong>: Adapt pretrained models to specific tasks</li>
+<li><strong>Transfer learning</strong>: Pretrained knowledge transfers across tasks</li>
+</ul>
+<h3 id="paradigm-shift">Paradigm Shift</h3>
+<p><strong>Pretrain-then-finetune</strong> replaced training from scratch. Universal language understanding could be learned once, then specialized.</p>
+<h3 id="strengths_3">Strengths</h3>
+<ul>
+<li><strong>Parallelizable</strong>: Training much faster than RNNs</li>
+<li><strong>Long-range dependencies</strong>: Self-attention captured distant relationships</li>
+<li><strong>Transfer learning</strong>: Pretrained models worked across many tasks</li>
+<li><strong>Better representations</strong>: Contextualized embeddings from deep transformers</li>
+<li><strong>Scalability</strong>: Architecture scaled well with compute and data</li>
+</ul>
+<h3 id="limitations_3">Limitations</h3>
+<ul>
+<li><strong>Still task-specific</strong>: Required finetuning for each task</li>
+<li><strong>Labeled data</strong>: Finetuning still needed task-specific labels</li>
+<li><strong>Quadratic complexity</strong>: Self-attention expensive for very long sequences</li>
+<li><strong>Interpretation</strong>: Black box models, hard to understand decisions</li>
+</ul>
+<h3 id="key-insight_3">Key Insight</h3>
+<p><strong>Pretraining on massive unlabeled data creates general-purpose language understanding that transfers broadly.</strong> This unlocked a new scaling paradigm: more data and compute led to better general-purpose models.</p>
+<h2 id="the-llm-era-2020-present">The LLM Era (2020-Present)</h2>
+<h3 id="core-philosophy_4">Core Philosophy</h3>
+<p>Scale changes everything. With sufficient scale, language models develop emergent capabilities and can perform tasks through prompting alone, without finetuning.</p>
+<p><strong>Representative Work:</strong></p>
+<ul>
+<li><strong>GPT-3 (2020)</strong>: 175B parameters, few-shot learning via prompting</li>
+<li><strong>Instruction-tuned models</strong>: InstructGPT, FLAN, T0</li>
+<li><strong>ChatGPT (2022)</strong>: Conversational AI with RLHF alignment</li>
+<li><strong>GPT-4 (2023)</strong>: Multimodal, strong reasoning, longer context</li>
+<li><strong>Claude, Gemini, Llama</strong>: Diverse LLM ecosystem</li>
+</ul>
+<h3 id="approach_4">Approach</h3>
+<ul>
+<li><strong>Massive scale</strong>: Billions or trillions of parameters</li>
+<li><strong>Prompting</strong>: Task specification through natural language instructions</li>
+<li><strong>In-context learning</strong>: Learning from examples in the prompt</li>
+<li><strong>Instruction tuning</strong>: Aligning models to follow instructions</li>
+<li><strong>RLHF</strong>: Reinforcement learning from human feedback for alignment</li>
+<li><strong>Chain-of-thought</strong>: Reasoning through intermediate steps</li>
+</ul>
+<h3 id="paradigm-shift_1">Paradigm Shift</h3>
+<p><strong>Pretrain-then-prompt</strong> replaced pretrain-then-finetune. Models became general-purpose tools that can perform diverse tasks through natural language interfaces.</p>
+<h3 id="emergent-abilities">Emergent Abilities</h3>
+<p>At scale, LLMs exhibit capabilities not present in smaller models:</p>
+<ul>
+<li><strong>Few-shot learning</strong>: Learning new tasks from a few examples</li>
+<li><strong>Chain-of-thought reasoning</strong>: Multi-step problem solving</li>
+<li><strong>Instruction following</strong>: Understanding and executing complex commands</li>
+<li><strong>Task composition</strong>: Combining multiple sub-tasks</li>
+<li><strong>Meta-learning</strong>: Learning to learn from patterns in prompts</li>
+</ul>
+<h3 id="strengths_4">Strengths</h3>
+<ul>
+<li><strong>General-purpose</strong>: One model, many tasks, no finetuning required</li>
+<li><strong>Flexible</strong>: Natural language interface for task specification</li>
+<li><strong>Knowledge</strong>: Vast knowledge encoded during pretraining</li>
+<li><strong>Reasoning</strong>: Can perform multi-step logical operations</li>
+<li><strong>Creativity</strong>: Generate novel content, ideas, and solutions</li>
+</ul>
+<h3 id="limitations_4">Limitations</h3>
+<ul>
+<li><strong>Hallucination</strong>: Generate plausible but false information</li>
+<li><strong>Inconsistency</strong>: Outputs vary across prompts</li>
+<li><strong>Knowledge cutoff</strong>: Training data frozen at training time</li>
+<li><strong>Context limits</strong>: Finite context window (though growing)</li>
+<li><strong>Interpretability</strong>: Hard to understand why models produce specific outputs</li>
+<li><strong>Cost</strong>: Expensive to train and run</li>
+<li><strong>Alignment</strong>: May not follow intent or values</li>
+</ul>
+<h3 id="key-insight_4">Key Insight</h3>
+<p><strong>At sufficient scale, language models become general-purpose reasoning engines that can learn new tasks from natural language descriptions alone.</strong> This fundamentally changes how we build NLP systems -- from training specialized models to engineering prompts for general models.</p>
+<h2 id="key-paradigm-shifts">Key Paradigm Shifts</h2>
+<h3 id="1-rules-data">1. Rules → Data</h3>
+<p><strong>When</strong>: 1990s<br />
+<strong>Change</strong>: From hand-coded linguistic knowledge to learning patterns from corpora<br />
+<strong>Impact</strong>: Scalability and robustness improved, but feature engineering bottleneck remained</p>
+<h3 id="2-features-representations">2. Features → Representations</h3>
+<p><strong>When</strong>: 2010s<br />
+<strong>Change</strong>: From manual feature engineering to learned embeddings<br />
+<strong>Impact</strong>: Automatic feature discovery, richer semantic representations, better generalization</p>
+<h3 id="3-training-pretraining">3. Training → Pretraining</h3>
+<p><strong>When</strong>: 2017-2019<br />
+<strong>Change</strong>: From task-specific training to pretrain-then-finetune<br />
+<strong>Impact</strong>: Transfer learning across tasks, reduced labeled data requirements</p>
+<h3 id="4-finetuning-prompting">4. Finetuning → Prompting</h3>
+<p><strong>When</strong>: 2020+<br />
+<strong>Change</strong>: From task-specific finetuning to task-agnostic prompting<br />
+<strong>Impact</strong>: General-purpose models, natural language interfaces, rapid prototyping</p>
+<h3 id="5-task-specific-general-purpose">5. Task-Specific → General-Purpose</h3>
+<p><strong>When</strong>: 2020+<br />
+<strong>Change</strong>: From specialized models per task to one model for all tasks<br />
+<strong>Impact</strong>: Simplified deployment, enabled new capabilities through composition</p>
+<h2 id="summary">Summary</h2>
+<p>NLP has progressed from brittle rule-based systems to flexible statistical models to powerful neural networks to general-purpose large language models. Each transition brought:</p>
+<ul>
+<li><strong>More abstraction</strong>: From rules to features to representations to learned reasoning</li>
+<li><strong>More data</strong>: From hand-crafted knowledge to small corpora to internet-scale text</li>
+<li><strong>More compute</strong>: From deterministic parsing to neural training to massive pretraining</li>
+<li><strong>More generalization</strong>: From narrow domains to task-specific models to general-purpose LLMs</li>
+</ul>
+<p>The current LLM era represents a fundamental shift: language models as general-purpose reasoning engines that can be programmed through natural language. This changes the practice of NLP from training models to engineering prompts and designing systems that leverage pre-existing capabilities.</p>
+<p><strong>The core lesson</strong>: Each paradigm emerged because it solved fundamental limitations of the previous approach. Understanding these limitations helps you know when to apply each method and how to work within the constraints of current systems.</p>
+<h2 id="next-steps">Next Steps</h2>
+<ul>
+<li>Explore <a href="../language-challenges/">Language Understanding Challenges</a> to understand why NLP is inherently difficult</li>
+<li>Learn about <a href="../llm-paradigm-shift/">The LLM Paradigm Shift</a> to grasp the implications of modern language models</li>
+<li>Progress to <a href="../../fundamentals/">Fundamentals</a> to build technical NLP knowledge</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-circle-arrow-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Overview">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7M19 12H5"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Overview
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../language-challenges/" class="md-footer__link md-footer__link--next" aria-label="Next: Language Challenges">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Language Challenges
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Arc Systems
+
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["announce.dismiss","content.code.annotate","content.code.copy","content.code.select","content.footnote.tooltips","content.tabs.link","content.tooltips","navigation.footer","navigation.indexes","navigation.instant","navigation.instant.prefetch","navigation.instant.progress","navigation.path","navigation.prune","navigation.top","navigation.tracking","search.highlight","toc.follow"],"search":"../../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.16f8adc2.min.js"></script>
+      
+    
+  </body>
+</html>

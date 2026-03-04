@@ -1,0 +1,2898 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Notes related to NLP and Textual AI.">
+      
+      
+        <meta name="author" content="Danish Ahmed">
+      
+      
+      
+        <link rel="prev" href="../language-challenges/">
+      
+      
+        <link rel="next" href="../../fundamentals/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.24">
+    
+    
+      
+        <title>The LLM Paradigm Shift - Textual AI</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.28978c9b.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/modern/palette.dfe2e883.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i%7CJetbrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Jetbrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,a=__md_scope)=>JSON.parse(t.getItem(a.pathname+"."+e)),__md_set=(e,t,a=localStorage,_=__md_scope)=>{try{a.setItem(_.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="red">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#the-llm-paradigm-shift" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Textual AI" class="md-header__button md-logo" aria-label="Textual AI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Textual AI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              The LLM Paradigm Shift
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="red"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Textual AI" class="md-nav__button md-logo" aria-label="Textual AI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    Textual AI
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Overview
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../evolution-of-nlp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evolution of NLP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../language-challenges/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Language Challenges
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Paradigm Shift
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Paradigm Shift
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#from-task-specific-to-general-purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From Task-Specific to General-Purpose
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="From Task-Specific to General-Purpose">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-traditional-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Traditional Approach
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-llm-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The LLM Approach
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-changed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#from-training-to-prompting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From Training to Prompting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="From Training to Prompting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-fine-tuning-era" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Fine-Tuning Era
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-prompting-era" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Prompting Era
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-this-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why This Matters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scale-changes-everything" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scale Changes Everything
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scale Changes Everything">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-scaling-hypothesis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Scaling Hypothesis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scaling-laws" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scaling Laws
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-cost-of-scale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Cost of Scale
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#emergent-abilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Emergent Abilities
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Emergent Abilities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples-of-emergent-abilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples of Emergent Abilities
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples of Emergent Abilities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-context-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In-Context Learning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chain-of-thought-reasoning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chain-of-Thought Reasoning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instruction-following" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instruction Following
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-step-task-composition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Step Task Composition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-emergence-happens" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Emergence Happens
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#natural-language-as-programming-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Natural Language as Programming Interface
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Natural Language as Programming Interface">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#language-as-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Language as Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt-engineering-as-skill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prompt Engineering as Skill
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#composability-and-orchestration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Composability and Orchestration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#new-capabilities-new-challenges" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New Capabilities, New Challenges
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="New Capabilities, New Challenges">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-llms-enable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What LLMs Enable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-llms-struggle-with" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What LLMs Struggle With
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-hallucination-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Hallucination Problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-alignment-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Alignment Problem
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Alignment Problem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-alignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is Alignment?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alignment-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alignment Techniques
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Alignment Techniques">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instruction-tuning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instruction Tuning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reinforcement-learning-from-human-feedback-rlhf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reinforcement Learning from Human Feedback (RLHF)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constitutional-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Constitutional AI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remaining-challenges" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remaining Challenges
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implications-for-nlp-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implications for NLP Practice
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implications for NLP Practice">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-nlp-work-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How NLP Work Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-skills-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New Skills Required
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-system-architectures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New System Architectures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#economic-and-social-implications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Economic and Social Implications
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-changed_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#core-insights" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Insights
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-this-means" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What This Means
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../fundamentals/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fundamentals
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../classical-nlp/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classical NLP
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../embeddings/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Embeddings
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../language-models/README.md" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    none
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../llm-concepts/README.md" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    none
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../prompt-engineering/README.md" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    none
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../retrieval-augmented-generation/README.md" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    none
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../rlhf-and-alignment/README.md" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    none
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../evaluation/README.md" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    none
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../application-patterns/README.md" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    none
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#from-task-specific-to-general-purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From Task-Specific to General-Purpose
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="From Task-Specific to General-Purpose">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-traditional-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Traditional Approach
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-llm-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The LLM Approach
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-changed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#from-training-to-prompting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From Training to Prompting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="From Training to Prompting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-fine-tuning-era" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Fine-Tuning Era
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-prompting-era" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Prompting Era
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-this-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why This Matters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scale-changes-everything" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scale Changes Everything
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scale Changes Everything">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-scaling-hypothesis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Scaling Hypothesis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scaling-laws" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scaling Laws
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-cost-of-scale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Cost of Scale
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#emergent-abilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Emergent Abilities
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Emergent Abilities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples-of-emergent-abilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples of Emergent Abilities
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples of Emergent Abilities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-context-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In-Context Learning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chain-of-thought-reasoning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chain-of-Thought Reasoning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instruction-following" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instruction Following
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-step-task-composition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Step Task Composition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-emergence-happens" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Emergence Happens
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#natural-language-as-programming-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Natural Language as Programming Interface
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Natural Language as Programming Interface">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#language-as-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Language as Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt-engineering-as-skill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prompt Engineering as Skill
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#composability-and-orchestration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Composability and Orchestration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#new-capabilities-new-challenges" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New Capabilities, New Challenges
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="New Capabilities, New Challenges">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-llms-enable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What LLMs Enable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-llms-struggle-with" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What LLMs Struggle With
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-hallucination-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Hallucination Problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-alignment-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Alignment Problem
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Alignment Problem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-alignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is Alignment?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alignment-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alignment Techniques
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Alignment Techniques">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instruction-tuning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instruction Tuning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reinforcement-learning-from-human-feedback-rlhf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reinforcement Learning from Human Feedback (RLHF)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constitutional-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Constitutional AI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remaining-challenges" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remaining Challenges
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implications-for-nlp-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implications for NLP Practice
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implications for NLP Practice">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-nlp-work-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How NLP Work Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-skills-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New Skills Required
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-system-architectures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New System Architectures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#economic-and-social-implications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Economic and Social Implications
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-changed_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Changed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#core-insights" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Insights
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-this-means" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What This Means
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Overview
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+<h1 id="the-llm-paradigm-shift">The LLM Paradigm Shift</h1>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#from-task-specific-to-general-purpose">From Task-Specific to General-Purpose</a></li>
+<li><a href="#from-training-to-prompting">From Training to Prompting</a></li>
+<li><a href="#scale-changes-everything">Scale Changes Everything</a></li>
+<li><a href="#emergent-abilities">Emergent Abilities</a></li>
+<li><a href="#natural-language-as-programming-interface">Natural Language as Programming Interface</a></li>
+<li><a href="#new-capabilities-new-challenges">New Capabilities, New Challenges</a></li>
+<li><a href="#the-alignment-problem">The Alignment Problem</a></li>
+<li><a href="#implications-for-nlp-practice">Implications for NLP Practice</a></li>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#next-steps">Next Steps</a></li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<p>Large language models represent a fundamental shift in how we approach natural language processing. This isn't just an incremental improvement -- it's a change in the basic paradigm of what NLP systems are and how we build them.</p>
+<p><strong>The Old Paradigm:</strong></p>
+<ul>
+<li>Train specialized models for specific tasks</li>
+<li>Require labeled data for each task</li>
+<li>Deploy separate models for different capabilities</li>
+<li>Task specification through model architecture and training data</li>
+</ul>
+<p><strong>The New Paradigm:</strong></p>
+<ul>
+<li>Use general-purpose models across all tasks</li>
+<li>Specify tasks through natural language prompts</li>
+<li>One model handles diverse capabilities</li>
+<li>Task specification through examples and instructions</li>
+</ul>
+<p>This shift changes everything: how we design systems, how we evaluate models, what's possible to build, and what new risks emerge.</p>
+<h2 id="from-task-specific-to-general-purpose">From Task-Specific to General-Purpose</h2>
+<h3 id="the-traditional-approach">The Traditional Approach</h3>
+<p><strong>Pre-LLM NLP workflow:</strong></p>
+<ol>
+<li><strong>Define a specific task</strong>: sentiment analysis, named entity recognition, question answering</li>
+<li><strong>Collect labeled data</strong>: hundreds or thousands of examples for that task</li>
+<li><strong>Train a model</strong>: fine-tune BERT or train from scratch</li>
+<li><strong>Deploy the model</strong>: one model per task</li>
+<li><strong>Repeat for each new task</strong>: separate models for each capability</li>
+</ol>
+<p><strong>Result</strong>: A zoo of specialized models, each requiring:</p>
+<ul>
+<li>Task-specific training data</li>
+<li>Domain expertise for labeling</li>
+<li>Separate deployment and maintenance</li>
+<li>Retraining when tasks change</li>
+</ul>
+<h3 id="the-llm-approach">The LLM Approach</h3>
+<p><strong>Modern LLM workflow:</strong></p>
+<ol>
+<li><strong>Use a pre-trained LLM</strong>: GPT-4, Claude, Llama, etc.</li>
+<li><strong>Write a prompt</strong>: describe the task in natural language</li>
+<li><strong>Provide examples (optional)</strong>: few-shot learning</li>
+<li><strong>Get results</strong>: the same model handles all tasks</li>
+</ol>
+<p><strong>Result</strong>: One general-purpose model that can:</p>
+<ul>
+<li>Perform diverse tasks through prompting alone</li>
+<li>Learn new tasks from examples in context</li>
+<li>Adapt to new domains without retraining</li>
+<li>Compose multiple capabilities in single interactions</li>
+</ul>
+<h3 id="what-changed">What Changed</h3>
+<p><strong>Capability Consolidation</strong>: Instead of:</p>
+<ul>
+<li>Sentiment model + NER model + QA model + summarization model + ...</li>
+</ul>
+<p>You have:</p>
+<ul>
+<li>One LLM that does all of the above through different prompts</li>
+</ul>
+<p><strong>Implication</strong>: Building NLP systems shifts from training models to designing prompts and orchestrating model interactions.</p>
+<h2 id="from-training-to-prompting">From Training to Prompting</h2>
+<h3 id="the-fine-tuning-era">The Fine-Tuning Era</h3>
+<p><strong>Pretrain-then-finetune paradigm</strong> (BERT, GPT-2 era):</p>
+<ol>
+<li><strong>Pretrain</strong>: Unsupervised learning on massive text corpus</li>
+<li><strong>Fine-tune</strong>: Supervised learning on task-specific labeled data</li>
+<li><strong>Deploy</strong>: Task-specific model</li>
+</ol>
+<p><strong>Requirements</strong>:</p>
+<ul>
+<li>Labeled data for each task (hundreds to thousands of examples)</li>
+<li>Computational resources for fine-tuning</li>
+<li>Expertise in model training</li>
+<li>Separate models for each task variant</li>
+</ul>
+<h3 id="the-prompting-era">The Prompting Era</h3>
+<p><strong>Pretrain-then-prompt paradigm</strong> (GPT-3+ era):</p>
+<ol>
+<li><strong>Pretrain</strong>: Unsupervised learning on massive text corpus</li>
+<li><strong>Instruction tune</strong> (optional): Align with human instructions</li>
+<li><strong>Prompt</strong>: Specify task through natural language</li>
+<li><strong>Deploy</strong>: Same model for all tasks</li>
+</ol>
+<p><strong>Requirements</strong>:</p>
+<ul>
+<li>Natural language task description</li>
+<li>Few examples (optional)</li>
+<li>No training required</li>
+<li>One model for all tasks</li>
+</ul>
+<h3 id="why-this-matters">Why This Matters</h3>
+<p><strong>Velocity</strong>: New tasks can be prototyped in minutes, not weeks</p>
+<p><strong>Accessibility</strong>: Non-ML experts can build NLP systems through prompting</p>
+<p><strong>Flexibility</strong>: Tasks can be modified, composed, or iterated without retraining</p>
+<p><strong>Generalization</strong>: Models leverage broad knowledge across tasks</p>
+<p><strong>Trade-off</strong>: Less control, more sensitivity to prompt engineering, occasional unpredictability</p>
+<h2 id="scale-changes-everything">Scale Changes Everything</h2>
+<h3 id="the-scaling-hypothesis">The Scaling Hypothesis</h3>
+<p>As models get larger (more parameters, more training data, more compute), they don't just get better at existing capabilities -- they develop entirely new capabilities.</p>
+<p><strong>Empirical Observation</strong>:</p>
+<ul>
+<li>Small models (&lt; 1B parameters): Basic pattern matching</li>
+<li>Medium models (1-10B parameters): Better language understanding, some reasoning</li>
+<li>Large models (10B-100B+ parameters): Emergent abilities like few-shot learning, chain-of-thought reasoning</li>
+</ul>
+<h3 id="scaling-laws">Scaling Laws</h3>
+<p><strong>Power law relationships</strong> between scale and performance:</p>
+<ul>
+<li><strong>Model size</strong> (number of parameters): Larger = better</li>
+<li><strong>Dataset size</strong> (training tokens): More data = better</li>
+<li><strong>Compute</strong> (FLOPs for training): More compute = better</li>
+</ul>
+<p><strong>Key insight</strong>: Performance improvements are predictable and smooth with scale, but new qualitative capabilities emerge at thresholds.</p>
+<h3 id="the-cost-of-scale">The Cost of Scale</h3>
+<p>Training frontier LLMs requires:</p>
+<ul>
+<li><strong>Compute</strong>: Tens of thousands of GPUs for months</li>
+<li><strong>Data</strong>: Trillions of tokens from the internet</li>
+<li><strong>Energy</strong>: Megawatt-hours of electricity</li>
+<li><strong>Expertise</strong>: Large teams of ML researchers and engineers</li>
+</ul>
+<p><strong>Result</strong>: Only a few organizations can train frontier models, creating a centralization of capability.</p>
+<p><strong>Access patterns</strong>:</p>
+<ul>
+<li>API-based inference (OpenAI, Anthropic)</li>
+<li>Open-weight models (Meta's Llama, Mistral)</li>
+<li>Cloud-hosted models (AWS, Azure, GCP)</li>
+</ul>
+<h2 id="emergent-abilities">Emergent Abilities</h2>
+<h3 id="definition">Definition</h3>
+<p><strong>Emergent abilities</strong>: Capabilities that are not present in smaller models but appear suddenly in sufficiently large models, often without being explicitly optimized for.</p>
+<h3 id="examples-of-emergent-abilities">Examples of Emergent Abilities</h3>
+<h4 id="in-context-learning">In-Context Learning</h4>
+<p><strong>Ability</strong>: Learn new tasks from examples provided in the prompt, without parameter updates.</p>
+<p><strong>Example</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Translate English to French:
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>English: Hello
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>French: Bonjour
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>English: How are you?
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>French: Comment allez-vous?
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>English: Good morning
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>French: [model generates &quot;Bon matin&quot;]
+</span></code></pre></div>
+<p>The model learns the pattern from examples and applies it to new inputs.</p>
+<p><strong>Why it's emergent</strong>: Smaller models can't reliably learn from in-context examples; larger models can.</p>
+<h4 id="chain-of-thought-reasoning">Chain-of-Thought Reasoning</h4>
+<p><strong>Ability</strong>: Break down complex problems into intermediate reasoning steps.</p>
+<p><strong>Example</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Question: Roger has 5 tennis balls. He buys 2 more cans of tennis balls.
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Each can has 3 balls. How many tennis balls does he have now?
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>Let&#39;s think step by step:
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>1. Roger starts with 5 balls
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>2. He buys 2 cans of 3 balls each: 2 × 3 = 6 balls
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>3. Total: 5 + 6 = 11 balls
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>Answer: 11
+</span></code></pre></div>
+<p><strong>Why it's emergent</strong>: Only large models can reliably generate and follow reasoning chains.</p>
+<h4 id="instruction-following">Instruction Following</h4>
+<p><strong>Ability</strong>: Understand and execute complex, nuanced instructions.</p>
+<p><strong>Example</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Write a haiku about machine learning, but replace every noun with a food item.
+</span></code></pre></div>
+<p><strong>Why it's emergent</strong>: Requires understanding instructions, genre conventions, and creative constraint satisfaction.</p>
+<h4 id="multi-step-task-composition">Multi-Step Task Composition</h4>
+<p><strong>Ability</strong>: Combine multiple sub-tasks in a single interaction.</p>
+<p><strong>Example</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Extract the key facts from this article, classify the sentiment,
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>and write a one-sentence summary in Spanish.
+</span></code></pre></div>
+<p><strong>Why it's emergent</strong>: Requires coordinating multiple capabilities and maintaining coherent output.</p>
+<h3 id="why-emergence-happens">Why Emergence Happens</h3>
+<p><strong>Theories</strong> (still debated):</p>
+<ol>
+<li><strong>Gradual improvement + threshold effects</strong>: Capabilities improve smoothly, but become useful only above a quality threshold</li>
+<li><strong>Compositional understanding</strong>: Large models learn more abstract representations that compose better</li>
+<li><strong>Knowledge compression</strong>: Sufficient capacity allows models to store and retrieve vast knowledge effectively</li>
+<li><strong>Optimization landscape</strong>: Larger models find better optima in the loss landscape</li>
+</ol>
+<p><strong>Implication</strong>: We may not fully understand what capabilities will emerge at the next scale level.</p>
+<h2 id="natural-language-as-programming-interface">Natural Language as Programming Interface</h2>
+<h3 id="language-as-code">Language as Code</h3>
+<p>LLMs enable a new programming paradigm: <strong>natural language as the interface for specifying computation</strong>.</p>
+<p><strong>Traditional programming</strong>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">classify_sentiment</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="c1"># Explicit algorithm</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="c1"># Feature extraction</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="c1"># Model inference</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="k">return</span> <span class="n">sentiment</span>
+</span></code></pre></div>
+<p><strong>LLM programming</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Classify the sentiment of the following text as positive, negative, or neutral:
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>[text]
+</span></code></pre></div>
+<p>The task specification itself is the "program."</p>
+<h3 id="prompt-engineering-as-skill">Prompt Engineering as Skill</h3>
+<p>Effective LLM usage requires <strong>prompt engineering</strong>:</p>
+<ul>
+<li>Crafting clear instructions</li>
+<li>Providing relevant examples</li>
+<li>Structuring output format</li>
+<li>Debugging and iterating on prompts</li>
+</ul>
+<p><strong>This is a new skill</strong> combining:</p>
+<ul>
+<li>Clear communication</li>
+<li>Understanding model behavior</li>
+<li>Empirical experimentation</li>
+<li>Systematic evaluation</li>
+</ul>
+<h3 id="composability-and-orchestration">Composability and Orchestration</h3>
+<p>LLMs can be chained and composed:</p>
+<p><strong>Example workflow</strong>:</p>
+<ol>
+<li><strong>Retrieval</strong>: Search documents for relevant context</li>
+<li><strong>Extraction</strong>: Extract key facts from retrieved documents</li>
+<li><strong>Reasoning</strong>: Synthesize information and draw conclusions</li>
+<li><strong>Generation</strong>: Produce final output</li>
+</ol>
+<p>Each step uses the same LLM with different prompts.</p>
+<p><strong>Implication</strong>: Building LLM systems is about <strong>orchestration</strong> -- chaining prompts, managing context, handling failures, and integrating with external tools.</p>
+<h2 id="new-capabilities-new-challenges">New Capabilities, New Challenges</h2>
+<h3 id="what-llms-enable">What LLMs Enable</h3>
+<p><strong>Capabilities</strong> that are now practical:</p>
+<ul>
+<li><strong>Zero-shot task performance</strong>: Tasks work without training examples</li>
+<li><strong>Rapid prototyping</strong>: Build NLP systems in minutes, not months</li>
+<li><strong>Multi-task systems</strong>: One model handles diverse capabilities</li>
+<li><strong>Natural language interfaces</strong>: Conversational AI, chatbots, assistants</li>
+<li><strong>Creative generation</strong>: Writing, brainstorming, content creation</li>
+<li><strong>Code generation</strong>: Write and debug code from natural language</li>
+<li><strong>Knowledge synthesis</strong>: Combine information from multiple sources</li>
+<li><strong>Reasoning assistance</strong>: Multi-step problem solving, explanation</li>
+</ul>
+<h3 id="what-llms-struggle-with">What LLMs Struggle With</h3>
+<p><strong>Limitations</strong> that remain:</p>
+<ul>
+<li><strong>Hallucination</strong>: Generate confident but false information</li>
+<li><strong>Factual knowledge</strong>: Limited to training data (knowledge cutoff)</li>
+<li><strong>Arithmetic and logic</strong>: Inconsistent on precise calculations</li>
+<li><strong>Long-term coherence</strong>: Drift in very long generations</li>
+<li><strong>Context limits</strong>: Finite context window (though improving)</li>
+<li><strong>Controllability</strong>: Difficult to guarantee specific behaviors</li>
+<li><strong>Consistency</strong>: Same prompt can yield different outputs</li>
+<li><strong>Bias</strong>: Reflect biases in training data</li>
+<li><strong>Safety</strong>: May produce harmful content if not aligned</li>
+</ul>
+<h3 id="the-hallucination-problem">The Hallucination Problem</h3>
+<p><strong>Definition</strong>: LLMs generate plausible-sounding but factually incorrect information.</p>
+<p><strong>Why it happens</strong>:</p>
+<ul>
+<li>Models trained to predict likely text, not true text</li>
+<li>No explicit verification mechanism</li>
+<li>Overconfidence in generation</li>
+</ul>
+<p><strong>Implications</strong>:</p>
+<ul>
+<li>Critical for factual domains (medical, legal, financial)</li>
+<li>Requires verification strategies</li>
+<li>Motivates retrieval-augmented generation</li>
+</ul>
+<h2 id="the-alignment-problem">The Alignment Problem</h2>
+<h3 id="what-is-alignment">What is Alignment?</h3>
+<p><strong>Goal</strong>: Make LLMs behave in ways that are helpful, harmless, and honest -- aligned with human values and intent.</p>
+<p><strong>Challenges</strong>:</p>
+<ul>
+<li>Models optimize for training objectives, not human values</li>
+<li>"Predict next word" doesn't guarantee truthfulness or safety</li>
+<li>Models inherit biases from training data</li>
+</ul>
+<h3 id="alignment-techniques">Alignment Techniques</h3>
+<h4 id="instruction-tuning">Instruction Tuning</h4>
+<p><strong>Goal</strong>: Teach models to follow instructions.</p>
+<p><strong>Method</strong>: Fine-tune on datasets of (instruction, response) pairs.</p>
+<p><strong>Result</strong>: Models better at understanding and executing user intent.</p>
+<h4 id="reinforcement-learning-from-human-feedback-rlhf">Reinforcement Learning from Human Feedback (RLHF)</h4>
+<p><strong>Goal</strong>: Align model behavior with human preferences.</p>
+<p><strong>Method</strong>:</p>
+<ol>
+<li>Train reward model on human preference data</li>
+<li>Use reinforcement learning to optimize for high reward</li>
+</ol>
+<p><strong>Result</strong>: Models produce outputs humans prefer (helpful, safe, coherent).</p>
+<h4 id="constitutional-ai">Constitutional AI</h4>
+<p><strong>Goal</strong>: Align models with explicit principles.</p>
+<p><strong>Method</strong>:</p>
+<ol>
+<li>Define constitution (set of principles)</li>
+<li>Use model to critique and revise outputs against principles</li>
+<li>Train on improved outputs</li>
+</ol>
+<p><strong>Result</strong>: Models that self-correct toward desired behavior.</p>
+<h3 id="remaining-challenges">Remaining Challenges</h3>
+<ul>
+<li><strong>Value alignment</strong>: Whose values should models reflect?</li>
+<li><strong>Edge cases</strong>: Handling novel situations not in training data</li>
+<li><strong>Jailbreaking</strong>: Adversarial prompts that bypass safety measures</li>
+<li><strong>Overconfidence</strong>: Models don't know what they don't know</li>
+<li><strong>Specification</strong>: Difficult to precisely specify desired behavior</li>
+</ul>
+<h2 id="implications-for-nlp-practice">Implications for NLP Practice</h2>
+<h3 id="how-nlp-work-changes">How NLP Work Changes</h3>
+<p><strong>Before LLMs</strong>:</p>
+<ul>
+<li>Train models for specific tasks</li>
+<li>Focus on data collection and feature engineering</li>
+<li>Expertise in ML and model training required</li>
+<li>Iterate on model architecture and hyperparameters</li>
+</ul>
+<p><strong>With LLMs</strong>:</p>
+<ul>
+<li>Design prompts for general-purpose models</li>
+<li>Focus on task specification and evaluation</li>
+<li>Accessible to non-ML experts</li>
+<li>Iterate on prompt engineering and system design</li>
+</ul>
+<h3 id="new-skills-required">New Skills Required</h3>
+<ul>
+<li><strong>Prompt engineering</strong>: Crafting effective prompts</li>
+<li><strong>System design</strong>: Orchestrating LLM calls with tools and data</li>
+<li><strong>Evaluation</strong>: Testing prompts and measuring quality</li>
+<li><strong>Risk mitigation</strong>: Handling hallucinations, biases, safety</li>
+<li><strong>Cost optimization</strong>: Managing API costs and latency</li>
+</ul>
+<h3 id="new-system-architectures">New System Architectures</h3>
+<p><strong>Retrieval-Augmented Generation (RAG)</strong>:</p>
+<ul>
+<li>Combine LLMs with external knowledge retrieval</li>
+<li>Mitigate hallucination and knowledge cutoff</li>
+</ul>
+<p><strong>Tool use / function calling</strong>:</p>
+<ul>
+<li>LLMs invoke external tools (calculators, APIs, databases)</li>
+<li>Extend capabilities beyond text generation</li>
+</ul>
+<p><strong>Multi-agent systems</strong>:</p>
+<ul>
+<li>Multiple LLMs with specialized roles</li>
+<li>Critique, refinement, and collaboration patterns</li>
+</ul>
+<p><strong>Human-in-the-loop</strong>:</p>
+<ul>
+<li>LLMs draft, humans review and refine</li>
+<li>Combine model efficiency with human judgment</li>
+</ul>
+<h3 id="economic-and-social-implications">Economic and Social Implications</h3>
+<p><strong>Democratization</strong>:</p>
+<ul>
+<li>Non-experts can build sophisticated NLP systems</li>
+<li>Lower barrier to entry for AI applications</li>
+</ul>
+<p><strong>Displacement concerns</strong>:</p>
+<ul>
+<li>Automation of knowledge work tasks</li>
+<li>Impact on writing, customer service, education</li>
+</ul>
+<p><strong>Centralization</strong>:</p>
+<ul>
+<li>Few organizations control frontier models</li>
+<li>Dependence on API providers</li>
+</ul>
+<p><strong>Safety and governance</strong>:</p>
+<ul>
+<li>Need for responsible AI practices</li>
+<li>Regulatory frameworks emerging</li>
+</ul>
+<h2 id="summary">Summary</h2>
+<p>The LLM paradigm shift fundamentally changes NLP:</p>
+<h3 id="what-changed_1">What Changed</h3>
+<ul>
+<li><strong>Task-specific → General-purpose</strong>: One model for all tasks</li>
+<li><strong>Training → Prompting</strong>: Specify tasks through natural language, not training data</li>
+<li><strong>Scale enables emergence</strong>: New capabilities appear at sufficient scale</li>
+<li><strong>Language as interface</strong>: Natural language becomes the programming paradigm</li>
+<li><strong>New capabilities</strong>: Zero-shot learning, reasoning, creative generation</li>
+<li><strong>New challenges</strong>: Hallucination, alignment, controllability</li>
+</ul>
+<h3 id="core-insights">Core Insights</h3>
+<ol>
+<li><strong>Scale unlocks qualitatively new abilities</strong> that aren't present in smaller models</li>
+<li><strong>Prompting replaces training</strong> for most NLP tasks, changing required skills</li>
+<li><strong>Generalization is powerful but imperfect</strong> -- models are capable but unreliable</li>
+<li><strong>Alignment is critical</strong> -- capability without alignment creates risk</li>
+<li><strong>NLP practice shifts</strong> from training models to orchestrating systems</li>
+</ol>
+<h3 id="what-this-means">What This Means</h3>
+<p><strong>For practitioners</strong>:</p>
+<ul>
+<li>Learn prompt engineering, not just model training</li>
+<li>Design systems that combine LLMs with retrieval and tools</li>
+<li>Evaluate rigorously and plan for failure modes</li>
+<li>Balance capability with risk management</li>
+</ul>
+<p><strong>For the field</strong>:</p>
+<ul>
+<li>New research questions around prompting, alignment, and interpretability</li>
+<li>Economic shifts in who can build NLP systems</li>
+<li>Ethical considerations around capability and access</li>
+<li>Ongoing questions about scaling limits and next breakthroughs</li>
+</ul>
+<p>The LLM era is still young. Understanding this paradigm shift helps you navigate the current landscape and prepare for what comes next.</p>
+<h2 id="next-steps">Next Steps</h2>
+<ul>
+<li>Explore <a href="../evolution-of-nlp/">Evolution of NLP</a> to understand how we got here</li>
+<li>Review <a href="../language-challenges/">Language Understanding Challenges</a> to see what LLMs still struggle with</li>
+<li>Progress to <a href="../../llm_concepts/">LLM Concepts</a> to dive deeper into how LLMs work</li>
+<li>Learn <a href="../../prompt_engineering/">Prompt Engineering</a> to effectively use LLMs</li>
+<li>Study <a href="../../rlhf_and_alignment/">RLHF and Alignment</a> to understand safety and alignment</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-circle-arrow-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../language-challenges/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Language Challenges">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7M19 12H5"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Language Challenges
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../fundamentals/" class="md-footer__link md-footer__link--next" aria-label="Next: Fundamentals">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Fundamentals
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Arc Systems
+
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["announce.dismiss","content.code.annotate","content.code.copy","content.code.select","content.footnote.tooltips","content.tabs.link","content.tooltips","navigation.footer","navigation.indexes","navigation.instant","navigation.instant.prefetch","navigation.instant.progress","navigation.path","navigation.prune","navigation.top","navigation.tracking","search.highlight","toc.follow"],"search":"../../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.16f8adc2.min.js"></script>
+      
+    
+  </body>
+</html>

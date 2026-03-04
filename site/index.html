@@ -1,0 +1,1790 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Notes related to NLP and Textual AI.">
+      
+      
+        <meta name="author" content="Danish Ahmed">
+      
+      
+      
+      
+        <link rel="next" href="./overview/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="./assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.24">
+    
+    
+      
+        <title>Textual AI - Textual AI</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="./assets/stylesheets/modern/main.28978c9b.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="./assets/stylesheets/modern/palette.dfe2e883.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i%7CJetbrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Jetbrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,a=__md_scope)=>JSON.parse(t.getItem(a.pathname+"."+e)),__md_set=(e,t,a=localStorage,_=__md_scope)=>{try{a.setItem(_.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="red">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#textual-ai" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="" title="Textual AI" class="md-header__button md-logo" aria-label="Textual AI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Textual AI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Textual AI
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="red"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="" title="Textual AI" class="md-nav__button md-logo" aria-label="Textual AI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    Textual AI
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#purpose-and-philosophy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Purpose and Philosophy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#who-this-repository-is-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Who This Repository Is For
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-use-this-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to Use This Repository
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How to Use This Repository">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#as-a-learning-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        As a Learning System
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#as-a-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        As a Reference
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#as-a-living-document" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        As a Living Document
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#repository-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Table of Contents">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fundamentals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fundamentals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#classical-nlp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Classical NLP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#embeddings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Embeddings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#language-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Language Models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llm-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LLM Concepts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt-engineering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prompt Engineering
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retrieval-augmented-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Retrieval-Augmented Generation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evaluation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Application Patterns
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning Principles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contribution-to-your-growth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contribution to Your Growth
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="./overview/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="./fundamentals/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fundamentals
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="./classical-nlp/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classical NLP
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="./embeddings/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Embeddings
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="./language-models/README.md" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    none
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="./llm-concepts/README.md" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    none
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="./prompt-engineering/README.md" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    none
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="./retrieval-augmented-generation/README.md" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    none
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="./rlhf-and-alignment/README.md" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    none
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="./evaluation/README.md" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    none
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="./application-patterns/README.md" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    none
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#purpose-and-philosophy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Purpose and Philosophy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#who-this-repository-is-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Who This Repository Is For
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-use-this-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to Use This Repository
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How to Use This Repository">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#as-a-learning-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        As a Learning System
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#as-a-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        As a Reference
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#as-a-living-document" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        As a Living Document
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#repository-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Table of Contents">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fundamentals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fundamentals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#classical-nlp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Classical NLP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#embeddings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Embeddings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#language-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Language Models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llm-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LLM Concepts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt-engineering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prompt Engineering
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retrieval-augmented-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Retrieval-Augmented Generation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evaluation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Application Patterns
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning Principles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contribution-to-your-growth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contribution to Your Growth
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+<h1 id="textual-ai">Textual AI</h1>
+<h2 id="purpose-and-philosophy">Purpose and Philosophy</h2>
+<p>This repository is a <strong>comprehensive knowledge base</strong> for natural language processing and textual AI -- from classical NLP concepts to modern large language models, from embeddings to retrieval-augmented generation. It focuses on <strong>conceptual understanding</strong> that transcends specific libraries or model families.</p>
+<p>The focus is on:</p>
+<ul>
+<li><strong>NLP fundamentals</strong>: tokenization, text representation, linguistic concepts</li>
+<li><strong>Classical NLP</strong>: n-grams, TF-IDF, parsing, information extraction</li>
+<li><strong>Embeddings</strong>: word embeddings, sentence embeddings, representation learning for text</li>
+<li><strong>LLM concepts</strong>: transformer language models, prompting, fine-tuning, instruction tuning</li>
+<li><strong>Retrieval-augmented generation (RAG)</strong>: combining retrieval with generation, vector databases</li>
+<li><strong>Evaluation</strong>: metrics, benchmarks, human evaluation, understanding LLM capabilities and limitations</li>
+<li><strong>Practical workflows</strong>: prompt engineering, LLM application patterns, system design with LLMs</li>
+</ul>
+<p>This repository is <strong>concept-first and tool-agnostic</strong>. While examples may reference OpenAI API, Hugging Face, LangChain, or other tools, the emphasis is on <strong>universal principles</strong> for working with language and text.</p>
+<div class="admonition quote">
+<p class="admonition-title">Quote</p>
+<p>"Language is the dress of thought." -- Samuel Johnson</p>
+</div>
+<p>Natural language processing is about teaching machines to understand and generate human language -- the most natural interface for human-computer interaction. This repository is your guide to that frontier.</p>
+<h2 id="who-this-repository-is-for">Who This Repository Is For</h2>
+<p>This repository is designed for:</p>
+<ul>
+<li><strong>NLP engineers</strong> deepening their understanding of language models and NLP systems</li>
+<li><strong>ML engineers</strong> specializing in text and language applications</li>
+<li><strong>Software engineers</strong> building LLM-powered applications</li>
+<li><strong>Researchers</strong> exploring language understanding and generation</li>
+<li><strong>Lifelong learners</strong> building comprehensive NLP expertise</li>
+</ul>
+<p>This assumes ML fundamentals and progresses toward advanced NLP techniques and LLM application design.</p>
+<h2 id="how-to-use-this-repository">How to Use This Repository</h2>
+<h3 id="as-a-learning-system">As a Learning System</h3>
+<ul>
+<li><strong>Build NLP foundations</strong>: Understand text representation, tokenization, and classical NLP</li>
+<li><strong>Progress to modern NLP</strong>: Embeddings → Transformers → LLMs → RAG</li>
+<li><strong>Learn prompting and evaluation</strong>: Master prompt engineering and LLM evaluation</li>
+<li><strong>Design systems</strong>: Apply concepts to build production NLP/LLM systems</li>
+<li><strong>Experiment</strong>: Test prompting strategies, embeddings, and retrieval systems</li>
+</ul>
+<h3 id="as-a-reference">As a Reference</h3>
+<ul>
+<li><strong>Prompt engineering</strong>: Reference effective prompting patterns</li>
+<li><strong>Evaluation metrics</strong>: Choose appropriate metrics for NLP tasks</li>
+<li><strong>RAG patterns</strong>: Design retrieval-augmented systems</li>
+<li><strong>LLM capabilities</strong>: Understand what LLMs can and cannot do</li>
+</ul>
+<h3 id="as-a-living-document">As a Living Document</h3>
+<ul>
+<li><strong>Track LLM evolution</strong>: As models improve, update understanding and patterns</li>
+<li><strong>Document prompt patterns</strong>: Capture effective prompting strategies</li>
+<li><strong>Add evaluation insights</strong>: Record findings from evaluating LLM systems</li>
+<li><strong>Capture lessons learned</strong>: Document insights from production NLP systems</li>
+</ul>
+<h2 id="repository-structure">Repository Structure</h2>
+<p>This repository is organized to <strong>mirror the progression of NLP mastery</strong> and to <strong>support efficient navigation</strong>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>textual-ai-lab/
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├──<span class="w"> </span>overview/<span class="w">                        </span><span class="c1"># NLP evolution and philosophy</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├──<span class="w"> </span>fundamentals/<span class="w">                    </span><span class="c1"># Tokenization, preprocessing, linguistic concepts</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├──<span class="w"> </span>classical_nlp/<span class="w">                   </span><span class="c1"># N-grams, TF-IDF, topic modeling</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├──<span class="w"> </span>embeddings/<span class="w">                      </span><span class="c1"># Word2Vec, sentence embeddings, representation learning</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>├──<span class="w"> </span>language_models/<span class="w">                 </span><span class="c1"># LM fundamentals, BERT vs GPT, pretraining</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>├──<span class="w"> </span>llm_concepts/<span class="w">                    </span><span class="c1"># Scale, emergent abilities, in-context learning</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>├──<span class="w"> </span>prompt_engineering/<span class="w">              </span><span class="c1"># Prompting strategies and optimization</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>├──<span class="w"> </span>retrieval_augmented_generation/<span class="w">  </span><span class="c1"># RAG architecture and patterns</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>├──<span class="w"> </span>rlhf_and_alignment/<span class="w">              </span><span class="c1"># RLHF, reward modeling, safety</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>├──<span class="w"> </span>evaluation/<span class="w">                      </span><span class="c1"># Metrics, benchmarks, human evaluation</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>├──<span class="w"> </span>application_patterns/<span class="w">            </span><span class="c1"># Classification, summarization, QA workflows</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>├──<span class="w"> </span>experiments/<span class="w">                     </span><span class="c1"># Experiments related to NLP and Textual AI</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>├──<span class="w"> </span>notes/<span class="w">                           </span><span class="c1"># Personal learnings</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>└──<span class="w"> </span>resources.md<span class="w">                     </span><span class="c1"># Resources for NLP and Textual AI</span>
+</span></code></pre></div>
+<h2 id="table-of-contents">Table of Contents</h2>
+<h3 id="overview"><a href="overview/">Overview</a></h3>
+<ul>
+<li>Evolution of NLP: rule-based → statistical → neural → LLMs</li>
+<li>Understanding vs generation</li>
+<li>Challenges in NLP: ambiguity, context, commonsense</li>
+<li>The LLM paradigm shift</li>
+</ul>
+<h3 id="fundamentals"><a href="fundamentals/">Fundamentals</a></h3>
+<ul>
+<li><strong>Tokenization</strong>: word, subword (BPE, WordPiece), character tokenization</li>
+<li><strong>Text preprocessing</strong>: lowercasing, stemming, lemmatization, stopword removal</li>
+<li><strong>Part-of-speech tagging</strong>: syntactic categories, tagging algorithms</li>
+<li><strong>Named entity recognition</strong>: entity types, sequence labeling</li>
+<li><strong>Parsing</strong>: dependency parsing, constituency parsing, syntax trees</li>
+<li><strong>Linguistic concepts</strong>: morphology, syntax, semantics, pragmatics</li>
+</ul>
+<h3 id="classical-nlp"><a href="classical-nlp/">Classical NLP</a></h3>
+<ul>
+<li><strong>N-grams</strong>: language modeling, smoothing, perplexity</li>
+<li><strong>TF-IDF</strong>: term weighting, document similarity, information retrieval</li>
+<li><strong>Bag-of-words</strong>: text representation, limitations</li>
+<li><strong>Topic modeling</strong>: LDA, LSA, discovering topics in corpora</li>
+<li><strong>Information extraction</strong>: relation extraction, event extraction</li>
+<li><strong>Text classification</strong>: Naive Bayes, logistic regression, feature engineering</li>
+</ul>
+<h3 id="embeddings"><a href="embeddings/">Embeddings</a></h3>
+<ul>
+<li><strong>Word2Vec</strong>: CBOW, Skip-gram, learning word representations</li>
+<li><strong>GloVe</strong>: global matrix factorization, word analogies</li>
+<li><strong>fastText</strong>: subword embeddings, handling OOV words</li>
+<li><strong>Sentence embeddings</strong>: averaging, SBERT, universal sentence encoder</li>
+<li><strong>Contextual embeddings</strong>: ELMo, contextualized representations</li>
+<li><strong>Embedding spaces</strong>: semantic similarity, analogies, bias in embeddings</li>
+</ul>
+<h3 id="language-models"><a href="language-models/">Language Models</a></h3>
+<ul>
+<li><strong>Autoregressive models</strong>: GPT-style, left-to-right generation, causal masking</li>
+<li><strong>Masked models</strong>: BERT-style, bidirectional context, masked language modeling</li>
+<li><strong>Encoder-decoder</strong>: T5, sequence-to-sequence, translation</li>
+<li><strong>Pretraining objectives</strong>: MLM, CLM, NSP, span corruption</li>
+<li><strong>Fine-tuning</strong>: task-specific adaptation, full fine-tuning vs LoRA</li>
+<li><strong>Transfer learning in NLP</strong>: pretrain-finetune paradigm</li>
+</ul>
+<h3 id="llm-concepts"><a href="llm-concepts/">LLM Concepts</a></h3>
+<ul>
+<li><strong>Scale effects</strong>: emergent abilities, scaling laws, bigger models</li>
+<li><strong>In-context learning</strong>: learning from examples in the prompt</li>
+<li><strong>Chain-of-thought</strong>: reasoning through intermediate steps</li>
+<li><strong>Instruction tuning</strong>: following instructions, FLAN, InstructGPT</li>
+<li><strong>RLHF</strong>: reinforcement learning from human feedback, alignment</li>
+<li><strong>Capabilities</strong>: what LLMs can do, reasoning, knowledge, creativity</li>
+<li><strong>Limitations</strong>: hallucination, factuality, reasoning failures, context length</li>
+</ul>
+<h3 id="prompt-engineering"><a href="prompt-engineering/">Prompt Engineering</a></h3>
+<ul>
+<li><strong>Zero-shot prompting</strong>: task description only</li>
+<li><strong>Few-shot prompting</strong>: providing examples, in-context learning</li>
+<li><strong>Chain-of-thought</strong>: step-by-step reasoning, let's think step by step</li>
+<li><strong>Structured output</strong>: JSON, XML, formatting outputs</li>
+<li><strong>Prompt decomposition</strong>: breaking complex tasks into steps</li>
+<li><strong>Self-consistency</strong>: sampling multiple outputs, voting</li>
+<li><strong>Prompt optimization</strong>: iterative refinement, evaluation-driven improvement</li>
+</ul>
+<h3 id="retrieval-augmented-generation"><a href="retrieval-augmented-generation/">Retrieval-Augmented Generation</a></h3>
+<ul>
+<li><strong>RAG architecture</strong>: retrieval → augmentation → generation</li>
+<li><strong>Vector databases</strong>: Pinecone, Weaviate, Chroma, FAISS</li>
+<li><strong>Embedding models</strong>: choosing embeddings for retrieval</li>
+<li><strong>Chunking strategies</strong>: document splitting, overlap, semantic chunking</li>
+<li><strong>Retrieval strategies</strong>: dense retrieval, sparse retrieval, hybrid search</li>
+<li><strong>Reranking</strong>: improving retrieval quality, cross-encoder reranking</li>
+<li><strong>RAG evaluation</strong>: retrieval quality, generation quality, end-to-end evaluation</li>
+</ul>
+<h3 id="evaluation"><a href="evaluation/">Evaluation</a></h3>
+<ul>
+<li><strong>Traditional metrics</strong>: BLEU, ROUGE, METEOR, BERTScore</li>
+<li><strong>LLM evaluation</strong>: accuracy on benchmarks, human evaluation, pairwise comparison</li>
+<li><strong>Benchmarks</strong>: MMLU, HellaSwag, TruthfulQA, BigBench</li>
+<li><strong>Task-specific evaluation</strong>: classification metrics, generation quality</li>
+<li><strong>Human evaluation</strong>: relevance, coherence, factuality, fluency</li>
+<li><strong>Failure analysis</strong>: understanding when and why systems fail</li>
+<li><strong>Adversarial testing</strong>: edge cases, stress testing, robustness</li>
+</ul>
+<h3 id="application-patterns"><a href="application-patterns/">Application Patterns</a></h3>
+<ul>
+<li><strong>Classification</strong>: sentiment analysis, intent detection, topic classification</li>
+<li><strong>Summarization</strong>: extractive vs abstractive, single-doc vs multi-doc</li>
+<li><strong>Information extraction</strong>: named entities, relations, structured extraction</li>
+<li><strong>Question answering</strong>: extractive QA, generative QA, open-domain QA</li>
+<li><strong>Generation</strong>: creative writing, code generation, content creation</li>
+<li><strong>Conversational AI</strong>: dialogue systems, chatbots, multi-turn interaction</li>
+<li><strong>Semantic search</strong>: finding relevant documents, similarity search</li>
+</ul>
+<h2 id="learning-principles">Learning Principles</h2>
+<ul>
+<li><strong>Language is Complex:</strong> Language is ambiguous, context-dependent, and nuanced. Appreciate the difficulty of NLP and the limitations of current systems.</li>
+<li><strong>Prompting is an Art and Science:</strong> Effective prompting requires iteration, evaluation, and understanding of LLM behavior. Develop systematic prompting skills.</li>
+<li><strong>Evaluation is Critical:</strong> LLMs can produce fluent but incorrect outputs. Rigorous evaluation is essential for building reliable systems.</li>
+<li><strong>RAG Bridges Knowledge Gaps:</strong> LLMs have knowledge cutoffs and hallucinate. RAG grounds generation in retrieved documents, improving factuality.</li>
+<li><strong>Understand Trade-offs:</strong> Bigger models vs smaller models, latency vs quality, cost vs capability. Every system design involves trade-offs.</li>
+</ul>
+<h2 id="contribution-to-your-growth">Contribution to Your Growth</h2>
+<p>This repository is your <strong>comprehensive guide to NLP and textual AI mastery</strong>. It is:</p>
+<ul>
+<li>An <strong>NLP reference</strong> for classical and modern techniques</li>
+<li>A <strong>prompt engineering guide</strong> for effective LLM usage</li>
+<li>A <strong>RAG design handbook</strong> for retrieval-augmented systems</li>
+<li>A <strong>living document</strong> tracking the rapid evolution of language AI</li>
+</ul>
+<p>Mastering NLP and LLMs will enable you to build sophisticated language understanding and generation systems.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-circle-arrow-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+        
+          
+          <a href="./overview/" class="md-footer__link md-footer__link--next" aria-label="Next: Overview">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Overview
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Arc Systems
+
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":".","features":["announce.dismiss","content.code.annotate","content.code.copy","content.code.select","content.footnote.tooltips","content.tabs.link","content.tooltips","navigation.footer","navigation.indexes","navigation.instant","navigation.instant.prefetch","navigation.instant.progress","navigation.path","navigation.prune","navigation.top","navigation.tracking","search.highlight","toc.follow"],"search":"./assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+    
+    
+      <script src="./assets/javascripts/bundle.16f8adc2.min.js"></script>
+      
+    
+  </body>
+</html>
