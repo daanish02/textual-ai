@@ -12,6 +12,8 @@
         <meta name="author" content="Danish Ahmed">
       
       
+        <link rel="canonical" href="https://daanish02.github.io/textual-ai/embeddings/word-embeddings/">
+      
       
         <link rel="prev" href="../embedding-spaces/">
       
@@ -2789,19 +2791,19 @@
 </span></code></pre></div>
 <h3 id="mathematical-formulation">Mathematical Formulation</h3>
 <p><strong>Skip-gram objective</strong>: Maximize log probability of context words</p>
-<p>$$\frac{1}{T} \sum_{t=1}^{T} \sum_{-c \leq j \leq c, j \neq 0} \log P(w_{t+j} | w_t)$$</p>
+<div class="arithmatex">\[\frac{1}{T} \sum_{t=1}^{T} \sum_{-c \leq j \leq c, j \neq 0} \log P(w_{t+j} | w_t)\]</div>
 <p>Where:</p>
 <ul>
-<li>$T$ = corpus size</li>
-<li>$c$ = context window size</li>
-<li>$w_t$ = word at position $t$</li>
+<li><span class="arithmatex">\(T\)</span> = corpus size</li>
+<li><span class="arithmatex">\(c\)</span> = context window size</li>
+<li><span class="arithmatex">\(w_t\)</span> = word at position <span class="arithmatex">\(t\)</span></li>
 </ul>
 <p><strong>Probability calculation</strong> (using softmax):</p>
-<p>$$P(w_O | w_I) = \frac{\exp(v'<em>{w_O}^T v</em>{w_I})}{\sum_{w=1}^{V} \exp(v'<em>w^T v</em>{w_I})}$$</p>
+<div class="arithmatex">\[P(w_O | w_I) = \frac{\exp(v'_{w_O}^T v_{w_I})}{\sum_{w=1}^{V} \exp(v'_w^T v_{w_I})}\]</div>
 <p>Where:</p>
 <ul>
-<li>$v_{w_I}$ = embedding of input word</li>
-<li>$v'_{w_O}$ = embedding of output word</li>
+<li><span class="arithmatex">\(v_{w_I}\)</span> = embedding of input word</li>
+<li><span class="arithmatex">\(v'_{w_O}\)</span> = embedding of output word</li>
 </ul>
 <h3 id="cbow-architecture">CBOW Architecture</h3>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Context words (input) → Average → Hidden → Predict center word
@@ -2867,7 +2869,7 @@
 </span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="c1"># Negatives: (&quot;fox&quot;, &quot;democracy&quot;), (&quot;fox&quot;, &quot;philosophy&quot;), ...</span>
 </span></code></pre></div>
 <p><strong>Objective</strong> (binary classification):</p>
-<p>$$\log \sigma(v'<em>{w_O}^T v</em>{w_I}) + \sum_{i=1}^{k} \mathbb{E}<em>{w_i \sim P_n(w)} [\log \sigma(-v'</em>{w_i}^T v_{w_I})]$$</p>
+<div class="arithmatex">\[\log \sigma(v'_{w_O}^T v_{w_I}) + \sum_{i=1}^{k} \mathbb{E}_{w_i \sim P_n(w)} [\log \sigma(-v'_{w_i}^T v_{w_I})]\]</div>
 <h3 id="implementation-with-gensim">Implementation with Gensim</h3>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">gensim.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Word2Vec</span>
 </span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">nltk.tokenize</span><span class="w"> </span><span class="kn">import</span> <span class="n">word_tokenize</span>
@@ -2978,7 +2980,7 @@
 </span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>  How often do &quot;cat&quot; and &quot;sat&quot; appear together across ENTIRE corpus?
 </span></code></pre></div>
 <h3 id="co-occurrence-matrix">Co-occurrence Matrix</h3>
-<p><strong>Build matrix</strong> $X$ where $X_{ij}$ = number of times word $j$ appears in context of word $i$</p>
+<p><strong>Build matrix</strong> <span class="arithmatex">\(X\)</span> where <span class="arithmatex">\(X_{ij}\)</span> = number of times word <span class="arithmatex">\(j\)</span> appears in context of word <span class="arithmatex">\(i\)</span></p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 </span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
 </span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
@@ -3036,17 +3038,17 @@
 </span><span id="__span-14-55"><a id="__codelineno-14-55" name="__codelineno-14-55" href="#__codelineno-14-55"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">word</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">cooc_matrix</span><span class="p">[</span><span class="n">cat_idx</span><span class="p">,</span><span class="w"> </span><span class="n">idx</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </span></code></pre></div>
 <h3 id="glove-objective">GloVe Objective</h3>
-<p><strong>Learn embeddings</strong> $w$ and $\tilde{w}$ (word and context vectors) such that:</p>
-<p>$$w_i^T \tilde{w}<em>j + b_i + \tilde{b}_j = \log(X</em>{ij})$$</p>
+<p><strong>Learn embeddings</strong> <span class="arithmatex">\(w\)</span> and <span class="arithmatex">\(\tilde{w}\)</span> (word and context vectors) such that:</p>
+<div class="arithmatex">\[w_i^T \tilde{w}_j + b_i + \tilde{b}_j = \log(X_{ij})\]</div>
 <p><strong>Full objective</strong> (weighted least squares):</p>
-<p>$$J = \sum_{i,j=1}^{V} f(X_{ij}) (w_i^T \tilde{w}<em>j + b_i + \tilde{b}_j - \log X</em>{ij})^2$$</p>
-<p>Where $f(X_{ij})$ is a weighting function:</p>
-<p>$$
+<div class="arithmatex">\[J = \sum_{i,j=1}^{V} f(X_{ij}) (w_i^T \tilde{w}_j + b_i + \tilde{b}_j - \log X_{ij})^2\]</div>
+<p>Where <span class="arithmatex">\(f(X_{ij})\)</span> is a weighting function:</p>
+<div class="arithmatex">\[
 f(x) = \begin{cases}
-(x/x_{max})^\alpha &amp; \text{if } x &lt; x_{max} \
+(x/x_{max})^\alpha &amp; \text{if } x &lt; x_{max} \\
 1 &amp; \text{otherwise}
 \end{cases}
-$$</p>
+\]</div>
 <p><strong>Intuition</strong>:</p>
 <ul>
 <li>Frequent co-occurrences get high weight</li>
@@ -3550,7 +3552,7 @@ $$</p>
 <h2 id="embedding-arithmetic-and-analogies">Embedding Arithmetic and Analogies</h2>
 <h3 id="vector-arithmetic">Vector Arithmetic</h3>
 <p><strong>Famous example</strong>:
-$$\text{king} - \text{man} + \text{woman} \approx \text{queen}$$</p>
+$<span class="arithmatex">\(\text{king} - \text{man} + \text{woman} \approx \text{queen}\)</span>$</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="c1"># Using pre-trained embeddings</span>
 </span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">gensim.downloader</span><span class="w"> </span><span class="kn">import</span> <span class="n">load</span>
 </span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>
@@ -4224,6 +4226,10 @@ $$\text{king} - \text{man} + \text{woman} \approx \text{queen}$$</p>
     
     
       <script src="../../assets/javascripts/bundle.16f8adc2.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

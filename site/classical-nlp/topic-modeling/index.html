@@ -12,6 +12,8 @@
         <meta name="author" content="Danish Ahmed">
       
       
+        <link rel="canonical" href="https://daanish02.github.io/textual-ai/classical-nlp/topic-modeling/">
+      
       
       
       
@@ -1709,9 +1711,9 @@
 <h3 id="formal-definition">Formal Definition</h3>
 <p>Given:</p>
 <ul>
-<li>Collection of $D$ documents</li>
-<li>Vocabulary of $V$ words</li>
-<li>Desired number of topics $K$</li>
+<li>Collection of <span class="arithmatex">\(D\)</span> documents</li>
+<li>Vocabulary of <span class="arithmatex">\(V\)</span> words</li>
+<li>Desired number of topics <span class="arithmatex">\(K\)</span></li>
 </ul>
 <p>Find:</p>
 <ol>
@@ -1756,14 +1758,14 @@
 <h2 id="latent-semantic-analysis-lsa">Latent Semantic Analysis (LSA)</h2>
 <h3 id="concept">Concept</h3>
 <p>LSA uses <strong>Singular Value Decomposition (SVD)</strong> to reduce dimensionality of document-term matrix.</p>
-<p>$$\text{DTM} = U \Sigma V^T$$</p>
+<div class="arithmatex">\[\text{DTM} = U \Sigma V^T\]</div>
 <p>Where:</p>
 <ul>
-<li>$U$ = document-topic matrix</li>
-<li>$\Sigma$ = diagonal matrix of singular values (topic strengths)</li>
-<li>$V^T$ = topic-word matrix</li>
+<li><span class="arithmatex">\(U\)</span> = document-topic matrix</li>
+<li><span class="arithmatex">\(\Sigma\)</span> = diagonal matrix of singular values (topic strengths)</li>
+<li><span class="arithmatex">\(V^T\)</span> = topic-word matrix</li>
 </ul>
-<p>By keeping only top $K$ singular values, we get $K$ latent topics.</p>
+<p>By keeping only top <span class="arithmatex">\(K\)</span> singular values, we get <span class="arithmatex">\(K\)</span> latent topics.</p>
 <h3 id="mathematical-foundation">Mathematical Foundation</h3>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Original DTM (D × V):
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>  Many dimensions (vocabulary size)
@@ -1914,10 +1916,10 @@
 </ol>
 <p><strong>Parameters</strong>:</p>
 <ul>
-<li>$\alpha$ (alpha): Controls document-topic density</li>
+<li><span class="arithmatex">\(\alpha\)</span> (alpha): Controls document-topic density</li>
 <li>High α: Documents have many topics</li>
 <li>Low α: Documents have few topics</li>
-<li>$\beta$ (beta/eta): Controls topic-word density</li>
+<li><span class="arithmatex">\(\beta\)</span> (beta/eta): Controls topic-word density</li>
 <li>High β: Topics have many words</li>
 <li>Low β: Topics have few words</li>
 </ul>
@@ -2126,19 +2128,19 @@
 <h2 id="non-negative-matrix-factorization-nmf">Non-Negative Matrix Factorization (NMF)</h2>
 <h3 id="concept_1">Concept</h3>
 <p>NMF factorizes the document-term matrix into two non-negative matrices:</p>
-<p>$$V \approx WH$$</p>
+<div class="arithmatex">\[V \approx WH\]</div>
 <p>Where:</p>
 <ul>
-<li>$V$ (D × V): Document-term matrix</li>
-<li>$W$ (D × K): Document-topic matrix</li>
-<li>$H$ (K × V): Topic-term matrix</li>
+<li><span class="arithmatex">\(V\)</span> (D × V): Document-term matrix</li>
+<li><span class="arithmatex">\(W\)</span> (D × K): Document-topic matrix</li>
+<li><span class="arithmatex">\(H\)</span> (K × V): Topic-term matrix</li>
 <li>All entries ≥ 0</li>
 </ul>
 <p><strong>Key difference from LSA</strong>: Non-negativity constraint makes topics more interpretable.</p>
 <h3 id="mathematical-formulation">Mathematical Formulation</h3>
 <p><strong>Objective</strong>: Minimize reconstruction error</p>
-<p>$$\min_{W,H} ||V - WH||^2$$</p>
-<p>Subject to: $W_{ij} \geq 0, H_{kj} \geq 0$</p>
+<div class="arithmatex">\[\min_{W,H} ||V - WH||^2\]</div>
+<p>Subject to: <span class="arithmatex">\(W_{ij} \geq 0, H_{kj} \geq 0\)</span></p>
 <p><strong>Optimization</strong>: Multiplicative update rules or coordinate descent.</p>
 <h3 id="implementation">Implementation</h3>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">NMF</span>
@@ -2231,8 +2233,8 @@
 <h2 id="evaluating-topic-models">Evaluating Topic Models</h2>
 <h3 id="perplexity">Perplexity</h3>
 <p><strong>Perplexity</strong> measures how well the model predicts held-out documents (lower is better).</p>
-<p>$$\text{Perplexity} = \exp\left(-\frac{\sum_d \log p(w_d)}{N}\right)$$</p>
-<p>Where $N$ is total number of words.</p>
+<div class="arithmatex">\[\text{Perplexity} = \exp\left(-\frac{\sum_d \log p(w_d)}{N}\right)\]</div>
+<p>Where <span class="arithmatex">\(N\)</span> is total number of words.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
 </span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
 </span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="c1"># Split data</span>
@@ -2259,7 +2261,7 @@
 <h3 id="coherence">Coherence</h3>
 <p><strong>Coherence</strong> measures semantic similarity between top words in topics (higher is better).</p>
 <p><strong>PMI (Pointwise Mutual Information) Coherence</strong>:</p>
-<p>$$\text{Coherence} = \sum_{i=1}^{N-1} \sum_{j=i+1}^{N} \log \frac{P(w_i, w_j)}{P(w_i)P(w_j)}$$</p>
+<div class="arithmatex">\[\text{Coherence} = \sum_{i=1}^{N-1} \sum_{j=i+1}^{N} \log \frac{P(w_i, w_j)}{P(w_i)P(w_j)}\]</div>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">gensim.models.coherencemodel</span><span class="w"> </span><span class="kn">import</span> <span class="n">CoherenceModel</span>
 </span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">gensim</span><span class="w"> </span><span class="kn">import</span> <span class="n">corpora</span>
 </span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
@@ -2866,6 +2868,10 @@
     
     
       <script src="../../assets/javascripts/bundle.16f8adc2.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

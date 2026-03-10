@@ -2,7 +2,7 @@
 site_name = "Textual AI"
 site_description = "Notes related to NLP and Textual AI."
 site_author = "Danish Ahmed"
-# site_url = "https://www.example.com/"
+site_url = "https://daanish02.github.io/textual-ai"
 
 copyright = """
 Copyright &copy; 2026 Arc Systems
@@ -29,8 +29,8 @@ nav = [
         "classical-nlp/README.md",
         { "N-grams and Language Models" = "classical_nlp/ngrams-and-lm.md" },
         { "Vector Space Models" = "classical_nlp/vector-space-models.md" },
-        { "Classical Classification" = "classical_nlp/classical-classification.md" },
         { "Topic Modeling" = "classical_nlp/topic-modeling.md" },
+        { "Classical Classification" = "classical_nlp/classical-classification.md" },
     ] },
 
     { "Embeddings" = [
@@ -114,7 +114,11 @@ nav = [
 ]
 
 # extra_css = ["stylesheets/extra.css"]
-# extra_javascript = ["javascripts/extra.js"]
+
+extra_javascript = [
+    "javascripts/mathjax.js",
+    "https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js",
+]
 
 [project.theme]
 # variant = "classic"
@@ -192,3 +196,6 @@ line_spans = "__span"
 pygments_lang_class = true
 [project.markdown_extensions.pymdownx.inlinehilite]
 [project.markdown_extensions.pymdownx.snippets]
+
+[project.markdown_extensions.pymdownx.arithmatex]
+generic = true

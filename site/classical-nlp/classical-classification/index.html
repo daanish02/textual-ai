@@ -12,6 +12,8 @@
         <meta name="author" content="Danish Ahmed">
       
       
+        <link rel="canonical" href="https://daanish02.github.io/textual-ai/classical-nlp/classical-classification/">
+      
       
       
       
@@ -1850,10 +1852,10 @@
 </span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    ...
 </span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>]
 </span></code></pre></div>
-<p><strong>Goal</strong>: Learn function $f: X \rightarrow Y$</p>
+<p><strong>Goal</strong>: Learn function <span class="arithmatex">\(f: X \rightarrow Y\)</span></p>
 <ul>
-<li>$X$ = feature space (text representation)</li>
-<li>$Y$ = label space (categories)</li>
+<li><span class="arithmatex">\(X\)</span> = feature space (text representation)</li>
+<li><span class="arithmatex">\(Y\)</span> = label space (categories)</li>
 </ul>
 <h3 id="classification-types">Classification Types</h3>
 <p><strong>Binary classification</strong>: Two classes</p>
@@ -2024,17 +2026,17 @@
 <h2 id="naive-bayes-classifier">Naive Bayes Classifier</h2>
 <h3 id="probability-basics">Probability Basics</h3>
 <p>Naive Bayes applies Bayes' theorem with "naive" independence assumption:</p>
-<p>$$P(C|D) = \frac{P(D|C) \cdot P(C)}{P(D)}$$</p>
+<div class="arithmatex">\[P(C|D) = \frac{P(D|C) \cdot P(C)}{P(D)}\]</div>
 <p>Where:</p>
 <ul>
-<li>$C$ = class</li>
-<li>$D$ = document (features)</li>
-<li>$P(C|D)$ = posterior probability</li>
-<li>$P(D|C)$ = likelihood</li>
-<li>$P(C)$ = prior probability</li>
+<li><span class="arithmatex">\(C\)</span> = class</li>
+<li><span class="arithmatex">\(D\)</span> = document (features)</li>
+<li><span class="arithmatex">\(P(C|D)\)</span> = posterior probability</li>
+<li><span class="arithmatex">\(P(D|C)\)</span> = likelihood</li>
+<li><span class="arithmatex">\(P(C)\)</span> = prior probability</li>
 </ul>
 <p><strong>Naive assumption</strong>: Features are independent given class</p>
-<p>$$P(D|C) = P(w_1, w_2, ..., w_n | C) = \prod_{i=1}^{n} P(w_i | C)$$</p>
+<div class="arithmatex">\[P(D|C) = P(w_1, w_2, ..., w_n | C) = \prod_{i=1}^{n} P(w_i | C)\]</div>
 <h3 id="multinomial-naive-bayes">Multinomial Naive Bayes</h3>
 <p>Best for text classification with count features.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.naive_bayes</span><span class="w"> </span><span class="kn">import</span> <span class="n">MultinomialNB</span>
@@ -2129,7 +2131,7 @@
 <h2 id="logistic-regression">Logistic Regression</h2>
 <h3 id="linear-classification">Linear Classification</h3>
 <p>Logistic regression models probability using sigmoid function:</p>
-<p>$$P(y=1|x) = \frac{1}{1 + e^{-(\beta_0 + \beta^T x)}}$$</p>
+<div class="arithmatex">\[P(y=1|x) = \frac{1}{1 + e^{-(\beta_0 + \beta^T x)}}\]</div>
 <p><strong>Decision boundary</strong>: Linear in feature space</p>
 <h3 id="implementation">Implementation</h3>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
@@ -3121,6 +3123,10 @@
     
     
       <script src="../../assets/javascripts/bundle.16f8adc2.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

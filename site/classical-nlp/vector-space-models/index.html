@@ -12,6 +12,8 @@
         <meta name="author" content="Danish Ahmed">
       
       
+        <link rel="canonical" href="https://daanish02.github.io/textual-ai/classical-nlp/vector-space-models/">
+      
       
       
       
@@ -2028,9 +2030,9 @@
 <h3 id="concept_1">Concept</h3>
 <p><strong>Term Frequency</strong> measures how often a term appears in a document.</p>
 <p><strong>Raw count</strong>:
-$$\text{TF}(t, d) = \text{count of term } t \text{ in document } d$$</p>
+$<span class="arithmatex">\(\text{TF}(t, d) = \text{count of term } t \text{ in document } d\)</span>$</p>
 <p><strong>Normalized</strong> (relative frequency):
-$$\text{TF}(t, d) = \frac{\text{count of term } t \text{ in document } d}{\text{total terms in document } d}$$</p>
+$<span class="arithmatex">\(\text{TF}(t, d) = \frac{\text{count of term } t \text{ in document } d}{\text{total terms in document } d}\)</span>$</p>
 <h3 id="why-normalize">Why Normalize?</h3>
 <p>Longer documents naturally have higher counts:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Doc1 (short): &quot;cat dog&quot; → cat: 1, dog: 1
@@ -2115,11 +2117,11 @@ $$\text{TF}(t, d) = \frac{\text{count of term } t \text{ in document } d}{\text{
 </span></code></pre></div>
 <h3 id="definition">Definition</h3>
 <p><strong>IDF</strong> measures how rare/distinctive a term is across all documents:</p>
-<p>$$\text{IDF}(t) = \log \frac{N}{\text{df}(t)}$$</p>
+<div class="arithmatex">\[\text{IDF}(t) = \log \frac{N}{\text{df}(t)}\]</div>
 <p>Where:</p>
 <ul>
-<li>$N$ = total number of documents</li>
-<li>$\text{df}(t)$ = document frequency (number of documents containing term $t$)</li>
+<li><span class="arithmatex">\(N\)</span> = total number of documents</li>
+<li><span class="arithmatex">\(\text{df}(t)\)</span> = document frequency (number of documents containing term <span class="arithmatex">\(t\)</span>)</li>
 </ul>
 <p><strong>Intuition</strong>:</p>
 <ul>
@@ -2212,7 +2214,7 @@ $$\text{TF}(t, d) = \frac{\text{count of term } t \text{ in document } d}{\text{
 <h2 id="tf-idf-combining-tf-and-idf">TF-IDF: Combining TF and IDF</h2>
 <h3 id="the-tf-idf-formula">The TF-IDF Formula</h3>
 <p>Combine term frequency and inverse document frequency:</p>
-<p>$$\text{TF-IDF}(t, d) = \text{TF}(t, d) \times \text{IDF}(t)$$</p>
+<div class="arithmatex">\[\text{TF-IDF}(t, d) = \text{TF}(t, d) \times \text{IDF}(t)\]</div>
 <p><strong>Interpretation</strong>:</p>
 <ul>
 <li>High TF-IDF: Term frequent in this document AND rare across corpus</li>
@@ -2394,7 +2396,7 @@ $$\text{TF}(t, d) = \frac{\text{count of term } t \text{ in document } d}{\text{
 <li>Larger = more similar</li>
 </ul>
 <h3 id="euclidean-distance">Euclidean Distance</h3>
-<p>$$d(A, B) = \sqrt{\sum_{i=1}^{n} (A_i - B_i)^2}$$</p>
+<div class="arithmatex">\[d(A, B) = \sqrt{\sum_{i=1}^{n} (A_i - B_i)^2}\]</div>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">euclidean_distance</span><span class="p">(</span><span class="n">vec1</span><span class="p">,</span> <span class="n">vec2</span><span class="p">):</span>
 </span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute Euclidean distance between two vectors.&quot;&quot;&quot;</span>
 </span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">vec1</span> <span class="o">-</span> <span class="n">vec2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
@@ -2422,7 +2424,7 @@ $$\text{TF}(t, d) = \frac{\text{count of term } t \text{ in document } d}{\text{
 <h2 id="cosine-similarity">Cosine Similarity</h2>
 <h3 id="definition_1">Definition</h3>
 <p><strong>Cosine similarity</strong> measures the cosine of the angle between two vectors:</p>
-<p>$$\text{similarity}(A, B) = \frac{A \cdot B}{||A|| \cdot ||B||} = \frac{\sum_{i=1}^{n} A_i B_i}{\sqrt{\sum_{i=1}^{n} A_i^2} \cdot \sqrt{\sum_{i=1}^{n} B_i^2}}$$</p>
+<div class="arithmatex">\[\text{similarity}(A, B) = \frac{A \cdot B}{||A|| \cdot ||B||} = \frac{\sum_{i=1}^{n} A_i B_i}{\sqrt{\sum_{i=1}^{n} A_i^2} \cdot \sqrt{\sum_{i=1}^{n} B_i^2}}\]</div>
 <p><strong>Range</strong>: [-1, 1]</p>
 <ul>
 <li>1 = identical direction</li>
@@ -2786,13 +2788,13 @@ $$\text{TF}(t, d) = \frac{\text{count of term } t \text{ in document } d}{\text{
 </span></code></pre></div>
 <h3 id="bm25-improvement-over-tf-idf">BM25: Improvement over TF-IDF</h3>
 <p><strong>BM25</strong> (Best Match 25) is a more sophisticated weighting scheme:</p>
-<p>$$\text{BM25}(t, d) = \text{IDF}(t) \cdot \frac{f(t,d) \cdot (k_1 + 1)}{f(t,d) + k_1 \cdot (1 - b + b \cdot \frac{|d|}{\text{avgdl}})}$$</p>
+<div class="arithmatex">\[\text{BM25}(t, d) = \text{IDF}(t) \cdot \frac{f(t,d) \cdot (k_1 + 1)}{f(t,d) + k_1 \cdot (1 - b + b \cdot \frac{|d|}{\text{avgdl}})}\]</div>
 <p>Where:</p>
 <ul>
-<li>$f(t,d)$ = frequency of term $t$ in document $d$</li>
-<li>$|d|$ = document length</li>
-<li>$\text{avgdl}$ = average document length</li>
-<li>$k_1, b$ = tuning parameters</li>
+<li><span class="arithmatex">\(f(t,d)\)</span> = frequency of term <span class="arithmatex">\(t\)</span> in document <span class="arithmatex">\(d\)</span></li>
+<li><span class="arithmatex">\(|d|\)</span> = document length</li>
+<li><span class="arithmatex">\(\text{avgdl}\)</span> = average document length</li>
+<li><span class="arithmatex">\(k_1, b\)</span> = tuning parameters</li>
 </ul>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">rank_bm25</span><span class="w"> </span><span class="kn">import</span> <span class="n">BM25Okapi</span>  <span class="c1"># pip install rank-bm25</span>
 </span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>
@@ -2987,7 +2989,7 @@ $$\text{TF}(t, d) = \frac{\text{count of term } t \text{ in document } d}{\text{
 <li><strong>Cosine Similarity</strong>: Measures angle between document vectors (0-1)</li>
 </ol>
 <p><strong>TF-IDF Formula</strong>:
-$$\text{TF-IDF}(t, d) = \text{TF}(t, d) \times \log\frac{N}{\text{df}(t)}$$</p>
+$<span class="arithmatex">\(\text{TF-IDF}(t, d) = \text{TF}(t, d) \times \log\frac{N}{\text{df}(t)}\)</span>$</p>
 <p><strong>Applications</strong>:</p>
 <ul>
 <li>Information retrieval / search engines</li>
@@ -3108,6 +3110,10 @@ $$\text{TF-IDF}(t, d) = \text{TF}(t, d) \times \log\frac{N}{\text{df}(t)}$$</p>
     
     
       <script src="../../assets/javascripts/bundle.16f8adc2.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

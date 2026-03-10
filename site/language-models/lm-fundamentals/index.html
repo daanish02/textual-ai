@@ -12,6 +12,8 @@
         <meta name="author" content="Danish Ahmed">
       
       
+        <link rel="canonical" href="https://daanish02.github.io/textual-ai/language-models/lm-fundamentals/">
+      
       
         <link rel="prev" href="../">
       
@@ -2256,11 +2258,11 @@
 <h2 id="what-is-a-language-model">What is a Language Model?</h2>
 <h3 id="formal-definition">Formal Definition</h3>
 <p>A <strong>language model</strong> assigns probabilities to sequences of words:</p>
-<p>$$P(w_1, w_2, ..., w_n)$$</p>
-<p>Where $w_i$ are words/tokens in a vocabulary $V$.</p>
+<div class="arithmatex">\[P(w_1, w_2, ..., w_n)\]</div>
+<p>Where <span class="arithmatex">\(w_i\)</span> are words/tokens in a vocabulary <span class="arithmatex">\(V\)</span>.</p>
 <p>Using the chain rule of probability:</p>
-<p>$$P(w_1, w_2, ..., w_n) = P(w_1) \cdot P(w_2|w_1) \cdot P(w_3|w_1, w_2) \cdot ... \cdot P(w_n|w_1, ..., w_{n-1})$$</p>
-<p><strong>Goal</strong>: Model the conditional probability $P(w_t | w_1, ..., w_{t-1})$</p>
+<div class="arithmatex">\[P(w_1, w_2, ..., w_n) = P(w_1) \cdot P(w_2|w_1) \cdot P(w_3|w_1, w_2) \cdot ... \cdot P(w_n|w_1, ..., w_{n-1})\]</div>
+<p><strong>Goal</strong>: Model the conditional probability <span class="arithmatex">\(P(w_t | w_1, ..., w_{t-1})\)</span></p>
 <h3 id="example-calculation">Example Calculation</h3>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
@@ -2414,8 +2416,8 @@
 </span></code></pre></div>
 <h2 id="n-gram-language-models">N-gram Language Models</h2>
 <h3 id="markov-assumption">Markov Assumption</h3>
-<p><strong>N-gram models</strong> use the Markov assumption: only last $n-1$ words matter</p>
-<p>$$P(w_t | w_1, ..., w_{t-1}) \approx P(w_t | w_{t-n+1}, ..., w_{t-1})$$</p>
+<p><strong>N-gram models</strong> use the Markov assumption: only last <span class="arithmatex">\(n-1\)</span> words matter</p>
+<div class="arithmatex">\[P(w_t | w_1, ..., w_{t-1}) \approx P(w_t | w_{t-n+1}, ..., w_{t-1})\]</div>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span><span class="p">,</span> <span class="n">Counter</span>
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
 </span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">class</span><span class="w"> </span><span class="nc">NgramLanguageModel</span><span class="p">:</span>
@@ -2867,7 +2869,7 @@
 <h2 id="perplexity-and-evaluation">Perplexity and Evaluation</h2>
 <h3 id="perplexity-definition">Perplexity Definition</h3>
 <p><strong>Perplexity</strong>: Measure of how well a language model predicts a test set</p>
-<p>$$\text{Perplexity} = \exp\left(-\frac{1}{N}\sum_{i=1}^{N} \log P(w_i | w_1, ..., w_{i-1})\right)$$</p>
+<div class="arithmatex">\[\text{Perplexity} = \exp\left(-\frac{1}{N}\sum_{i=1}^{N} \log P(w_i | w_1, ..., w_{i-1})\right)\]</div>
 <p>Interpretation: "How many words is the model uncertain about, on average?"</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">compute_perplexity</span><span class="p">(</span><span class="n">log_likelihoods</span><span class="p">):</span>
 </span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -3276,7 +3278,7 @@
 </ul>
 <p><strong>Key Metrics</strong>:</p>
 <ul>
-<li><strong>Perplexity</strong>: $\exp(-\frac{1}{N}\sum \log P(w_i))$ - Lower is better</li>
+<li><strong>Perplexity</strong>: <span class="arithmatex">\(\exp(-\frac{1}{N}\sum \log P(w_i))\)</span> - Lower is better</li>
 <li><strong>Cross-entropy loss</strong>: Negative log-likelihood</li>
 <li><strong>Downstream task performance</strong>: Ultimate test</li>
 </ul>
@@ -3401,6 +3403,10 @@
     
     
       <script src="../../assets/javascripts/bundle.16f8adc2.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

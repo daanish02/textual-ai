@@ -12,6 +12,8 @@
         <meta name="author" content="Danish Ahmed">
       
       
+        <link rel="canonical" href="https://daanish02.github.io/textual-ai/embeddings/sentence-embeddings/">
+      
       
         <link rel="prev" href="../word-embeddings/">
       
@@ -2602,8 +2604,8 @@
 </span></code></pre></div>
 <h3 id="sif-smooth-inverse-frequency">SIF (Smooth Inverse Frequency)</h3>
 <p><strong>Better weighting</strong>: Downweight common words more aggressively</p>
-<p>$$\text{weight}(w) = \frac{a}{a + p(w)}$$</p>
-<p>Where $p(w)$ is word frequency, $a$ is smoothing parameter (typically 0.001)</p>
+<div class="arithmatex">\[\text{weight}(w) = \frac{a}{a + p(w)}\]</div>
+<p>Where <span class="arithmatex">\(p(w)\)</span> is word frequency, <span class="arithmatex">\(a\)</span> is smoothing parameter (typically 0.001)</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">sif_embedding</span><span class="p">(</span><span class="n">sentences</span><span class="p">,</span> <span class="n">word_model</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">0.001</span><span class="p">):</span>
@@ -3721,6 +3723,10 @@
     
     
       <script src="../../assets/javascripts/bundle.16f8adc2.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

@@ -12,6 +12,8 @@
         <meta name="author" content="Danish Ahmed">
       
       
+        <link rel="canonical" href="https://daanish02.github.io/textual-ai/evaluation/neural-metrics/">
+      
       
         <link rel="prev" href="../traditional-metrics/">
       
@@ -2226,15 +2228,15 @@
 </span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>  &quot;sat&quot; ↔ &quot;sitting&quot; (high similarity)
 </span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>  &quot;mat&quot; ↔ &quot;rug&quot;     (medium similarity)
 </span></code></pre></div>
-<p>$$
+<div class="arithmatex">\[
 \text{Precision} = \frac{1}{|C|}\sum_{c \in C} \max_{r \in R} \text{sim}(c, r)
-$$</p>
-<p>$$
+\]</div>
+<div class="arithmatex">\[
 \text{Recall} = \frac{1}{|R|}\sum_{r \in R} \max_{c \in C} \text{sim}(r, c)
-$$</p>
-<p>$$
+\]</div>
+<div class="arithmatex">\[
 F_1 = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}
-$$</p>
+\]</div>
 <h3 id="implementing-bertscore">Implementing BERTScore</h3>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">bert_score</span><span class="w"> </span><span class="kn">import</span> <span class="n">score</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
@@ -3341,6 +3343,10 @@ $$</p>
     
     
       <script src="../../assets/javascripts/bundle.16f8adc2.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

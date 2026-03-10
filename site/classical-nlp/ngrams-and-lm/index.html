@@ -12,6 +12,8 @@
         <meta name="author" content="Danish Ahmed">
       
       
+        <link rel="canonical" href="https://daanish02.github.io/textual-ai/classical-nlp/ngrams-and-lm/">
+      
       
       
       
@@ -1697,7 +1699,7 @@
 <h2 id="language-modeling-fundamentals">Language Modeling Fundamentals</h2>
 <h3 id="what-is-a-language-model">What is a Language Model?</h3>
 <p>A <strong>language model</strong> assigns probabilities to sequences of words.</p>
-<p><strong>Goal</strong>: Estimate $P(w_1, w_2, ..., w_n)$ - the probability of a word sequence.</p>
+<p><strong>Goal</strong>: Estimate <span class="arithmatex">\(P(w_1, w_2, ..., w_n)\)</span> - the probability of a word sequence.</p>
 <p><strong>Why?</strong></p>
 <ul>
 <li><strong>Text generation</strong>: Sample likely sequences</li>
@@ -1707,16 +1709,16 @@
 </ul>
 <h3 id="the-chain-rule">The Chain Rule</h3>
 <p>Decompose sequence probability using chain rule:</p>
-<p>$$P(w_1, w_2, w_3, w_4) = P(w_1) \cdot P(w_2|w_1) \cdot P(w_3|w_1,w_2) \cdot P(w_4|w_1,w_2,w_3)$$</p>
+<div class="arithmatex">\[P(w_1, w_2, w_3, w_4) = P(w_1) \cdot P(w_2|w_1) \cdot P(w_3|w_1,w_2) \cdot P(w_4|w_1,w_2,w_3)\]</div>
 <p><strong>General form</strong>:</p>
-<p>$$P(w_1, ..., w_n) = \prod_{i=1}^{n} P(w_i | w_1, ..., w_{i-1})$$</p>
-<p><strong>Problem</strong>: Estimating $P(w_i | w_1, ..., w_{i-1})$ requires observing the entire history, which is intractable.</p>
+<div class="arithmatex">\[P(w_1, ..., w_n) = \prod_{i=1}^{n} P(w_i | w_1, ..., w_{i-1})\]</div>
+<p><strong>Problem</strong>: Estimating <span class="arithmatex">\(P(w_i | w_1, ..., w_{i-1})\)</span> requires observing the entire history, which is intractable.</p>
 <h3 id="the-markov-assumption">The Markov Assumption</h3>
 <p><strong>Solution</strong>: Assume each word depends only on the previous N-1 words (limited history).</p>
 <p><strong>Bigram model</strong> (1st order Markov):
-$$P(w_i | w_1, ..., w_{i-1}) \approx P(w_i | w_{i-1})$$</p>
+$<span class="arithmatex">\(P(w_i | w_1, ..., w_{i-1}) \approx P(w_i | w_{i-1})\)</span>$</p>
 <p><strong>Trigram model</strong> (2nd order Markov):
-$$P(w_i | w_1, ..., w_{i-1}) \approx P(w_i | w_{i-2}, w_{i-1})$$</p>
+$<span class="arithmatex">\(P(w_i | w_1, ..., w_{i-1}) \approx P(w_i | w_{i-2}, w_{i-1})\)</span>$</p>
 <p><strong>Example</strong>: "the cat sat on the"</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Next word prediction with bigram:
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>P(mat | the)
@@ -1727,11 +1729,11 @@ $$P(w_i | w_1, ..., w_{i-1}) \approx P(w_i | w_{i-2}, w_{i-1})$$</p>
 <h3 id="maximum-likelihood-estimation-mle">Maximum Likelihood Estimation (MLE)</h3>
 <p>Estimate probabilities from observed frequencies:</p>
 <p><strong>Bigram probability</strong>:
-$$P(w_i | w_{i-1}) = \frac{C(w_{i-1}, w_i)}{C(w_{i-1})}$$</p>
+$<span class="arithmatex">\(P(w_i | w_{i-1}) = \frac{C(w_{i-1}, w_i)}{C(w_{i-1})}\)</span>$</p>
 <p>Where:</p>
 <ul>
-<li>$C(w_{i-1}, w_i)$ = count of bigram $(w_{i-1}, w_i)$</li>
-<li>$C(w_{i-1})$ = count of word $w_{i-1}$</li>
+<li><span class="arithmatex">\(C(w_{i-1}, w_i)\)</span> = count of bigram <span class="arithmatex">\((w_{i-1}, w_i)\)</span></li>
+<li><span class="arithmatex">\(C(w_{i-1})\)</span> = count of word <span class="arithmatex">\(w_{i-1}\)</span></li>
 </ul>
 <p><strong>Example</strong>:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Corpus: &quot;the cat sat on the mat the dog sat on the rug&quot;
@@ -1750,7 +1752,7 @@ $$P(w_i | w_{i-1}) = \frac{C(w_{i-1}, w_i)}{C(w_{i-1})}$$</p>
 <h2 id="building-n-gram-models">Building N-gram Models</h2>
 <h3 id="unigram-language-model">Unigram Language Model</h3>
 <p>Simplest model: each word is independent.</p>
-<p>$$P(w_1, w_2, w_3) = P(w_1) \cdot P(w_2) \cdot P(w_3)$$</p>
+<div class="arithmatex">\[P(w_1, w_2, w_3) = P(w_1) \cdot P(w_2) \cdot P(w_3)\]</div>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">UnigramModel</span><span class="p">:</span>
 </span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Unigram language model.&quot;&quot;&quot;</span>
 </span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
@@ -1802,7 +1804,7 @@ $$P(w_i | w_{i-1}) = \frac{C(w_{i-1}, w_i)}{C(w_{i-1})}$$</p>
 </span></code></pre></div>
 <h3 id="bigram-language-model">Bigram Language Model</h3>
 <p>Each word depends on the previous word.</p>
-<p>$$P(w_1, w_2, w_3) = P(w_1) \cdot P(w_2|w_1) \cdot P(w_3|w_2)$$</p>
+<div class="arithmatex">\[P(w_1, w_2, w_3) = P(w_1) \cdot P(w_2|w_1) \cdot P(w_3|w_2)\]</div>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">BigramModel</span><span class="p">:</span>
 </span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Bigram language model.&quot;&quot;&quot;</span>
 </span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
@@ -2054,8 +2056,8 @@ $$P(w_i | w_{i-1}) = \frac{C(w_{i-1}, w_i)}{C(w_{i-1})}$$</p>
 <p>Smoothing redistributes probability mass to unseen n-grams.</p>
 <h3 id="add-one-laplace-smoothing">Add-One (Laplace) Smoothing</h3>
 <p>Add 1 to all counts:</p>
-<p>$$P(w_i | w_{i-1}) = \frac{C(w_{i-1}, w_i) + 1}{C(w_{i-1}) + V}$$</p>
-<p>Where $V$ is vocabulary size.</p>
+<div class="arithmatex">\[P(w_i | w_{i-1}) = \frac{C(w_{i-1}, w_i) + 1}{C(w_{i-1}) + V}\]</div>
+<p>Where <span class="arithmatex">\(V\)</span> is vocabulary size.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">BigramModelLaplace</span><span class="p">:</span>
 </span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Bigram model with Laplace smoothing.&quot;&quot;&quot;</span>
 </span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
@@ -2099,7 +2101,7 @@ $$P(w_i | w_{i-1}) = \frac{C(w_{i-1}, w_i)}{C(w_{i-1})}$$</p>
 <p><strong>Problem with Add-One</strong>: Too much probability to unseen events.</p>
 <h3 id="add-k-smoothing">Add-k Smoothing</h3>
 <p>Add a smaller constant k (0 &lt; k &lt; 1):</p>
-<p>$$P(w_i | w_{i-1}) = \frac{C(w_{i-1}, w_i) + k}{C(w_{i-1}) + k \cdot V}$$</p>
+<div class="arithmatex">\[P(w_i | w_{i-1}) = \frac{C(w_{i-1}, w_i) + k}{C(w_{i-1}) + k \cdot V}\]</div>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">BigramModelAddK</span><span class="p">:</span>
 </span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Bigram model with Add-k smoothing.&quot;&quot;&quot;</span>
 </span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
@@ -2138,12 +2140,12 @@ $$P(w_i | w_{i-1}) = \frac{C(w_{i-1}, w_i)}{C(w_{i-1})}$$</p>
 <p>Use the count of things seen once to estimate the count of things seen zero times.</p>
 <p><strong>Intuition</strong>: If you've seen 10 species once, expect ~10 unseen species.</p>
 <p><strong>Formula</strong>:</p>
-<p>$$C^* = \frac{(C + 1) \cdot N_{C+1}}{N_C}$$</p>
+<div class="arithmatex">\[C^* = \frac{(C + 1) \cdot N_{C+1}}{N_C}\]</div>
 <p>Where:</p>
 <ul>
-<li>$C$ = observed count</li>
-<li>$N_C$ = number of n-grams with count $C$</li>
-<li>$C^*$ = adjusted count</li>
+<li><span class="arithmatex">\(C\)</span> = observed count</li>
+<li><span class="arithmatex">\(N_C\)</span> = number of n-grams with count <span class="arithmatex">\(C\)</span></li>
+<li><span class="arithmatex">\(C^*\)</span> = adjusted count</li>
 </ul>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">good_turing_smoothing</span><span class="p">(</span><span class="n">counts</span><span class="p">):</span>
 </span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Apply Good-Turing smoothing to counts.&quot;&quot;&quot;</span>
@@ -2186,8 +2188,8 @@ $$P(w_i | w_{i-1}) = \frac{C(w_{i-1}, w_i)}{C(w_{i-1})}$$</p>
 </span></code></pre></div>
 <h3 id="interpolation">Interpolation</h3>
 <p>Combine different order n-gram models:</p>
-<p>$$P(w_i|w_{i-2},w_{i-1}) = \lambda_3 P_3(w_i|w_{i-2},w_{i-1}) + \lambda_2 P_2(w_i|w_{i-1}) + \lambda_1 P_1(w_i)$$</p>
-<p>Where $\lambda_1 + \lambda_2 + \lambda_3 = 1$</p>
+<div class="arithmatex">\[P(w_i|w_{i-2},w_{i-1}) = \lambda_3 P_3(w_i|w_{i-2},w_{i-1}) + \lambda_2 P_2(w_i|w_{i-1}) + \lambda_1 P_1(w_i)\]</div>
+<p>Where <span class="arithmatex">\(\lambda_1 + \lambda_2 + \lambda_3 = 1\)</span></p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">InterpolatedTrigramModel</span><span class="p">:</span>
 </span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Trigram model with interpolation.&quot;&quot;&quot;</span>
 </span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>
@@ -2228,20 +2230,20 @@ $$P(w_i | w_{i-1}) = \frac{C(w_{i-1}, w_i)}{C(w_{i-1})}$$</p>
 </span></code></pre></div>
 <h3 id="backoff">Backoff</h3>
 <p>Use lower-order n-grams only when higher-order not available:</p>
-<p>$$
+<div class="arithmatex">\[
 P(w_i|w_{i-2},w_{i-1}) = \begin{cases}
-P(w_i|w_{i-2},w_{i-1}) &amp; \text{if trigram seen} \
-\alpha(w_{i-2},w_{i-1}) \cdot P(w_i|w_{i-1}) &amp; \text{if bigram seen} \
+P(w_i|w_{i-2},w_{i-1}) &amp; \text{if trigram seen} \\
+\alpha(w_{i-2},w_{i-1}) \cdot P(w_i|w_{i-1}) &amp; \text{if bigram seen} \\
 \alpha(w_{i-1}) \cdot P(w_i) &amp; \text{otherwise}
 \end{cases}
-$$</p>
+\]</div>
 <p><strong>Katz Backoff</strong>: Most sophisticated backoff method.</p>
 <h2 id="evaluation-perplexity">Evaluation: Perplexity</h2>
 <h3 id="definition_1">Definition</h3>
 <p><strong>Perplexity</strong> measures how "surprised" a model is by test data.</p>
-<p>$$\text{Perplexity} = P(w_1, ..., w_N)^{-1/N} = \sqrt[N]{\frac{1}{P(w_1, ..., w_N)}}$$</p>
+<div class="arithmatex">\[\text{Perplexity} = P(w_1, ..., w_N)^{-1/N} = \sqrt[N]{\frac{1}{P(w_1, ..., w_N)}}\]</div>
 <p>Or in log space:</p>
-<p>$$\text{Perplexity} = 2^{-\frac{1}{N} \sum_{i=1}^N \log_2 P(w_i | w_1, ..., w_{i-1})}$$</p>
+<div class="arithmatex">\[\text{Perplexity} = 2^{-\frac{1}{N} \sum_{i=1}^N \log_2 P(w_i | w_1, ..., w_{i-1})}\]</div>
 <p><strong>Interpretation</strong>:</p>
 <ul>
 <li>Lower perplexity = better model</li>
@@ -2744,6 +2746,10 @@ $$</p>
     
     
       <script src="../../assets/javascripts/bundle.16f8adc2.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

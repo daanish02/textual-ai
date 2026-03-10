@@ -12,6 +12,8 @@
         <meta name="author" content="Danish Ahmed">
       
       
+        <link rel="canonical" href="https://daanish02.github.io/textual-ai/language-models/autoregressive-models/">
+      
       
         <link rel="prev" href="../lm-fundamentals/">
       
@@ -2266,8 +2268,8 @@
 <p>This guide covers GPT-style autoregressive models from architecture to generation strategies.</p>
 <h2 id="causal-language-modeling">Causal Language Modeling</h2>
 <h3 id="the-autoregressive-property">The Autoregressive Property</h3>
-<p><strong>Autoregressive</strong>: Output at time $t$ depends only on inputs at times $&lt; t$</p>
-<p>$$P(w_1, w_2, ..., w_n) = \prod_{t=1}^{n} P(w_t | w_1, ..., w_{t-1})$$</p>
+<p><strong>Autoregressive</strong>: Output at time <span class="arithmatex">\(t\)</span> depends only on inputs at times <span class="arithmatex">\(&lt; t\)</span></p>
+<div class="arithmatex">\[P(w_1, w_2, ..., w_n) = \prod_{t=1}^{n} P(w_t | w_1, ..., w_{t-1})\]</div>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -3595,6 +3597,10 @@
     
     
       <script src="../../assets/javascripts/bundle.16f8adc2.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

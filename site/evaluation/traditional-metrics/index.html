@@ -12,6 +12,8 @@
         <meta name="author" content="Danish Ahmed">
       
       
+        <link rel="canonical" href="https://daanish02.github.io/textual-ai/evaluation/traditional-metrics/">
+      
       
         <link rel="prev" href="../benchmarks/">
       
@@ -2268,9 +2270,9 @@
 </span></code></pre></div>
 <h3 id="accuracy">Accuracy</h3>
 <p>The simplest metric - percentage of correct predictions:</p>
-<p>$$
+<div class="arithmatex">\[
 \text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}
-$$</p>
+\]</div>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">calculate_accuracy</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
@@ -2302,9 +2304,9 @@ $$</p>
 </ul>
 <h3 id="precision">Precision</h3>
 <p>Percentage of positive predictions that are correct:</p>
-<p>$$
+<div class="arithmatex">\[
 \text{Precision} = \frac{TP}{TP + FP}
-$$</p>
+\]</div>
 <p><strong>Interpretation</strong>: "Of all items I predicted positive, what fraction was actually positive?"</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">precision_score</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
@@ -2333,9 +2335,9 @@ $$</p>
 </ul>
 <h3 id="recall-sensitivity-true-positive-rate">Recall (Sensitivity, True Positive Rate)</h3>
 <p>Percentage of actual positives that are correctly identified:</p>
-<p>$$
+<div class="arithmatex">\[
 \text{Recall} = \frac{TP}{TP + FN}
-$$</p>
+\]</div>
 <p><strong>Interpretation</strong>: "Of all actual positive items, what fraction did I find?"</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">recall_score</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
@@ -2364,9 +2366,9 @@ $$</p>
 </ul>
 <h3 id="f1-score">F1 Score</h3>
 <p>Harmonic mean of precision and recall:</p>
-<p>$$
+<div class="arithmatex">\[
 F_1 = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}} = \frac{2TP}{2TP + FP + FN}
-$$</p>
+\]</div>
 <p><strong>Why harmonic mean?</strong> Penalizes extreme values more than arithmetic mean.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">f1_score</span>
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
@@ -2415,13 +2417,13 @@ $$</p>
 </ul>
 <h3 id="f-beta-score">F-Beta Score</h3>
 <p>Weighted version of F1:</p>
-<p>$$
+<div class="arithmatex">\[
 F_\beta = (1 + \beta^2) \cdot \frac{\text{Precision} \cdot \text{Recall}}{\beta^2 \cdot \text{Precision} + \text{Recall}}
-$$</p>
+\]</div>
 <ul>
-<li>$\beta &lt; 1$: Emphasize precision</li>
-<li>$\beta = 1$: Equal weight (F1)</li>
-<li>$\beta &gt; 1$: Emphasize recall</li>
+<li><span class="arithmatex">\(\beta &lt; 1\)</span>: Emphasize precision</li>
+<li><span class="arithmatex">\(\beta = 1\)</span>: Equal weight (F1)</li>
+<li><span class="arithmatex">\(\beta &gt; 1\)</span>: Emphasize recall</li>
 </ul>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">fbeta_score</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
@@ -2541,14 +2543,14 @@ $$</p>
 <h2 id="sequence-generation-metrics">Sequence Generation Metrics</h2>
 <h3 id="bleu-bilingual-evaluation-understudy">BLEU (Bilingual Evaluation Understudy)</h3>
 <p>For machine translation and text generation. Measures n-gram overlap with reference text(s).</p>
-<p>$$
+<div class="arithmatex">\[
 \text{BLEU} = BP \cdot \exp\left(\sum_{n=1}^{N} w_n \log p_n\right)
-$$</p>
+\]</div>
 <p>Where:</p>
 <ul>
-<li>$p_n$ = n-gram precision</li>
-<li>$BP$ = brevity penalty (penalizes short outputs)</li>
-<li>$w_n$ = weights (typically uniform)</li>
+<li><span class="arithmatex">\(p_n\)</span> = n-gram precision</li>
+<li><span class="arithmatex">\(BP\)</span> = brevity penalty (penalizes short outputs)</li>
+<li><span class="arithmatex">\(w_n\)</span> = weights (typically uniform)</li>
 </ul>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">nltk.translate.bleu_score</span><span class="w"> </span><span class="kn">import</span> <span class="n">sentence_bleu</span><span class="p">,</span> <span class="n">corpus_bleu</span>
 </span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">nltk.translate.bleu_score</span><span class="w"> </span><span class="kn">import</span> <span class="n">SmoothingFunction</span>
@@ -2763,9 +2765,9 @@ $$</p>
 <h2 id="language-model-metrics">Language Model Metrics</h2>
 <h3 id="perplexity">Perplexity</h3>
 <p>Measures how well a probability model predicts a sample. Lower is better.</p>
-<p>$$
+<div class="arithmatex">\[
 \text{Perplexity} = \exp\left(-\frac{1}{N}\sum_{i=1}^{N} \log P(w_i | w_1, \ldots, w_{i-1})\right)
-$$</p>
+\]</div>
 <p><strong>Interpretation</strong>: "The model is as confused as if it had to choose uniformly among X possibilities."</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
 </span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn.functional</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">F</span>
@@ -3582,6 +3584,10 @@ $$</p>
     
     
       <script src="../../assets/javascripts/bundle.16f8adc2.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>
