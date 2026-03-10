@@ -28,7 +28,7 @@ Vector Space Models (VSM) represent text as vectors in a high-dimensional space.
 
 **Core idea**: Each document is a vector where dimensions correspond to terms, and values reflect term importance.
 
-```
+```markdown
 Visual representation:
 
 Document 1: "cat dog bird"
@@ -49,7 +49,6 @@ Doc2: [1,   0,   0,   1]
 Doc3: [0,   1,   1,   1]
 ```
 
-This guide covers the foundational techniques: Bag-of-Words, TF-IDF, and cosine similarity.
 
 ## Vector Space Fundamentals
 
@@ -70,8 +69,6 @@ This guide covers the foundational techniques: Bag-of-Words, TF-IDF, and cosine 
 - Each dimension = one term (word/phrase)
 - Similar documents have similar vectors
 - Vector similarity ≈ semantic similarity
-
-**Example**:
 
 ```python
 # Three documents
@@ -97,40 +94,42 @@ vectors = [
 
 ### Vocabulary Construction
 
-```python
-from collections import Counter
+??? example "Implementation"
 
-def build_vocabulary(documents):
-    """Build vocabulary from documents."""
-    vocab = set()
+    ```python
+    from collections import Counter
 
-    for doc in documents:
-        words = doc.lower().split()
-        vocab.update(words)
+    def build_vocabulary(documents):
+        """Build vocabulary from documents."""
+        vocab = set()
 
-    # Convert to sorted list for consistent indexing
-    vocab = sorted(list(vocab))
+        for doc in documents:
+            words = doc.lower().split()
+            vocab.update(words)
 
-    # Create word to index mapping
-    word2idx = {word: idx for idx, word in enumerate(vocab)}
+        # Convert to sorted list for consistent indexing
+        vocab = sorted(list(vocab))
 
-    return vocab, word2idx
+        # Create word to index mapping
+        word2idx = {word: idx for idx, word in enumerate(vocab)}
 
-# Example
-documents = [
-    "the cat sat on the mat",
-    "the dog sat on the log",
-    "cats and dogs are pets"
-]
+        return vocab, word2idx
 
-vocab, word2idx = build_vocabulary(documents)
+    # Example
+    documents = [
+        "the cat sat on the mat",
+        "the dog sat on the log",
+        "cats and dogs are pets"
+    ]
 
-print(f"Vocabulary size: {len(vocab)}")
-print(f"Vocabulary: {vocab}")
-print(f"\nWord to index mapping:")
-for word, idx in sorted(word2idx.items(), key=lambda x: x[1]):
-    print(f"  {word:10} → {idx}")
-```
+    vocab, word2idx = build_vocabulary(documents)
+
+    print(f"Vocabulary size: {len(vocab)}")
+    print(f"Vocabulary: {vocab}")
+    print(f"\nWord to index mapping:")
+    for word, idx in sorted(word2idx.items(), key=lambda x: x[1]):
+        print(f"  {word:10} → {idx}")
+    ```
 
 ### Document-Term Matrix
 
@@ -143,36 +142,37 @@ Doc2    0    1    0    1    ...
 Doc3    1    1    0    0    ...
 ...
 ```
+??? example "Implementation"
 
-```python
-import numpy as np
+    ```python
+    import numpy as np
 
-def create_document_term_matrix(documents, vocab, word2idx):
-    """Create document-term matrix."""
-    num_docs = len(documents)
-    vocab_size = len(vocab)
+    def create_document_term_matrix(documents, vocab, word2idx):
+        """Create document-term matrix."""
+        num_docs = len(documents)
+        vocab_size = len(vocab)
 
-    # Initialize matrix
-    dtm = np.zeros((num_docs, vocab_size))
+        # Initialize matrix
+        dtm = np.zeros((num_docs, vocab_size))
 
-    # Fill matrix
-    for doc_idx, doc in enumerate(documents):
-        words = doc.lower().split()
-        for word in words:
-            if word in word2idx:
-                word_idx = word2idx[word]
-                dtm[doc_idx, word_idx] += 1
+        # Fill matrix
+        for doc_idx, doc in enumerate(documents):
+            words = doc.lower().split()
+            for word in words:
+                if word in word2idx:
+                    word_idx = word2idx[word]
+                    dtm[doc_idx, word_idx] += 1
 
-    return dtm
+        return dtm
 
-# Example
-dtm = create_document_term_matrix(documents, vocab, word2idx)
+    # Example
+    dtm = create_document_term_matrix(documents, vocab, word2idx)
 
-print("Document-Term Matrix:")
-print(f"Shape: {dtm.shape}")
-print(f"\nFirst 3 documents, first 5 terms:")
-print(dtm[:3, :5])
-```
+    print("Document-Term Matrix:")
+    print(f"Shape: {dtm.shape}")
+    print(f"\nFirst 3 documents, first 5 terms:")
+    print(dtm[:3, :5])
+    ```
 
 ## Bag-of-Words (BoW)
 
@@ -184,9 +184,8 @@ print(dtm[:3, :5])
 - Grammar
 - Syntax
 
-**Example**:
 
-```
+```python
 Document: "the cat sat on the mat"
 
 BoW representation:
@@ -199,135 +198,141 @@ BoW representation:
 }
 ```
 
-Both "the cat sat on the mat" and "the mat sat on the cat" have the same BoW representation!
+!!! note
 
-### Implementation
+    Both "the cat sat on the mat" and "the mat sat on the cat" have the same BoW representation!
 
-```python
-from collections import Counter
+??? example "Implementation"
 
-class BagOfWords:
-    """Simple Bag-of-Words implementation."""
+    ```python
+    from collections import Counter
 
-    def __init__(self):
-        self.vocab = {}
-        self.word2idx = {}
+    class BagOfWords:
+        """Simple Bag-of-Words implementation."""
 
-    def fit(self, documents):
-        """Build vocabulary from documents."""
-        all_words = set()
-        for doc in documents:
-            words = doc.lower().split()
-            all_words.update(words)
+        def __init__(self):
+            self.vocab = {}
+            self.word2idx = {}
 
-        self.vocab = sorted(list(all_words))
-        self.word2idx = {word: idx for idx, word in enumerate(self.vocab)}
+        def fit(self, documents):
+            """Build vocabulary from documents."""
+            all_words = set()
+            for doc in documents:
+                words = doc.lower().split()
+                all_words.update(words)
 
-    def transform(self, documents):
-        """Convert documents to BoW vectors."""
-        vectors = []
+            self.vocab = sorted(list(all_words))
+            self.word2idx = {word: idx for idx, word in enumerate(self.vocab)}
 
-        for doc in documents:
-            # Count words in document
-            word_counts = Counter(doc.lower().split())
+        def transform(self, documents):
+            """Convert documents to BoW vectors."""
+            vectors = []
 
-            # Create vector
-            vector = [0] * len(self.vocab)
-            for word, count in word_counts.items():
-                if word in self.word2idx:
-                    idx = self.word2idx[word]
-                    vector[idx] = count
+            for doc in documents:
+                # Count words in document
+                word_counts = Counter(doc.lower().split())
 
-            vectors.append(vector)
+                # Create vector
+                vector = [0] * len(self.vocab)
+                for word, count in word_counts.items():
+                    if word in self.word2idx:
+                        idx = self.word2idx[word]
+                        vector[idx] = count
 
-        return np.array(vectors)
+                vectors.append(vector)
 
-    def fit_transform(self, documents):
-        """Fit and transform in one step."""
-        self.fit(documents)
-        return self.transform(documents)
+            return np.array(vectors)
 
-# Example usage
-bow = BagOfWords()
+        def fit_transform(self, documents):
+            """Fit and transform in one step."""
+            self.fit(documents)
+            return self.transform(documents)
 
-documents = [
-    "the cat sat on the mat",
-    "the dog sat on the log",
-    "cats and dogs are pets"
-]
+    # Example usage
+    bow = BagOfWords()
 
-vectors = bow.fit_transform(documents)
+    documents = [
+        "the cat sat on the mat",
+        "the dog sat on the log",
+        "cats and dogs are pets"
+    ]
 
-print("Bag-of-Words vectors:")
-print(vectors)
+    vectors = bow.fit_transform(documents)
 
-print(f"\nVocabulary: {bow.vocab}")
+    print("Bag-of-Words vectors:")
+    print(vectors)
 
-# Show vector for first document
-print(f"\nDocument: '{documents[0]}'")
-print("Vector:")
-for word, count in zip(bow.vocab, vectors[0]):
-    if count > 0:
-        print(f"  {word:10}: {int(count)}")
-```
+    print(f"\nVocabulary: {bow.vocab}")
+
+    # Show vector for first document
+    print(f"\nDocument: '{documents[0]}'")
+    print("Vector:")
+    for word, count in zip(bow.vocab, vectors[0]):
+        if count > 0:
+            print(f"  {word:10}: {int(count)}")
+    ```
 
 ### Using Scikit-learn
 
-```python
-from sklearn.feature_extraction.text import CountVectorizer
+??? example "Implementation"
 
-# Create vectorizer
-vectorizer = CountVectorizer()
+    ```python
+    from sklearn.feature_extraction.text import CountVectorizer
 
-# Fit and transform
-documents = [
-    "the cat sat on the mat",
-    "the dog sat on the log",
-    "cats and dogs are pets"
-]
+    # Create vectorizer
+    vectorizer = CountVectorizer()
 
-bow_matrix = vectorizer.fit_transform(documents)
+    # Fit and transform
+    documents = [
+        "the cat sat on the mat",
+        "the dog sat on the log",
+        "cats and dogs are pets"
+    ]
 
-# Get vocabulary
-vocab = vectorizer.get_feature_names_out()
+    bow_matrix = vectorizer.fit_transform(documents)
 
-print(f"Vocabulary: {vocab}")
-print(f"\nBoW matrix shape: {bow_matrix.shape}")
-print(f"BoW matrix (dense):\n{bow_matrix.toarray()}")
+    # Get vocabulary
+    vocab = vectorizer.get_feature_names_out()
 
-# Examine one document
-doc_idx = 0
-doc_vector = bow_matrix[doc_idx].toarray().flatten()
+    print(f"Vocabulary: {vocab}")
+    print(f"\nBoW matrix shape: {bow_matrix.shape}")
+    print(f"BoW matrix (dense):\n{bow_matrix.toarray()}")
 
-print(f"\nDocument {doc_idx}: '{documents[doc_idx]}'")
-print("Non-zero features:")
-for word, count in zip(vocab, doc_vector):
-    if count > 0:
-        print(f"  {word:10}: {int(count)}")
-```
+    # Examine one document
+    doc_idx = 0
+    doc_vector = bow_matrix[doc_idx].toarray().flatten()
+
+    print(f"\nDocument {doc_idx}: '{documents[doc_idx]}'")
+    print("Non-zero features:")
+    for word, count in zip(vocab, doc_vector):
+        if count > 0:
+            print(f"  {word:10}: {int(count)}")
+    ```
 
 ### N-gram Extension
 
 Extend BoW to include phrases:
 
-```python
-# Bigram BoW
-vectorizer = CountVectorizer(ngram_range=(1, 2))
+??? example "Implementation"
 
-documents = [
-    "natural language processing",
-    "machine learning and deep learning",
-]
+    ```python
+    # Bigram BoW
+    vectorizer = CountVectorizer(ngram_range=(1, 2))
 
-bow = vectorizer.fit_transform(documents)
-features = vectorizer.get_feature_names_out()
+    documents = [
+        "natural language processing",
+        "machine learning and deep learning",
+    ]
 
-print("Features (unigrams + bigrams):")
-for feature in features:
-    print(f"  {feature}")
+    bow = vectorizer.fit_transform(documents)
+    features = vectorizer.get_feature_names_out()
 
-print(f"\nBoW matrix:\n{bow.toarray()}")
-```
+    print("Features (unigrams + bigrams):")
+    for feature in features:
+        print(f"  {feature}")
+
+    print(f"\nBoW matrix:\n{bow.toarray()}")
+    ```
 
 **Output includes**:
 
@@ -341,9 +346,11 @@ print(f"\nBoW matrix:\n{bow.toarray()}")
 **Term Frequency** measures how often a term appears in a document.
 
 **Raw count**:
+
 $$\text{TF}(t, d) = \text{count of term } t \text{ in document } d$$
 
 **Normalized** (relative frequency):
+
 $$\text{TF}(t, d) = \frac{\text{count of term } t \text{ in document } d}{\text{total terms in document } d}$$
 
 ### Why Normalize?
@@ -1434,6 +1441,7 @@ Modern Embeddings (Word2Vec, BERT):
 6. **Cosine Similarity**: Measures angle between document vectors (0-1)
 
 **TF-IDF Formula**:
+
 $$\text{TF-IDF}(t, d) = \text{TF}(t, d) \times \log\frac{N}{\text{df}(t)}$$
 
 **Applications**:
@@ -1485,5 +1493,3 @@ $$\text{TF-IDF}(t, d) = \text{TF}(t, d) \times \log\frac{N}{\text{df}(t)}$$
 - Explore [Topic Modeling](topic-modeling.md) to discover latent themes using LSA and LDA
 - Learn [Classical Text Classification](classical-classification.md) to build classifiers using TF-IDF features
 - Study [Word Embeddings](../embeddings/word-embeddings.md) for dense semantic representations
-- Progress to [Sentence Embeddings](../embeddings/sentence-embeddings.md) for document-level representations
-- Learn about [BM25 and ranking](../retrieval_augmented_generation/retrieval-methods.md) for improved information retrieval

@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="zensical-0.0.24">
+      <meta name="generator" content="zensical-0.0.25">
     
     
       
@@ -32,7 +32,7 @@
       
         
       
-      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.28978c9b.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.50057488.min.css">
       
         
           
@@ -77,7 +77,7 @@
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" for="__drawer"></label>
+    <label class="md-overlay" for="__drawer" aria-label="Navigation"></label>
     <div data-md-component="skip">
       
         
@@ -103,7 +103,7 @@
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
 
     </a>
-    <label class="md-header__button md-icon" for="__drawer">
+    <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
       
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
     </label>
@@ -143,7 +143,7 @@
     
       
       
-        <label class="md-header__button md-icon" for="__search">
+        <label class="md-header__button md-icon" for="__search" aria-label="Search">
           
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
         </label>
@@ -898,14 +898,14 @@
   
   
   
-    <a href="../../application-patterns/README.md" class="md-nav__link">
+    <a href="../../application-patterns/" class="md-nav__link">
       
   
   
   <span class="md-ellipsis">
     
   
-    none
+    Application Patterns
   
 
     
@@ -1085,17 +1085,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#implementation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Implementation
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#using-scikit-learn" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1157,7 +1146,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#implementation_1" class="md-nav__link">
+  <a href="#implementation" class="md-nav__link">
     <span class="md-ellipsis">
       
         Implementation
@@ -1218,7 +1207,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#implementation_2" class="md-nav__link">
+  <a href="#implementation_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Implementation
@@ -1368,7 +1357,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#implementation_3" class="md-nav__link">
+  <a href="#implementation_2" class="md-nav__link">
     <span class="md-ellipsis">
       
         Implementation
@@ -1754,7 +1743,7 @@
 <li><strong>Clustering</strong>: Group similar documents</li>
 </ul>
 <p><strong>Core idea</strong>: Each document is a vector where dimensions correspond to terms, and values reflect term importance.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Visual representation:
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Visual representation:
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Document 1: &quot;cat dog bird&quot;
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>Document 2: &quot;cat mouse&quot;
@@ -1773,7 +1762,6 @@
 </span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>Doc2: [1,   0,   0,   1]
 </span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>Doc3: [0,   1,   1,   1]
 </span></code></pre></div>
-<p>This guide covers the foundational techniques: Bag-of-Words, TF-IDF, and cosine similarity.</p>
 <h2 id="vector-space-fundamentals">Vector Space Fundamentals</h2>
 <h3 id="why-vectors-for-text">Why Vectors for Text?</h3>
 <p><strong>Advantages</strong>:</p>
@@ -1791,7 +1779,6 @@
 <li>Similar documents have similar vectors</li>
 <li>Vector similarity ≈ semantic similarity</li>
 </ul>
-<p><strong>Example</strong>:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Three documents</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">docs</span> <span class="o">=</span> <span class="p">[</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="s2">&quot;the cat sat on the mat&quot;</span><span class="p">,</span>
@@ -1813,6 +1800,8 @@
 </span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="c1"># - Clusters of similar documents</span>
 </span></code></pre></div>
 <h3 id="vocabulary-construction">Vocabulary Construction</h3>
+<details class="example">
+<summary>Implementation</summary>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">build_vocabulary</span><span class="p">(</span><span class="n">documents</span><span class="p">):</span>
@@ -1846,6 +1835,7 @@
 </span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">word2idx</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
 </span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">word</span><span class="si">:</span><span class="s2">10</span><span class="si">}</span><span class="s2"> → </span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </span></code></pre></div>
+</details>
 <h3 id="document-term-matrix">Document-Term Matrix</h3>
 <p>The <strong>document-term matrix</strong> is the foundation of VSM:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>        cat  dog  mat  sat  ...
@@ -1854,6 +1844,8 @@
 </span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>Doc3    1    1    0    0    ...
 </span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>...
 </span></code></pre></div>
+<details class="example">
+<summary>Implementation</summary>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">create_document_term_matrix</span><span class="p">(</span><span class="n">documents</span><span class="p">,</span> <span class="n">vocab</span><span class="p">,</span> <span class="n">word2idx</span><span class="p">):</span>
@@ -1882,6 +1874,7 @@
 </span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">First 3 documents, first 5 terms:&quot;</span><span class="p">)</span>
 </span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a><span class="nb">print</span><span class="p">(</span><span class="n">dtm</span><span class="p">[:</span><span class="mi">3</span><span class="p">,</span> <span class="p">:</span><span class="mi">5</span><span class="p">])</span>
 </span></code></pre></div>
+</details>
 <h2 id="bag-of-words-bow">Bag-of-Words (BoW)</h2>
 <h3 id="concept">Concept</h3>
 <p><strong>Bag-of-Words</strong> represents documents by word frequencies, ignoring:</p>
@@ -1890,20 +1883,23 @@
 <li>Grammar</li>
 <li>Syntax</li>
 </ul>
-<p><strong>Example</strong>:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Document: &quot;the cat sat on the mat&quot;
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">Document</span><span class="p">:</span> <span class="s2">&quot;the cat sat on the mat&quot;</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>BoW representation:
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>{
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    &#39;the&#39;: 2,
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    &#39;cat&#39;: 1,
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    &#39;sat&#39;: 1,
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    &#39;on&#39;: 1,
-</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    &#39;mat&#39;: 1
-</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>}
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">BoW</span> <span class="n">representation</span><span class="p">:</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="p">{</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="s1">&#39;the&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="s1">&#39;cat&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    <span class="s1">&#39;sat&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    <span class="s1">&#39;on&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="s1">&#39;mat&#39;</span><span class="p">:</span> <span class="mi">1</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="p">}</span>
 </span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>Both "the cat sat on the mat" and "the mat sat on the cat" have the same BoW representation!</p>
-<h3 id="implementation">Implementation</h3>
+</div>
+<details class="example">
+<summary>Implementation</summary>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span>
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
 </span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">class</span><span class="w"> </span><span class="nc">BagOfWords</span><span class="p">:</span>
@@ -1970,7 +1966,10 @@
 </span><span id="__span-6-64"><a id="__codelineno-6-64" name="__codelineno-6-64" href="#__codelineno-6-64"></a>    <span class="k">if</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
 </span><span id="__span-6-65"><a id="__codelineno-6-65" name="__codelineno-6-65" href="#__codelineno-6-65"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">word</span><span class="si">:</span><span class="s2">10</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">count</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </span></code></pre></div>
+</details>
 <h3 id="using-scikit-learn">Using Scikit-learn</h3>
+<details class="example">
+<summary>Implementation</summary>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.feature_extraction.text</span><span class="w"> </span><span class="kn">import</span> <span class="n">CountVectorizer</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="c1"># Create vectorizer</span>
@@ -2002,8 +2001,11 @@
 </span><span id="__span-7-29"><a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a>    <span class="k">if</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
 </span><span id="__span-7-30"><a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">word</span><span class="si">:</span><span class="s2">10</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">count</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </span></code></pre></div>
+</details>
 <h3 id="n-gram-extension">N-gram Extension</h3>
 <p>Extend BoW to include phrases:</p>
+<details class="example">
+<summary>Implementation</summary>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Bigram BoW</span>
 </span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">vectorizer</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
@@ -2021,6 +2023,7 @@
 </span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>
 </span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">BoW matrix:</span><span class="se">\n</span><span class="si">{</span><span class="n">bow</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </span></code></pre></div>
+</details>
 <p><strong>Output includes</strong>:</p>
 <ul>
 <li>Unigrams: "natural", "language", "processing"</li>
@@ -2029,10 +2032,10 @@
 <h2 id="term-frequency-tf">Term Frequency (TF)</h2>
 <h3 id="concept_1">Concept</h3>
 <p><strong>Term Frequency</strong> measures how often a term appears in a document.</p>
-<p><strong>Raw count</strong>:
-$<span class="arithmatex">\(\text{TF}(t, d) = \text{count of term } t \text{ in document } d\)</span>$</p>
-<p><strong>Normalized</strong> (relative frequency):
-$<span class="arithmatex">\(\text{TF}(t, d) = \frac{\text{count of term } t \text{ in document } d}{\text{total terms in document } d}\)</span>$</p>
+<p><strong>Raw count</strong>:</p>
+<div class="arithmatex">\[\text{TF}(t, d) = \text{count of term } t \text{ in document } d\]</div>
+<p><strong>Normalized</strong> (relative frequency):</p>
+<div class="arithmatex">\[\text{TF}(t, d) = \frac{\text{count of term } t \text{ in document } d}{\text{total terms in document } d}\]</div>
 <h3 id="why-normalize">Why Normalize?</h3>
 <p>Longer documents naturally have higher counts:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Doc1 (short): &quot;cat dog&quot; → cat: 1, dog: 1
@@ -2041,7 +2044,7 @@ $<span class="arithmatex">\(\text{TF}(t, d) = \frac{\text{count of term } t \tex
 </span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>Raw counts make Doc2 seem 3× more relevant
 </span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>Normalized: both documents have cat: 0.5, dog: 0.5
 </span></code></pre></div>
-<h3 id="implementation_1">Implementation</h3>
+<h3 id="implementation">Implementation</h3>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 </span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span>
 </span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
@@ -2128,7 +2131,7 @@ $<span class="arithmatex">\(\text{TF}(t, d) = \frac{\text{count of term } t \tex
 <li>Term in all documents: IDF ≈ 0 (not distinctive)</li>
 <li>Term in few documents: IDF high (very distinctive)</li>
 </ul>
-<h3 id="implementation_2">Implementation</h3>
+<h3 id="implementation_1">Implementation</h3>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
 </span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
 </span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
@@ -2444,7 +2447,7 @@ $<span class="arithmatex">\(\text{TF}(t, d) = \frac{\text{count of term } t \tex
 </span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a>θ = 90°  → cos(90°) = 0.0  (orthogonal)
 </span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a>θ = 180° → cos(180°) = -1.0 (opposite)
 </span></code></pre></div>
-<h3 id="implementation_3">Implementation</h3>
+<h3 id="implementation_2">Implementation</h3>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">cosine_similarity</span><span class="p">(</span><span class="n">vec1</span><span class="p">,</span> <span class="n">vec2</span><span class="p">):</span>
 </span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute cosine similarity between two vectors.&quot;&quot;&quot;</span>
 </span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>    <span class="n">dot_product</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">vec1</span><span class="p">,</span> <span class="n">vec2</span><span class="p">)</span>
@@ -2988,8 +2991,8 @@ $<span class="arithmatex">\(\text{TF}(t, d) = \frac{\text{count of term } t \tex
 <li><strong>TF-IDF</strong>: Combines TF and IDF to weight terms by importance</li>
 <li><strong>Cosine Similarity</strong>: Measures angle between document vectors (0-1)</li>
 </ol>
-<p><strong>TF-IDF Formula</strong>:
-$<span class="arithmatex">\(\text{TF-IDF}(t, d) = \text{TF}(t, d) \times \log\frac{N}{\text{df}(t)}\)</span>$</p>
+<p><strong>TF-IDF Formula</strong>:</p>
+<div class="arithmatex">\[\text{TF-IDF}(t, d) = \text{TF}(t, d) \times \log\frac{N}{\text{df}(t)}\]</div>
 <p><strong>Applications</strong>:</p>
 <ul>
 <li>Information retrieval / search engines</li>
@@ -3039,8 +3042,6 @@ $<span class="arithmatex">\(\text{TF-IDF}(t, d) = \text{TF}(t, d) \times \log\fr
 <li>Explore <a href="../topic-modeling/">Topic Modeling</a> to discover latent themes using LSA and LDA</li>
 <li>Learn <a href="../classical-classification/">Classical Text Classification</a> to build classifiers using TF-IDF features</li>
 <li>Study <a href="../../embeddings/word-embeddings/">Word Embeddings</a> for dense semantic representations</li>
-<li>Progress to <a href="../../embeddings/sentence-embeddings/">Sentence Embeddings</a> for document-level representations</li>
-<li>Learn about <a href="../../retrieval_augmented_generation/retrieval-methods/">BM25 and ranking</a> for improved information retrieval</li>
 </ul>
 
 
@@ -3109,7 +3110,7 @@ $<span class="arithmatex">\(\text{TF-IDF}(t, d) = \text{TF}(t, d) \times \log\fr
       <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["announce.dismiss","content.code.annotate","content.code.copy","content.code.select","content.footnote.tooltips","content.tabs.link","content.tooltips","navigation.footer","navigation.indexes","navigation.instant","navigation.instant.prefetch","navigation.instant.progress","navigation.path","navigation.prune","navigation.top","navigation.tracking","search.highlight","toc.follow"],"search":"../../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.16f8adc2.min.js"></script>
+      <script src="../../assets/javascripts/bundle.5fd3284f.min.js"></script>
       
         <script src="../../javascripts/mathjax.js"></script>
       
