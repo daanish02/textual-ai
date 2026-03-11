@@ -199,3 +199,7 @@ pygments_lang_class = true
 
 [project.markdown_extensions.pymdownx.arithmatex]
 generic = true
+
+[project.markdown_extensions.def_list]
+[project.markdown_extensions.pymdownx.tasklist]
+custom_checkbox = true

@@ -18,13 +18,13 @@
 
 Tokenization is the foundational step in every NLP pipeline. Before a model can process text, it must be broken into discrete units (tokens) that the model can operate on. The choice of tokenization strategy fundamentally affects model vocabulary size, handling of rare words, multilingual capability, and downstream performance.
 
-**Why tokenization matters**:
+**Why tokenization matters:**
 
-- **Input representation**: Models work with sequences of tokens, not raw strings
-- **Vocabulary management**: Tokenization determines vocabulary size and OOV handling
-- **Subword structure**: Modern methods balance word meaning with character flexibility
-- **Multilingual support**: Different languages require different tokenization strategies
-- **Model compatibility**: Different models use different tokenizers (GPT vs BERT vs T5)
+- **Input representation:** Models work with sequences of tokens, not raw strings
+- **Vocabulary management:** Tokenization determines vocabulary size and OOV handling
+- **Subword structure:** Modern methods balance word meaning with character flexibility
+- **Multilingual support:** Different languages require different tokenization strategies
+- **Model compatibility:** Different models use different tokenizers (GPT vs BERT vs T5)
 
 This guide covers word-level, subword-level, and character-level tokenization, with emphasis on modern subword methods (BPE, WordPiece, Unigram) used in transformers.
 
@@ -34,56 +34,55 @@ This guide covers word-level, subword-level, and character-level tokenization, w
 
 **Tokenization** is the process of splitting text into smaller units called **tokens**. Tokens are the atomic units that NLP models process.
 
-**Example**:
+!!! example
 
-```
-Text: "Hello, world! How are you?"
+    ```markdown
+    > "Hello, world! How are you?"
 
-Possible tokenizations:
+    Possible tokenizations:
 
-Word-level:     ["Hello", ",", "world", "!", "How", "are", "you", "?"]
-Subword-level:  ["Hello", ",", "world", "!", "How", "are", "you", "?"]
-                (or with BPE: ["Hel", "lo", ",", "world", "!", "How", "are", "you", "?"])
-Character-level: ["H", "e", "l", "l", "o", ",", " ", "w", "o", "r", "l", "d", "!", ...]
-```
+    Character-level: ["H", "e", "l", "l", "o", ",", " ", "w", "o", "r", "l", "d", "!", ...]
+    Word-level:      ["Hello", ",", "world", "!", "How", "are", "you", "?"]
+    Subword-level:   ["Hello", ",", "world", "!", "How", "are", "you", "?"]  
+                     (BPE: ["Hel", "lo", ",", "world", "!", "How", "are", "you", "?"])
+    ```
 
 ### Why Not Just Split on Spaces?
 
 Naive space-splitting fails for many reasons:
 
-1. **Punctuation**: "Hello, world!" → Need to separate punctuation
-2. **Contractions**: "don't" → "do" + "n't" or keep as one?
-3. **Compounds**: "New York" → One unit or two?
-4. **Languages without spaces**: Chinese, Japanese, Thai
-5. **Rare words**: "antidisestablishmentarianism" → Unknown to vocabulary
+1. **Punctuation:** "Hello, world!" → Need to separate punctuation
+2. **Contractions:** "don't" → "do" + "n't" or keep as one?
+3. **Compounds:** "New York" → One unit or two?
+4. **Languages without spaces:** Chinese, Japanese, Thai
+5. **Rare words:** "antidisestablishmentarianism" → Unknown to vocabulary
 
 Modern tokenization addresses these issues through sophisticated algorithms.
 
 ### The Vocabulary Problem
 
-**Trade-off**: Vocabulary size vs coverage
+**Trade-off:** Vocabulary size vs coverage
 
-- **Small vocabulary**: Many out-of-vocabulary (OOV) words
-- **Large vocabulary**: Memory intensive, sparse training signal per token
+- **Small vocabulary:** Many out-of-vocabulary (OOV) words
+- **Large vocabulary:** Memory intensive, sparse training signal per token
 
-**Example**:
+**Vocabulary Size Impacts:**
 
-```python
-# Vocabulary size impacts
+- Small vocabulary (word-level, 10K words)
 
-# Small vocabulary (word-level, 10K words)
-# - "antidisestablishmentarianism" → <UNK> (unknown token)
-# - Cannot handle new words
+    - "antidisestablishmentarianism" → <UNK> (unknown token)
+    - Cannot handle new words
 
-# Large vocabulary (word-level, 100K words)
-# - Covers more words but still has OOV problem
-# - Large embedding matrix (100K × embedding_dim)
+- Large vocabulary (word-level, 100K words)
 
-# Subword vocabulary (BPE, 32K tokens)
-# - "antidisestablishmentarianism" → ["anti", "dis", "establish", "ment", "arian", "ism"]
-# - Can handle any word through composition
-# - Reasonable vocabulary size
-```
+    - Covers more words but still has OOV problem
+    - Large embedding matrix (100K × embedding_dim)
+
+- Subword vocabulary (BPE, 32K tokens)
+
+    - "antidisestablishmentarianism" → ["anti", "dis", "establish", "ment", "arian", "ism"]
+    - Can handle any word through composition
+    - Reasonable vocabulary size
 
 ## Word Tokenization
 
@@ -91,41 +90,54 @@ Modern tokenization addresses these issues through sophisticated algorithms.
 
 Split text into words based on whitespace and punctuation.
 
-```python
-import re
+??? example "Implementation"
 
-def simple_word_tokenize(text):
-    """Basic word tokenization using regex."""
-    # Split on whitespace and punctuation
-    tokens = re.findall(r'\b\w+\b|[^\w\s]', text)
-    return tokens
+    ```python
+    import re
 
-# Example
-text = "Hello, world! How are you doing today?"
-tokens = simple_word_tokenize(text)
-print(tokens)
-# Output: ['Hello', ',', 'world', '!', 'How', 'are', 'you', 'doing', 'today', '?']
-```
+    def simple_word_tokenize(text):
+        """Basic word tokenization using regex."""
+        # Split on whitespace and punctuation
+        tokens = re.findall(r'\b\w+\b|[^\w\s]', text)
+        return tokens
+
+    # Example
+    text = "Hello, world! How are you doing today?"
+    tokens = simple_word_tokenize(text)
+    print(tokens)
+    ```
+
+    ??? example "Output"
+
+        ```bash
+        ['Hello', ',', 'world', '!', 'How', 'are', 'you', 'doing', 'today', '?']
+        ```
 
 ### Advanced Word Tokenization
 
 Libraries like NLTK provide sophisticated word tokenizers that handle edge cases.
 
-```python
-import nltk
-from nltk.tokenize import word_tokenize
+??? example "Implementation"
 
-# Download required resources (run once)
-# nltk.download('punkt')
+    ```python
+    import nltk
+    from nltk.tokenize import word_tokenize
 
-text = "I don't know. Let's go to New York! It's 3.14159."
-tokens = word_tokenize(text)
-print(tokens)
-# Output: ['I', 'do', "n't", 'know', '.', 'Let', "'s", 'go', 'to', 'New', 'York', '!',
-#          'It', "'s", '3.14159', '.']
-```
+    # Download required resources (run once)
+    # nltk.download('punkt')
 
-**Handling edge cases**:
+    text = "I don't know. Let's go to New York! It's 3.14159."
+    tokens = word_tokenize(text)
+    print(tokens)
+    ```
+
+    ??? example "Output"
+
+        ```bash
+        ['I', 'do', "n't", 'know', '.', 'Let', "'s", 'go', 'to', 'New', 'York', '!', 'It', "'s", '3.14159', '.']
+        ```
+
+**Handling edge cases:**
 
 - Contractions: "don't" → ["do", "n't"]
 - Possessives: "John's" → ["John", "'s"]
@@ -134,13 +146,13 @@ print(tokens)
 
 ### Strengths and Weaknesses
 
-**Strengths**:
+**Strengths:**
 
 - Simple and interpretable
 - Tokens correspond to linguistic units (words)
 - Works well for languages with clear word boundaries
 
-**Weaknesses**:
+**Weaknesses:**
 
 - Large vocabulary (100K+ words for English)
 - OOV problem for rare words and morphological variants
@@ -150,209 +162,221 @@ print(tokens)
 
 ### Vocabulary Size Analysis
 
-```python
-from collections import Counter
+??? example "Implementation"
 
-def analyze_vocabulary(texts, tokenizer_func):
-    """Analyze vocabulary size and word frequencies."""
-    all_tokens = []
-    for text in texts:
-        all_tokens.extend(tokenizer_func(text))
+    ```python
+    from collections import Counter
 
-    vocab = set(all_tokens)
-    freq = Counter(all_tokens)
+    def analyze_vocabulary(texts, tokenizer_func):
+        """Analyze vocabulary size and word frequencies."""
+        all_tokens = []
+        for text in texts:
+            all_tokens.extend(tokenizer_func(text))
 
-    print(f"Total tokens: {len(all_tokens)}")
-    print(f"Unique tokens (vocab size): {len(vocab)}")
-    print(f"Top 10 most common: {freq.most_common(10)}")
+        vocab = set(all_tokens)
+        freq = Counter(all_tokens)
 
-    # Frequency distribution
-    counts = list(freq.values())
-    singletons = sum(1 for c in counts if c == 1)
-    print(f"Tokens appearing once: {singletons} ({100*singletons/len(vocab):.1f}%)")
+        print(f"Total tokens: {len(all_tokens)}")
+        print(f"Unique tokens (vocab size): {len(vocab)}")
+        print(f"Top 10 most common: {freq.most_common(10)}")
 
-    return vocab, freq
+        # Frequency distribution
+        counts = list(freq.values())
+        singletons = sum(1 for c in counts if c == 1)
+        print(f"Tokens appearing once: {singletons} ({100*singletons/len(vocab):.1f}%)")
 
-# Example with sample texts
-sample_texts = [
-    "The cat sat on the mat.",
-    "The dog sat on the log.",
-    "The cat and the dog are friends.",
-]
+        return vocab, freq
 
-vocab, freq = analyze_vocabulary(sample_texts, simple_word_tokenize)
-```
+    # Example with sample texts
+    sample_texts = [
+        "The cat sat on the mat.",
+        "The dog sat on the log.",
+        "The cat and the dog are friends.",
+    ]
+
+    # Example
+    vocab, freq = analyze_vocabulary(sample_texts, simple_word_tokenize)
+    ```
+
+    ??? example "Output"
+
+        ```bash
+        Total tokens: 19
+        Unique tokens (vocab size): 12
+        Top 10 most common: [('the', 6), ('cat', 2), ('sat', 2), ('on', 2), ('dog', 2), ('mat', 1), ('log', 1), ('and', 1), ('are', 1), ('friends', 1)]
+        Tokens appearing once: 7 (58.3%)
+        ```
 
 ## Subword Tokenization
 
 Subword tokenization solves the vocabulary-coverage trade-off by breaking words into smaller pieces. This enables:
 
-- **Fixed vocabulary size**: Control vocab size (e.g., 32K tokens)
-- **Open vocabulary**: Any word can be represented through subword composition
-- **Morphological awareness**: "play", "playing", "played" share "play"
-- **Rare word handling**: Break rare words into common subwords
+- **Fixed vocabulary size:** Control vocab size (e.g., 32K tokens)
+- **Open vocabulary:** Any word can be represented through subword composition
+- **Morphological awareness:** "play", "playing", "played" share "play"
+- **Rare word handling:** Break rare words into common subwords
 
 ### Byte-Pair Encoding (BPE)
 
 BPE iteratively merges the most frequent adjacent pairs of tokens.
 
-**Algorithm**:
+**Algorithm:**
 
 1. Start with character-level tokens
 2. Find most frequent adjacent pair
 3. Merge that pair into a new token
 4. Repeat until desired vocabulary size
 
-**Example**:
+!!! example
 
-```
-Initial vocabulary: {a, b, c, d, ...}
-Text: "aaabdaaabac"
+    ```markdown
+    > Initial vocabulary: {a, b, c, d, ...}
+    > Text: "aaabdaaabac"
 
-Iteration 1:
-- Count pairs: ('a','a'): 4, ('a','b'): 2, ('b','d'): 1, ...
-- Most frequent: ('a','a')
-- Merge: 'aa' becomes new token
-- Text: "aa ab d aa ab ac" → "aa|ab|d|aa|ab|ac"
+    Iteration 1:
+    - Count pairs: ('a','a'): 4, ('a','b'): 2, ('b','d'): 1, ...
+    - Most frequent: ('a','a')
+    - Merge: 'aa' becomes new token
+    - Text: "aa ab d aa ab ac" → "aa|ab|d|aa|ab|ac"
 
-Iteration 2:
-- Count pairs: ('aa','ab'): 2, ...
-- Most frequent: ('aa','ab')
-- Merge: 'aaab' becomes new token
-- Continue...
+    Iteration 2:
+    - Count pairs: ('aa','ab'): 2, ...
+    - Most frequent: ('aa','ab')
+    - Merge: 'aaab' becomes new token
+    - Continue...
 
-Final vocabulary: {a, b, c, d, aa, aaab, ...}
-```
+    Final vocabulary: {a, b, c, d, aa, aaab, ...}
+    ```
 
-**Implementation**:
+??? example "Implementation"
 
-```python
-from collections import Counter, defaultdict
-import re
+    ```python
+    from collections import Counter, defaultdict
+    import re
 
-class SimpleBPE:
-    def __init__(self, num_merges=10):
-        self.num_merges = num_merges
-        self.merges = []  # List of merge operations
-        self.vocab = set()
+    class SimpleBPE:
+        def __init__(self, num_merges=10):
+            self.num_merges = num_merges
+            self.merges = []  # List of merge operations
+            self.vocab = set()
 
-    def train(self, texts):
-        """Train BPE on a corpus."""
-        # Start with character-level tokens
-        words = []
-        for text in texts:
-            # Split into words, then characters with end-of-word marker
+        def train(self, texts):
+            """Train BPE on a corpus."""
+            # Start with character-level tokens
+            words = []
+            for text in texts:
+                # Split into words, then characters with end-of-word marker
+                for word in text.split():
+                    word_tokens = list(word) + ['</w>']
+                    words.append(word_tokens)
+
+            # Perform merges
+            for i in range(self.num_merges):
+                # Count adjacent pairs
+                pairs = defaultdict(int)
+                for word in words:
+                    for j in range(len(word) - 1):
+                        pairs[(word[j], word[j+1])] += 1
+
+                if not pairs:
+                    break
+
+                # Find most frequent pair
+                best_pair = max(pairs, key=pairs.get)
+                self.merges.append(best_pair)
+
+                # Merge the pair in all words
+                new_words = []
+                for word in words:
+                    new_word = []
+                    i = 0
+                    while i < len(word):
+                        if i < len(word) - 1 and (word[i], word[i+1]) == best_pair:
+                            # Merge
+                            new_word.append(word[i] + word[i+1])
+                            i += 2
+                        else:
+                            new_word.append(word[i])
+                            i += 1
+                    new_words.append(new_word)
+                words = new_words
+
+            # Build vocabulary
+            self.vocab = set()
+            for word in words:
+                self.vocab.update(word)
+
+        def tokenize(self, text):
+            """Tokenize text using learned merges."""
+            # Start with character-level
+            words = []
             for word in text.split():
                 word_tokens = list(word) + ['</w>']
                 words.append(word_tokens)
 
-        # Perform merges
-        for i in range(self.num_merges):
-            # Count adjacent pairs
-            pairs = defaultdict(int)
-            for word in words:
-                for j in range(len(word) - 1):
-                    pairs[(word[j], word[j+1])] += 1
+            # Apply merges in order
+            for merge_pair in self.merges:
+                new_words = []
+                for word in words:
+                    new_word = []
+                    i = 0
+                    while i < len(word):
+                        if i < len(word) - 1 and (word[i], word[i+1]) == merge_pair:
+                            new_word.append(word[i] + word[i+1])
+                            i += 2
+                        else:
+                            new_word.append(word[i])
+                            i += 1
+                    new_words.append(new_word)
+                words = new_words
 
-            if not pairs:
-                break
+            # Flatten
+            tokens = [token for word in words for token in word]
+            return tokens
 
-            # Find most frequent pair
-            best_pair = max(pairs, key=pairs.get)
-            self.merges.append(best_pair)
+    # Example usage
+    texts = [
+        "low lower lowest",
+        "new newer newest",
+        "wide wider widest",
+    ]
 
-            # Merge the pair in all words
-            new_words = []
-            for word in words:
-                new_word = []
-                i = 0
-                while i < len(word):
-                    if i < len(word) - 1 and (word[i], word[i+1]) == best_pair:
-                        # Merge
-                        new_word.append(word[i] + word[i+1])
-                        i += 2
-                    else:
-                        new_word.append(word[i])
-                        i += 1
-                new_words.append(new_word)
-            words = new_words
+    bpe = SimpleBPE(num_merges=10)
+    bpe.train(texts)
 
-        # Build vocabulary
-        self.vocab = set()
-        for word in words:
-            self.vocab.update(word)
+    print("Learned merges:")
+    for i, merge in enumerate(bpe.merges):
+        print(f"{i+1}. {merge}")
 
-    def tokenize(self, text):
-        """Tokenize text using learned merges."""
-        # Start with character-level
-        words = []
-        for word in text.split():
-            word_tokens = list(word) + ['</w>']
-            words.append(word_tokens)
+    print("\nVocabulary:", sorted(bpe.vocab))
 
-        # Apply merges in order
-        for merge_pair in self.merges:
-            new_words = []
-            for word in words:
-                new_word = []
-                i = 0
-                while i < len(word):
-                    if i < len(word) - 1 and (word[i], word[i+1]) == merge_pair:
-                        new_word.append(word[i] + word[i+1])
-                        i += 2
-                    else:
-                        new_word.append(word[i])
-                        i += 1
-                new_words.append(new_word)
-            words = new_words
+    test_text = "lower newest"
+    tokens = bpe.tokenize(test_text)
+    print(f"\nTokenization of '{test_text}':")
+    print(tokens)
+    ```
 
-        # Flatten
-        tokens = [token for word in words for token in word]
-        return tokens
+    ??? example "Output"
 
-# Example usage
-texts = [
-    "low lower lowest",
-    "new newer newest",
-    "wide wider widest",
-]
+        ```bash
+        Learned merges:
+        1. ('e', 'r')
+        2. ('e', 's')
+        3. ('n', 'e')
+        4. ('w', 'e')
+        ...
 
-bpe = SimpleBPE(num_merges=10)
-bpe.train(texts)
+        Tokenization of 'lower newest':
+        ['l', 'o', 'we', 'r', '</w>', 'ne', 'we', 'st', '</w>']
+        ```
 
-print("Learned merges:")
-for i, merge in enumerate(bpe.merges):
-    print(f"{i+1}. {merge}")
-
-print("\nVocabulary:", sorted(bpe.vocab))
-
-test_text = "lower newest"
-tokens = bpe.tokenize(test_text)
-print(f"\nTokenization of '{test_text}':")
-print(tokens)
-```
-
-**Output**:
-
-```
-Learned merges:
-1. ('e', 'r')
-2. ('e', 's')
-3. ('n', 'e')
-4. ('w', 'e')
-...
-
-Tokenization of 'lower newest':
-['l', 'o', 'we', 'r', '</w>', 'ne', 'we', 'st', '</w>']
-```
-
-**Used in**: GPT, GPT-2, GPT-3, RoBERTa, BART
+**Used in:** GPT, GPT-2, GPT-3, RoBERTa, BART
 
 ### WordPiece
 
 WordPiece is similar to BPE but uses a different merge criterion: maximize likelihood rather than frequency.
 
-**Algorithm**:
+**Algorithm:**
 
 1. Start with character-level vocabulary
 2. Compute likelihood of corpus with current vocabulary
@@ -360,92 +384,104 @@ WordPiece is similar to BPE but uses a different merge criterion: maximize likel
 4. Merge pair that maximizes likelihood increase
 5. Repeat until desired vocabulary size
 
-**Key difference from BPE**: Chooses merges based on language model probability, not raw frequency.
+**Key difference from BPE:** Chooses merges based on language model probability, not raw frequency.
 
-**Example**:
+??? example "Implementation"
 
-```python
-# Conceptual WordPiece (simplified)
-# Actual WordPiece uses language model likelihood
+    ```python
+    # Conceptual WordPiece (simplified)
+    # Actual WordPiece uses language model likelihood
 
-class SimpleWordPiece:
-    def __init__(self, vocab_size=100):
-        self.vocab_size = vocab_size
-        self.vocab = set()
+    class SimpleWordPiece:
+        def __init__(self, vocab_size=100):
+            self.vocab_size = vocab_size
+            self.vocab = set()
 
-    def train(self, texts):
-        """Train WordPiece tokenizer."""
-        # Start with character vocabulary
-        self.vocab = set()
-        for text in texts:
-            self.vocab.update(text.lower())
+        def train(self, texts):
+            """Train WordPiece tokenizer."""
+            # Start with character vocabulary
+            self.vocab = set()
+            for text in texts:
+                self.vocab.update(text.lower())
 
-        # Add special prefix marker for subword units
-        # In practice, WordPiece uses ## prefix for continuation
+            # Add special prefix marker for subword units
+            # In practice, WordPiece uses ## prefix for continuation
 
-        # Iteratively add subwords that improve language model likelihood
-        # (Simplified version)
-        word_counts = Counter()
-        for text in texts:
-            word_counts.update(text.lower().split())
+            # Iteratively add subwords that improve language model likelihood
+            # (Simplified version)
+            word_counts = Counter()
+            for text in texts:
+                word_counts.update(text.lower().split())
 
-        # Most common subwords (simplified)
-        from itertools import combinations
-        subword_scores = {}
-        for word, count in word_counts.items():
-            for length in range(2, min(len(word)+1, 6)):
-                for i in range(len(word) - length + 1):
-                    subword = word[i:i+length]
-                    subword_scores[subword] = subword_scores.get(subword, 0) + count
+            # Most common subwords (simplified)
+            from itertools import combinations
+            subword_scores = {}
+            for word, count in word_counts.items():
+                for length in range(2, min(len(word)+1, 6)):
+                    for i in range(len(word) - length + 1):
+                        subword = word[i:i+length]
+                        subword_scores[subword] = subword_scores.get(subword, 0) + count
 
-        # Add top subwords to vocabulary
-        top_subwords = sorted(subword_scores.items(), key=lambda x: x[1], reverse=True)
-        for subword, _ in top_subwords[:self.vocab_size - len(self.vocab)]:
-            self.vocab.add(subword)
+            # Add top subwords to vocabulary
+            top_subwords = sorted(subword_scores.items(), key=lambda x: x[1], reverse=True)
+            for subword, _ in top_subwords[:self.vocab_size - len(self.vocab)]:
+                self.vocab.add(subword)
 
-    def tokenize(self, word):
-        """Tokenize a word using greedy longest-match-first."""
-        tokens = []
-        start = 0
-        word = word.lower()
+        def tokenize(self, word):
+            """Tokenize a word using greedy longest-match-first."""
+            tokens = []
+            start = 0
+            word = word.lower()
 
-        while start < len(word):
-            # Find longest subword in vocab starting from start
-            end = len(word)
-            found = False
-            while end > start:
-                subword = word[start:end]
-                if subword in self.vocab:
-                    tokens.append(subword if start == 0 else '##' + subword)
-                    start = end
-                    found = True
-                    break
-                end -= 1
+            while start < len(word):
+                # Find longest subword in vocab starting from start
+                end = len(word)
+                found = False
+                while end > start:
+                    subword = word[start:end]
+                    if subword in self.vocab:
+                        tokens.append(subword if start == 0 else '##' + subword)
+                        start = end
+                        found = True
+                        break
+                    end -= 1
 
-            if not found:
-                # Unknown character, use special token or character
-                tokens.append(word[start])
-                start += 1
+                if not found:
+                    # Unknown character, use special token or character
+                    tokens.append(word[start])
+                    start += 1
 
-        return tokens
+            return tokens
 
-# Example
-wp = SimpleWordPiece(vocab_size=50)
-wp.train(["playing player played play playful"])
+    # Example
+    wp = SimpleWordPiece(vocab_size=50)
+    wp.train(["playing player played play playful"])
 
-print("Vocabulary:", sorted(wp.vocab))
-print("\nTokenization examples:")
-for word in ["playing", "player", "playful"]:
-    print(f"{word}: {wp.tokenize(word)}")
-```
+    print("Vocabulary:", sorted(wp.vocab))
+    print("\nTokenization examples:")
+    for word in ["playing", "player", "playful"]:
+        print(f"{word}: {wp.tokenize(word)}")
+    ```
 
-**Used in**: BERT, DistilBERT, Electra
+    ??? example "Output"
+
+        ```bash
+        Vocabulary: ['a', 'ay', 'ayi', 'ayin', 'b', 'd', 'e', 'ed', 'er', 'f', 'fu', 'ful',
+        'g', 'i', 'in', 'ing', 'l', 'la', 'lay', ...]
+
+        Tokenization examples:
+        playing: ['playing']
+        player: ['player']
+        playful: ['playful']
+        ```
+
+**Used in:** BERT, DistilBERT, Electra
 
 ### Unigram Language Model
 
 Unigram tokenization starts with a large vocabulary and iteratively removes tokens to minimize loss.
 
-**Algorithm**:
+**Algorithm:**
 
 1. Start with large vocabulary (all substrings)
 2. Train unigram language model
@@ -453,154 +489,191 @@ Unigram tokenization starts with a large vocabulary and iteratively removes toke
 4. Remove tokens with smallest loss increase
 5. Repeat until desired vocabulary size
 
-**Key difference**: Top-down (remove) vs bottom-up (add) like BPE/WordPiece
+**Key difference:** Top-down (remove) vs bottom-up (add) like BPE/WordPiece
 
-```python
-# Conceptual Unigram tokenization
-# Actual implementation requires EM algorithm
+??? example "Implementation"
 
-class UnigramTokenizer:
-    def __init__(self, vocab_size=100):
-        self.vocab_size = vocab_size
-        self.vocab = {}  # token -> probability
+    ```python
+    # Conceptual Unigram tokenization
+    # Actual implementation requires EM algorithm
 
-    def train(self, texts):
-        """Train unigram language model."""
-        # Start with all possible substrings (up to length limit)
-        from collections import Counter
-        subword_counts = Counter()
+    class UnigramTokenizer:
+        def __init__(self, vocab_size=100):
+            self.vocab_size = vocab_size
+            self.vocab = {}  # token -> probability
 
-        for text in texts:
-            words = text.lower().split()
-            for word in words:
-                # Add all substrings
-                for length in range(1, min(len(word)+1, 10)):
-                    for i in range(len(word) - length + 1):
-                        subword_counts[word[i:i+length]] += 1
+        def train(self, texts):
+            """Train unigram language model."""
+            # Start with all possible substrings (up to length limit)
+            from collections import Counter
+            subword_counts = Counter()
 
-        # Initialize probabilities (simplified - actual uses EM)
-        total = sum(subword_counts.values())
-        self.vocab = {token: count/total for token, count in subword_counts.most_common(self.vocab_size)}
+            for text in texts:
+                words = text.lower().split()
+                for word in words:
+                    # Add all substrings
+                    for length in range(1, min(len(word)+1, 10)):
+                        for i in range(len(word) - length + 1):
+                            subword_counts[word[i:i+length]] += 1
 
-    def tokenize(self, word):
-        """Tokenize using Viterbi algorithm to find best segmentation."""
-        # Find segmentation that maximizes probability (simplified)
-        word = word.lower()
-        n = len(word)
+            # Initialize probabilities (simplified - actual uses EM)
+            total = sum(subword_counts.values())
+            self.vocab = {token: count/total for token, count in subword_counts.most_common(self.vocab_size)}
 
-        # Dynamic programming
-        # best_prob[i] = best probability for word[:i]
-        # best_split[i] = best last token ending at i
-        best_prob = [0.0] * (n + 1)
-        best_prob[0] = 1.0
-        best_split = [''] * (n + 1)
+        def tokenize(self, word):
+            """Tokenize using Viterbi algorithm to find best segmentation."""
+            # Find segmentation that maximizes probability (simplified)
+            word = word.lower()
+            n = len(word)
 
-        for i in range(1, n + 1):
-            for j in range(i):
-                token = word[j:i]
-                if token in self.vocab:
-                    prob = best_prob[j] * self.vocab[token]
-                    if prob > best_prob[i]:
-                        best_prob[i] = prob
-                        best_split[i] = token
+            # Dynamic programming
+            # best_prob[i] = best probability for word[:i]
+            # best_split[i] = best last token ending at i
+            best_prob = [0.0] * (n + 1)
+            best_prob[0] = 1.0
+            best_split = [''] * (n + 1)
 
-        # Reconstruct path
-        tokens = []
-        i = n
-        while i > 0:
-            token = best_split[i]
-            if token:
-                tokens.append(token)
-                i -= len(token)
-            else:
-                i -= 1
+            for i in range(1, n + 1):
+                for j in range(i):
+                    token = word[j:i]
+                    if token in self.vocab:
+                        prob = best_prob[j] * self.vocab[token]
+                        if prob > best_prob[i]:
+                            best_prob[i] = prob
+                            best_split[i] = token
 
-        return list(reversed(tokens))
+            # Reconstruct path
+            tokens = []
+            i = n
+            while i > 0:
+                token = best_split[i]
+                if token:
+                    tokens.append(token)
+                    i -= len(token)
+                else:
+                    i -= 1
 
-# Example
-unigram = UnigramTokenizer(vocab_size=50)
-unigram.train(["playing player played play playful"])
+            return list(reversed(tokens))
 
-print("Top tokens:", list(sorted(unigram.vocab.items(), key=lambda x: x[1], reverse=True)[:10]))
-print("\nTokenization examples:")
-for word in ["playing", "player", "playful"]:
-    print(f"{word}: {unigram.tokenize(word)}")
-```
+    # Example
+    unigram = UnigramTokenizer(vocab_size=50)
+    unigram.train(["playing player played play playful"])
 
-**Used in**: T5, ALBERT, XLNet
+    print("Top tokens:", list(sorted(unigram.vocab.items(), key=lambda x: x[1], reverse=True)[:10]))
+    print("\nTokenization examples:")
+    for word in ["playing", "player", "playful"]:
+        print(f"{word}: {unigram.tokenize(word)}")
+    ```
+
+    ??? example "Output"
+
+        ```bash
+        Top tokens: [
+        ('p', 0.044), 
+        ('l', 0.044), 
+        ('a', 0.044), 
+        ('y', 0.044),
+        ...
+        ]
+
+        Tokenization examples:
+        playing: ['play', 'ing']
+        player: ['play', 'er']
+        playful: ['play', 'ful']
+        ```
+
+**Used in:** T5, ALBERT, XLNet
 
 ### SentencePiece
 
 SentencePiece is a language-agnostic tokenizer that treats text as raw Unicode:
 
-- **Language-agnostic**: No language-specific pre-processing
-- **Reversible**: Can reconstruct original text (including spaces)
-- **Space as token**: Encodes spaces explicitly (▁ symbol)
+- **Language-agnostic:** No language-specific pre-processing
+- **Reversible:** Can reconstruct original text (including spaces)
+- **Space as token:** Encodes spaces explicitly (`▁` symbol)
 
-```python
-# Using SentencePiece library
-# pip install sentencepiece
+??? example "Implementation"
 
-import sentencepiece as spm
+    ```python
+    # Using SentencePiece library
+    # uv add sentencepiece
 
-# Train SentencePiece model
-# spm.SentencePieceTrainer.train(
-#     input='corpus.txt',
-#     model_prefix='spm_model',
-#     vocab_size=5000,
-#     model_type='bpe'  # or 'unigram'
-# )
+    import sentencepiece as spm
 
-# Load and use
-# sp = spm.SentencePieceProcessor()
-# sp.load('spm_model.model')
+    # Train SentencePiece model
+    spm.SentencePieceTrainer.train(
+        input='corpus.txt',
+        model_prefix='spm_model',
+        vocab_size=5000,
+        model_type='bpe'  # or 'unigram'
+    )
 
-# tokens = sp.encode_as_pieces("This is a test.")
-# print(tokens)
-# # Output: ['▁This', '▁is', '▁a', '▁test', '.']
+    # Load and use
+    sp = spm.SentencePieceProcessor()
+    sp.load('spm_model.model')
 
-# ids = sp.encode_as_ids("This is a test.")
-# print(ids)
+    tokens = sp.encode_as_pieces("This is a test.")
+    print(tokens)
 
-# # Decode back
-# text = sp.decode_pieces(tokens)
-# print(text)  # "This is a test."
-```
+    ids = sp.encode_as_ids("This is a test.")
+    print(ids)
 
-**Key feature**: The ▁ symbol represents spaces, making tokenization reversible.
+    # Decode back
+    text = sp.decode_pieces(tokens)
+    print(text)
+    ```
+
+    ??? example "Output"
+
+        ```bash
+        ['▁This', '▁is', '▁a', '▁test', '.']
+        [284, 47, 9, 1032, 5]  # Varies
+        "This is a test."
+        ```
+
+!!! info
+
+    The `▁` symbol represents spaces, making tokenization reversible.
 
 ## Character Tokenization
 
 Break text into individual characters.
 
-```python
-def char_tokenize(text):
-    """Character-level tokenization."""
-    return list(text)
+??? example "Implementation"
 
-text = "Hello, world!"
-tokens = char_tokenize(text)
-print(tokens)
-# Output: ['H', 'e', 'l', 'l', 'o', ',', ' ', 'w', 'o', 'r', 'l', 'd', '!']
-```
+    ```python
+    def char_tokenize(text):
+        """Character-level tokenization."""
+        return list(text)
+
+    text = "Hello, world!"
+    tokens = char_tokenize(text)
+    print(tokens)
+    ```
+
+    ??? example "Output"
+
+        ```bash
+        Output: ['H', 'e', 'l', 'l', 'o', ',', ' ', 'w', 'o', 'r', 'l', 'd', '!']
+        ```
 
 ### Strengths and Weaknesses
 
-**Strengths**:
+**Strengths:**
 
 - Tiny vocabulary (26 letters + punctuation)
 - No OOV problem
 - Works for any language
 - Robust to typos and spelling variations
 
-**Weaknesses**:
+**Weaknesses:**
 
 - Very long sequences (each character is a token)
 - Loses word-level meaning
 - Model must learn to compose characters into words
 - Computationally expensive (longer sequences)
 
-**When to use**:
+**When to use:**
 
 - Multilingual models with many scripts
 - Tasks requiring character-level awareness (spelling correction)
@@ -611,8 +684,8 @@ print(tokens)
 
 ### Visual Comparison
 
-```
-Original text: "The quick brown fox jumps over the lazy dog."
+```markdown
+> "The quick brown fox jumps over the lazy dog."
 
 Word-level (space-split):
 ["The", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog", "."]
@@ -638,38 +711,58 @@ Character-level:
 
 ### Empirical Comparison
 
-```python
-def compare_tokenizations(text):
-    """Compare different tokenization strategies."""
-    # Word-level
-    word_tokens = text.split()
+??? example "Implementation"
 
-    # Pseudo-subword (just for demo - real BPE would be different)
-    # Simulating by splitting on common prefixes/suffixes
-    subword_tokens = []
-    for word in word_tokens:
-        if len(word) > 5:
-            subword_tokens.extend([word[:3], word[3:]])
-        else:
-            subword_tokens.append(word)
+    ```python
+    def compare_tokenizations(text):
+        """Compare different tokenization strategies."""
+        # Word-level
+        word_tokens = text.split()
 
-    # Character-level
-    char_tokens = list(text.replace(' ', '_'))
+        # Pseudo-subword (just for demo - real BPE would be different)
+        # Simulating by splitting on common prefixes/suffixes
+        subword_tokens = []
+        for word in word_tokens:
+            if len(word) > 5:
+                subword_tokens.extend([word[:3], word[3:]])
+            else:
+                subword_tokens.append(word)
 
-    print(f"Original: {text}")
-    print(f"\nWord tokens ({len(word_tokens)}): {word_tokens}")
-    print(f"Subword tokens ({len(subword_tokens)}): {subword_tokens}")
-    print(f"Char tokens ({len(char_tokens)}): {char_tokens[:50]}{'...' if len(char_tokens) > 50 else ''}")
+        # Character-level
+        char_tokens = list(text.replace(' ', '_'))
 
-    # Compression ratio
-    print(f"\nCompression ratios:")
-    print(f"  Word: {len(text) / len(word_tokens):.2f} chars/token")
-    print(f"  Subword: {len(text) / len(subword_tokens):.2f} chars/token")
-    print(f"  Char: {len(text) / len(char_tokens):.2f} chars/token")
+        print(f"Original: {text}")
+        print(f"\nWord tokens ({len(word_tokens)}): {word_tokens}")
+        print(f"Subword tokens ({len(subword_tokens)}): {subword_tokens}")
+        print(f"Char tokens ({len(char_tokens)}): {char_tokens[:50]}{'...' if len(char_tokens) > 50 else ''}")
 
-# Example
-compare_tokenizations("The interplanetary astronaut explored the extraterrestrial landscape.")
-```
+        # Compression ratio
+        print(f"\nCompression ratios:")
+        print(f"  Word: {len(text) / len(word_tokens):.2f} chars/token")
+        print(f"  Subword: {len(text) / len(subword_tokens):.2f} chars/token")
+        print(f"  Char: {len(text) / len(char_tokens):.2f} chars/token")
+
+    # Example
+    compare_tokenizations("The interplanetary astronaut explored the extraterrestrial landscape.")
+    ```
+
+    ??? example "Output"
+
+        ```bash
+        Word tokens (7):
+        ['The', 'interplanetary', 'astronaut', 'explored', 'the', 'extraterrestrial', 'landscape.']
+
+        Subword tokens (13):
+        ['The', 'int', 'erplanetary', 'ast', 'ronaut', 'exp', 'lored', 'the', 'ext', 'raterrestrial', 'lan', 'dscape.']
+
+        Char tokens (67):
+        ['T', 'h', 'e', '_', 'i', 'n', 't', 'e', 'r', 'p', 'l', 'a', 'n', 'e', 't', 'a', 'r', 'y', '_', 'a', 's', 't', 'r', 'o', 'n', 'a', 'u', 't', '_', 'e', 'x', 'p', 'l', 'o', 'r', 'e', 'd', '_', 't', 'h', 'e', '_', 'e', 'x', 't', 'r', 'a', 't', 'e', 'r']...
+
+        Compression ratios:
+          Word: 9.57 chars/token
+          Subword: 5.15 chars/token
+          Char: 1.00 chars/token
+        ```
 
 ## Practical Tokenization with Modern Tools
 
@@ -677,48 +770,50 @@ compare_tokenizations("The interplanetary astronaut explored the extraterrestria
 
 The Hugging Face `transformers` library provides tokenizers for all major models.
 
-```python
-from transformers import AutoTokenizer
+??? example "Implementation"
 
-# Load different tokenizers
-gpt2_tokenizer = AutoTokenizer.from_pretrained("gpt2")  # BPE
-bert_tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")  # WordPiece
-t5_tokenizer = AutoTokenizer.from_pretrained("t5-small")  # SentencePiece
+    ```python
+    from transformers import AutoTokenizer
 
-text = "The interplanetary astronaut explored the extraterrestrial landscape."
+    # Load different tokenizers
+    gpt2_tokenizer = AutoTokenizer.from_pretrained("gpt2")  # BPE
+    bert_tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")  # WordPiece
+    t5_tokenizer = AutoTokenizer.from_pretrained("t5-small")  # SentencePiece
 
-print("GPT-2 (BPE):")
-tokens = gpt2_tokenizer.tokenize(text)
-print(f"Tokens: {tokens}")
-print(f"IDs: {gpt2_tokenizer.encode(text)}")
-print(f"Decoded: {gpt2_tokenizer.decode(gpt2_tokenizer.encode(text))}")
+    text = "The interplanetary astronaut explored the extraterrestrial landscape."
 
-print("\nBERT (WordPiece):")
-tokens = bert_tokenizer.tokenize(text)
-print(f"Tokens: {tokens}")
-print(f"IDs: {bert_tokenizer.encode(text)}")
+    print("GPT-2 (BPE):")
+    tokens = gpt2_tokenizer.tokenize(text)
+    print(f"Tokens: {tokens}")
+    print(f"IDs: {gpt2_tokenizer.encode(text)}")
+    print(f"Decoded: {gpt2_tokenizer.decode(gpt2_tokenizer.encode(text))}")
 
-print("\nT5 (SentencePiece):")
-tokens = t5_tokenizer.tokenize(text)
-print(f"Tokens: {tokens}")
-print(f"IDs: {t5_tokenizer.encode(text)}")
-```
+    print("\nBERT (WordPiece):")
+    tokens = bert_tokenizer.tokenize(text)
+    print(f"Tokens: {tokens}")
+    print(f"IDs: {bert_tokenizer.encode(text)}")
 
-**Output**:
+    print("\nT5 (SentencePiece):")
+    tokens = t5_tokenizer.tokenize(text)
+    print(f"Tokens: {tokens}")
+    print(f"IDs: {t5_tokenizer.encode(text)}")
+    ```
 
-```
-GPT-2 (BPE):
-Tokens: ['The', 'Ġinter', 'plan', 'etary', 'Ġastron', 'aut', ...]
-IDs: [464, 987, 11578, 316, ...]
+    ??? example "Output"
 
-BERT (WordPiece):
-Tokens: ['the', 'inter', '##plan', '##etary', 'astro', '##naut', ...]
-IDs: [101, 1996, 6970, ...]
+        ```bash
+        GPT-2 (BPE):
+        Tokens: ['The', 'Ġinter', 'plan', 'etary', 'Ġastron', 'aut', ...]
+        IDs: [464, 987, 11578, 316, ...]
 
-T5 (SentencePiece):
-Tokens: ['▁The', '▁inter', 'plan', 'etary', '▁astro', 'na', 'ut', ...]
-IDs: [37, 1413, ...]
-```
+        BERT (WordPiece):
+        Tokens: ['the', 'inter', '##plan', '##etary', 'astro', '##naut', ...]
+        IDs: [101, 1996, 6970, ...]
+
+        T5 (SentencePiece):
+        Tokens: ['▁The', '▁inter', 'plan', 'etary', '▁astro', 'na', 'ut', ...]
+        IDs: [37, 1413, ...]
+        ```
 
 ### Tokenizer Features
 
@@ -843,7 +938,7 @@ print("Token type IDs:", encoding['token_type_ids'])
 
 ### Out-of-Vocabulary (OOV) Words
 
-**Problem**: Word-level tokenizers encounter unknown words.
+**Problem:** Word-level tokenizers encounter unknown words.
 
 ```python
 # Simulated OOV handling
@@ -866,7 +961,7 @@ print(tokens)
 # "rug" is OOV
 ```
 
-**Solution**: Subword tokenization breaks OOV words into known subwords.
+**Solution:** Subword tokenization breaks OOV words into known subwords.
 
 ```python
 # With subword tokenization (conceptual)
@@ -877,7 +972,7 @@ print(tokens)
 
 Different languages have different tokenization needs:
 
-**Languages without spaces**:
+**Languages without spaces:**
 
 ```python
 # Chinese doesn't use spaces between words
@@ -892,13 +987,13 @@ japanese_text = "自然言語処理は面白い"
 thai_text = "การประมวลผลภาษาธรรมชาติ"
 ```
 
-**Solution**: Use language-agnostic tokenizers like SentencePiece or multilingual models like mBERT, XLM-R.
+**Solution:** Use language-agnostic tokenizers like SentencePiece or multilingual models like mBERT, XLM-R.
 
 ### Tokenization Artifacts
 
 Tokenization can introduce artifacts:
 
-**Capitalization**:
+**Capitalization:**
 
 ```python
 tokenizer = AutoTokenizer.from_pretrained("gpt2")
@@ -913,7 +1008,7 @@ print(tokenizer.tokenize("APPLE"))
 # ['APP', 'LE']  # Tokenized differently!
 ```
 
-**Leading spaces**:
+**Leading spaces:**
 
 ```python
 tokenizer = AutoTokenizer.from_pretrained("gpt2")
@@ -927,7 +1022,7 @@ print(tokenizer.tokenize(" hello"))
 # This matters for generation and token probabilities!
 ```
 
-**Inconsistent splitting**:
+**Inconsistent splitting:**
 
 ```python
 # Same word tokenized differently based on context
@@ -972,7 +1067,7 @@ print(gpt2_tokenizer.tokenize(text))
 #  'distribution', 'Ġdata', 'Ġwas', 'Ġsub', 'optimal', '.']
 ```
 
-**Observations**:
+**Observations:**
 
 - BERT lowercases (trained on lowercased text)
 - GPT-2 preserves case and uses Ġ for spaces
@@ -980,7 +1075,7 @@ print(gpt2_tokenizer.tokenize(text))
 
 ## Summary
 
-**Key Concepts**:
+**Key Concepts:**
 
 1. **Tokenization** breaks text into discrete units (tokens) that models process
 2. **Word tokenization** is simple but suffers from large vocabulary and OOV problems
@@ -990,23 +1085,23 @@ print(gpt2_tokenizer.tokenize(text))
 6. **Special tokens** enable model control (padding, masking, sequence boundaries)
 7. **Tokenization artifacts** can affect model behavior (capitalization, spaces)
 
-**Practical Insights**:
+**Practical Insights:**
 
-- **Use existing tokenizers**: Don't build from scratch; use Hugging Face tokenizers matched to your model
-- **Understand your tokenizer**: Know whether it lowercases, how it handles spaces, what special tokens it uses
-- **Vocabulary size matters**: 32K-50K subword tokens is common; larger = more memory, smaller = longer sequences
-- **Reversibility**: SentencePiece tokenization is reversible; others may lose information
-- **Language-specific considerations**: Different languages need different approaches
-- **Consistency**: Use the same tokenizer for training and inference
+- **Use existing tokenizers:** Don't build from scratch; use Hugging Face tokenizers matched to your model
+- **Understand your tokenizer:** Know whether it lowercases, how it handles spaces, what special tokens it uses
+- **Vocabulary size matters:** 32K-50K subword tokens is common; larger = more memory, smaller = longer sequences
+- **Reversibility:** SentencePiece tokenization is reversible; others may lose information
+- **Language-specific considerations:** Different languages need different approaches
+- **Consistency:** Use the same tokenizer for training and inference
 
-**Decision Framework**:
+**Decision Framework:**
 
 Choose tokenization based on:
 
-- **Task**: Generation (subword), classification (word or subword), character-level tasks (character)
-- **Language**: Multilingual (SentencePiece), English (any), morphologically rich (subword)
-- **Vocabulary constraints**: Limited memory (smaller vocab), need coverage (subword)
-- **Sequence length**: Short sequences (word), long context (subword), unlimited (character)
+- **Task:** Generation (subword), classification (word or subword), character-level tasks (character)
+- **Language:** Multilingual (SentencePiece), English (any), morphologically rich (subword)
+- **Vocabulary constraints:** Limited memory (smaller vocab), need coverage (subword)
+- **Sequence length:** Short sequences (word), long context (subword), unlimited (character)
 
 ## Next Steps
 

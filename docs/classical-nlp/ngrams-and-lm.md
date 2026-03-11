@@ -534,6 +534,9 @@ Higher-order (4-gram, 5-gram):
 - Extremely sparse
 - Diminishing returns
 
+!!! info
+
+    In n-gram language models, `<s>` is a special start-of-sentence token.
 
 ## The Sparsity Problem
 
@@ -895,7 +898,7 @@ $$
 
 **Katz Backoff**: Most sophisticated backoff method.
 
-## Evaluation: Perplexity
+## Perplexity
 
 ### Definition
 

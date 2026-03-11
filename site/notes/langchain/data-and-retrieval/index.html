@@ -1,0 +1,2872 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Notes related to NLP and Textual AI.">
+      
+      
+        <meta name="author" content="Danish Ahmed">
+      
+      
+        <link rel="canonical" href="https://daanish02.github.io/textual-ai/notes/langchain/data-and-retrieval/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.26">
+    
+    
+      
+        <title>Data and Retrieval - Textual AI</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../../../assets/stylesheets/modern/main.50057488.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/modern/palette.dfe2e883.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i%7CJetbrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Jetbrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,a=__md_scope)=>JSON.parse(t.getItem(a.pathname+"."+e)),__md_set=(e,t,a=localStorage,_=__md_scope)=>{try{a.setItem(_.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="red">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer" aria-label="Navigation"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#data-and-retrieval" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Textual AI" class="md-header__button md-logo" aria-label="Textual AI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Textual AI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Data and Retrieval
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="red"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search" aria-label="Search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Textual AI" class="md-nav__button md-logo" aria-label="Textual AI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    Textual AI
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../overview/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../fundamentals/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fundamentals
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../classical-nlp/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Classical NLP
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../embeddings/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Embeddings
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../language-models/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Language Models
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../llm-concepts/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Concepts
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../prompt-engineering/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prompt Engineering
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../retrieval-augmented-generation/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Retrieval-Augmented Generation
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../rlhf-and-alignment/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RLHF and Alignment
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../evaluation/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evaluation
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+  
+    <a href="../../../application-patterns/" class="md-nav__link">
+      
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application Patterns
+  
+
+    
+  </span>
+  
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#document-loaders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Document Loaders
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Document Loaders">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-document-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Document Class
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#textloader-plain-text-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TextLoader: Plain Text Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pypdfloader-pdf-documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PyPDFLoader: PDF Documents
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#directoryloader-bulk-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DirectoryLoader: Bulk Loading
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#webbaseloader-scraping-web-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WebBaseLoader: Scraping Web Content
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csvloader-tabular-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CSVLoader: Tabular Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load-vs-lazy-load" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Load vs Lazy Load
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-loaders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other Loaders
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#text-splitting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Text Splitting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Text Splitting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-chunking-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Chunking Matters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chunk-size-and-overlap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chunk Size and Overlap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#charactertextsplitter-length-based" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CharacterTextSplitter: Length-Based
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recursivecharactertextsplitter-structure-aware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RecursiveCharacterTextSplitter: Structure-Aware
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#language-specific-splitters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Language-Specific Splitters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semanticchunker-meaning-based" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SemanticChunker: Meaning-Based
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#choosing-a-splitting-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choosing a Splitting Strategy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vector-stores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vector Stores
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Vector Stores">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vector-stores-vs-vector-databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vector Stores vs Vector Databases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#similarity-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Similarity Search
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metadata-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metadata Filtering
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-and-delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update and Delete
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-vector-stores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other Vector Stores
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retrievers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Retrievers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Retrievers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vector-store-retrievers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vector Store Retrievers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#similarity-search-retrieval" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Similarity Search Retrieval
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maximum-marginal-relevance-mmr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maximum Marginal Relevance (MMR)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-query-retrieval" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Query Retrieval
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contextual-compression" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contextual Compression
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#external-retrievers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External Retrievers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retriever-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Retriever Comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-rag-pipelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building RAG Pipelines
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+<h1 id="data-and-retrieval">Data and Retrieval</h1>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#document-loaders">Document Loaders</a></li>
+<li><a href="#the-document-class">The Document Class</a></li>
+<li><a href="#textloader-plain-text-files">TextLoader: Plain Text Files</a></li>
+<li><a href="#pypdfloader-pdf-documents">PyPDFLoader: PDF Documents</a></li>
+<li><a href="#directoryloader-bulk-loading">DirectoryLoader: Bulk Loading</a></li>
+<li><a href="#webbaseloader-scraping-web-content">WebBaseLoader: Scraping Web Content</a></li>
+<li><a href="#csvloader-tabular-data">CSVLoader: Tabular Data</a></li>
+<li><a href="#load-vs-lazy-load">Load vs Lazy Load</a></li>
+<li><a href="#other-loaders">Other Loaders</a></li>
+<li><a href="#text-splitting">Text Splitting</a></li>
+<li><a href="#why-chunking-matters">Why Chunking Matters</a></li>
+<li><a href="#chunk-size-and-overlap">Chunk Size and Overlap</a></li>
+<li><a href="#charactertextsplitter-length-based">CharacterTextSplitter: Length-Based</a></li>
+<li><a href="#recursivecharactertextsplitter-structure-aware">RecursiveCharacterTextSplitter: Structure-Aware</a></li>
+<li><a href="#language-specific-splitters">Language-Specific Splitters</a></li>
+<li><a href="#semanticchunker-meaning-based">SemanticChunker: Meaning-Based</a></li>
+<li><a href="#choosing-a-splitting-strategy">Choosing a Splitting Strategy</a></li>
+<li><a href="#vector-stores">Vector Stores</a></li>
+<li><a href="#vector-stores-vs-vector-databases">Vector Stores vs Vector Databases</a></li>
+<li><a href="#basic-operations">Basic Operations</a></li>
+<li><a href="#similarity-search">Similarity Search</a></li>
+<li><a href="#metadata-filtering">Metadata Filtering</a></li>
+<li><a href="#update-and-delete">Update and Delete</a></li>
+<li><a href="#other-vector-stores">Other Vector Stores</a></li>
+<li><a href="#retrievers">Retrievers</a></li>
+<li><a href="#vector-store-retrievers">Vector Store Retrievers</a></li>
+<li><a href="#similarity-search-retrieval">Similarity Search</a></li>
+<li><a href="#maximum-marginal-relevance-mmr">Maximum Marginal Relevance (MMR)</a></li>
+<li><a href="#multi-query-retrieval">Multi-Query Retrieval</a></li>
+<li><a href="#contextual-compression">Contextual Compression</a></li>
+<li><a href="#external-retrievers">External Retrievers</a></li>
+<li><a href="#retriever-comparison">Retriever Comparison</a></li>
+<li><a href="#building-rag-pipelines">Building RAG Pipelines</a></li>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#next-steps">Next Steps</a></li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<p>Building semantic search and RAG (Retrieval-Augmented Generation) systems requires a data pipeline: <strong>loading</strong> documents from various sources, <strong>chunking</strong> them into manageable pieces, <strong>embedding</strong> and <strong>storing</strong> vectors for similarity search, and <strong>retrieving</strong> relevant context for LLM queries.</p>
+<p>This document covers the complete data-to-retrieval workflow in LangChain. You'll learn how to ingest data from multiple formats, split text strategically, manage vector stores, and implement sophisticated retrieval patterns that go beyond simple similarity search.</p>
+<p>Understanding this pipeline is essential for building production RAG systems that provide LLMs with relevant, accurate context.</p>
+<h2 id="document-loaders">Document Loaders</h2>
+<h3 id="the-document-class">The Document Class</h3>
+<p>LangChain's <code>Document</code> is the universal data structure for text content:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.documents</span><span class="w"> </span><span class="kn">import</span> <span class="n">Document</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">page_content</span><span class="o">=</span><span class="s2">&quot;The actual text content goes here&quot;</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">metadata</span><span class="o">=</span><span class="p">{</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;document.pdf&quot;</span><span class="p">,</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        <span class="s2">&quot;page&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        <span class="s2">&quot;author&quot;</span><span class="p">:</span> <span class="s2">&quot;Jane Smith&quot;</span><span class="p">,</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="s2">&quot;2026-03-04&quot;</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="p">}</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">)</span>
+</span></code></pre></div>
+<p><strong>Structure:</strong></p>
+<ul>
+<li><strong><code>page_content</code></strong> - The text itself (string)</li>
+<li><strong><code>metadata</code></strong> - Dictionary of additional information (source, page number, dates, etc.)</li>
+</ul>
+<p><strong>Why metadata matters:</strong></p>
+<ul>
+<li><strong>Source tracking</strong> - Know where information came from</li>
+<li><strong>Filtering</strong> - Retrieve documents by attributes (date range, author, category)</li>
+<li><strong>Debugging</strong> - Trace retrieved content back to source</li>
+<li><strong>Citations</strong> - Provide references in generated responses</li>
+</ul>
+<p>All loaders return lists of <code>Document</code> objects, regardless of source format.</p>
+<h3 id="textloader-plain-text-files">TextLoader: Plain Text Files</h3>
+<p>Loads entire text file as a single document:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.document_loaders</span><span class="w"> </span><span class="kn">import</span> <span class="n">TextLoader</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">loader</span> <span class="o">=</span> <span class="n">TextLoader</span><span class="p">(</span><span class="s2">&quot;poem.txt&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">docs</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="c1"># Returns list with single Document</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">docs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">page_content</span><span class="p">)</span>  <span class="c1"># Full file content</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">docs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>  <span class="c1"># {&#39;source&#39;: &#39;poem.txt&#39;}</span>
+</span></code></pre></div>
+<p><strong>Use TextLoader for:</strong></p>
+<ul>
+<li>Plain text files (.txt, .md, .log)</li>
+<li>Small to medium files (entire content is one document)</li>
+<li>Files where natural chunking isn't obvious</li>
+</ul>
+<p><strong>Use with chain example:</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.prompts</span><span class="w"> </span><span class="kn">import</span> <span class="n">PromptTemplate</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatOpenAI</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.output_parsers</span><span class="w"> </span><span class="kn">import</span> <span class="n">StrOutputParser</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">template</span> <span class="o">=</span> <span class="n">PromptTemplate</span><span class="p">(</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="n">template</span><span class="o">=</span><span class="s2">&quot;Summarize this poem:</span><span class="se">\n</span><span class="si">{poem}</span><span class="s2">&quot;</span><span class="p">,</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="n">input_variables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;poem&quot;</span><span class="p">]</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">)</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="n">loader</span> <span class="o">=</span> <span class="n">TextLoader</span><span class="p">(</span><span class="s2">&quot;poem.txt&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="n">docs</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="n">chain</span> <span class="o">=</span> <span class="n">template</span> <span class="o">|</span> <span class="n">ChatOpenAI</span><span class="p">()</span> <span class="o">|</span> <span class="n">StrOutputParser</span><span class="p">()</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="n">summary</span> <span class="o">=</span> <span class="n">chain</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;poem&quot;</span><span class="p">:</span> <span class="n">docs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">page_content</span><span class="p">})</span>
+</span></code></pre></div>
+<h3 id="pypdfloader-pdf-documents">PyPDFLoader: PDF Documents</h3>
+<p>Loads PDFs with <strong>one document per page</strong>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.document_loaders</span><span class="w"> </span><span class="kn">import</span> <span class="n">PyPDFLoader</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">loader</span> <span class="o">=</span> <span class="n">PyPDFLoader</span><span class="p">(</span><span class="s2">&quot;ml-book.pdf&quot;</span><span class="p">)</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">docs</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1"># Each page is a separate Document</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">docs</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">page_content</span><span class="p">)</span>  <span class="c1"># Page 11 text</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">docs</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>  <span class="c1"># {&#39;source&#39;: &#39;ml-book.pdf&#39;, &#39;page&#39;: 10}</span>
+</span></code></pre></div>
+<p><strong>Key characteristics:</strong></p>
+<ul>
+<li><strong>Page-level documents</strong> - Natural chunking by page</li>
+<li><strong>Metadata includes page number</strong> - Easy to cite specific pages</li>
+<li><strong>Preserves some formatting</strong> - Paragraphs, line breaks (not perfect)</li>
+<li><strong>Handles multi-page documents</strong> - Large PDFs split automatically</li>
+</ul>
+<p><strong>Use PyPDFLoader for:</strong></p>
+<ul>
+<li>Books, research papers, reports</li>
+<li>Documents where page numbers matter for citations</li>
+<li>Large PDFs that need natural pre-chunking</li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>Complex layouts (multi-column, tables) may not parse correctly</li>
+<li>Embedded images and charts are ignored</li>
+<li>OCR scanned PDFs require additional processing</li>
+</ul>
+<h3 id="directoryloader-bulk-loading">DirectoryLoader: Bulk Loading</h3>
+<p>Load all files from a directory matching a pattern:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.document_loaders</span><span class="w"> </span><span class="kn">import</span> <span class="n">DirectoryLoader</span><span class="p">,</span> <span class="n">PyPDFLoader</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1"># Load all PDFs from a directory</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">loader</span> <span class="o">=</span> <span class="n">DirectoryLoader</span><span class="p">(</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="n">path</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">,</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="n">glob</span><span class="o">=</span><span class="s2">&quot;*.pdf&quot;</span><span class="p">,</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="n">loader_cls</span><span class="o">=</span><span class="n">PyPDFLoader</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="p">)</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="n">docs</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>  <span class="c1"># Returns all documents from all matching files</span>
+</span></code></pre></div>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><strong><code>path</code></strong> - Directory to scan</li>
+<li><strong><code>glob</code></strong> - Pattern to match files (<code>*.pdf</code>, <code>**/*.txt</code>, etc.)</li>
+<li><strong><code>loader_cls</code></strong> - Which loader to use for matched files</li>
+</ul>
+<p><strong>Use DirectoryLoader for:</strong></p>
+<ul>
+<li>Bulk document ingestion</li>
+<li>Processing entire document collections</li>
+<li>Building knowledge bases from file repositories</li>
+<li>ETL pipelines that process batches</li>
+</ul>
+<p><strong>Examples:</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># All text files recursively</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">DirectoryLoader</span><span class="p">(</span><span class="s2">&quot;documents&quot;</span><span class="p">,</span> <span class="n">glob</span><span class="o">=</span><span class="s2">&quot;**/*.txt&quot;</span><span class="p">,</span> <span class="n">loader_cls</span><span class="o">=</span><span class="n">TextLoader</span><span class="p">)</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># All CSVs in specific folder</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">DirectoryLoader</span><span class="p">(</span><span class="s2">&quot;data/exports&quot;</span><span class="p">,</span> <span class="n">glob</span><span class="o">=</span><span class="s2">&quot;*.csv&quot;</span><span class="p">,</span> <span class="n">loader_cls</span><span class="o">=</span><span class="n">CSVLoader</span><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="webbaseloader-scraping-web-content">WebBaseLoader: Scraping Web Content</h3>
+<p>Load content from web URLs:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.document_loaders</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebBaseLoader</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://www.apple.com/iphone-17-pro/&quot;</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">loader</span> <span class="o">=</span> <span class="n">WebBaseLoader</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="n">docs</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="c1"># Returns page content as single document</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">docs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">page_content</span><span class="p">)</span>  <span class="c1"># Extracted text from HTML</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">docs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>  <span class="c1"># {&#39;source&#39;: url}</span>
+</span></code></pre></div>
+<p><strong>Use WebBaseLoader for:</strong></p>
+<ul>
+<li>Documentation scraping</li>
+<li>Product information retrieval</li>
+<li>News article ingestion</li>
+<li>Dynamic content loading for up-to-date information</li>
+</ul>
+<p><strong>Integration example:</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">template</span> <span class="o">=</span> <span class="n">PromptTemplate</span><span class="p">(</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="n">template</span><span class="o">=</span><span class="s2">&quot;Answer this question: </span><span class="si">{question}</span><span class="se">\n</span><span class="s2">Based on: </span><span class="si">{context}</span><span class="s2">&quot;</span><span class="p">,</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="n">input_variables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;question&quot;</span><span class="p">,</span> <span class="s2">&quot;context&quot;</span><span class="p">]</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="p">)</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="n">loader</span> <span class="o">=</span> <span class="n">WebBaseLoader</span><span class="p">(</span><span class="s2">&quot;https://example.com/product&quot;</span><span class="p">)</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="n">docs</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="n">chain</span> <span class="o">=</span> <span class="n">template</span> <span class="o">|</span> <span class="n">ChatOpenAI</span><span class="p">()</span> <span class="o">|</span> <span class="n">StrOutputParser</span><span class="p">()</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="n">answer</span> <span class="o">=</span> <span class="n">chain</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>    <span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;What are the key features?&quot;</span><span class="p">,</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>    <span class="s2">&quot;context&quot;</span><span class="p">:</span> <span class="n">docs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">page_content</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="p">})</span>
+</span></code></pre></div>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>Requires internet connection</li>
+<li>Some sites block scraping</li>
+<li>Dynamic JavaScript content may not load</li>
+<li>HTML parsing can be messy (ads, navigation, etc.)</li>
+</ul>
+<h3 id="csvloader-tabular-data">CSVLoader: Tabular Data</h3>
+<p>Load CSV files with <strong>one document per row</strong>:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.document_loaders</span><span class="w"> </span><span class="kn">import</span> <span class="n">CSVLoader</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">loader</span> <span class="o">=</span> <span class="n">CSVLoader</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="s2">&quot;transactions.csv&quot;</span><span class="p">)</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">docs</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="c1"># Each row becomes a Document</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">docs</span><span class="p">[</span><span class="mi">18</span><span class="p">])</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="c1"># Document(</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="c1">#     page_content=&quot;column1: value1\ncolumn2: value2\n...&quot;,</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="c1">#     metadata={&#39;source&#39;: &#39;transactions.csv&#39;, &#39;row&#39;: 18}</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="c1"># )</span>
+</span></code></pre></div>
+<p><strong>Key characteristics:</strong></p>
+<ul>
+<li><strong>Row-level documents</strong> - Each row is a separate document</li>
+<li><strong>Column names in content</strong> - Formatted as "column: value"</li>
+<li><strong>Natural for search</strong> - Query individual records</li>
+<li><strong>Metadata includes row number</strong> - Track source rows</li>
+</ul>
+<p><strong>Use CSVLoader for:</strong></p>
+<ul>
+<li>Transaction logs</li>
+<li>Customer databases</li>
+<li>Product catalogs</li>
+<li>Any tabular data that needs semantic search</li>
+</ul>
+<p><strong>Example use case:</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Search transaction records</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">loader</span> <span class="o">=</span> <span class="n">CSVLoader</span><span class="p">(</span><span class="s2">&quot;ledger-transactions.csv&quot;</span><span class="p">)</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">docs</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="c1"># Build vector store from transactions</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_chroma</span><span class="w"> </span><span class="kn">import</span> <span class="n">Chroma</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAIEmbeddings</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="n">vectorstore</span> <span class="o">=</span> <span class="n">Chroma</span><span class="o">.</span><span class="n">from_documents</span><span class="p">(</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>    <span class="n">documents</span><span class="o">=</span><span class="n">docs</span><span class="p">,</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>    <span class="n">embedding</span><span class="o">=</span><span class="n">OpenAIEmbeddings</span><span class="p">()</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="p">)</span>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="c1"># Query: &quot;Show me large expenses in January&quot;</span>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="n">results</span> <span class="o">=</span> <span class="n">vectorstore</span><span class="o">.</span><span class="n">similarity_search</span><span class="p">(</span><span class="s2">&quot;large expenses January&quot;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="load-vs-lazy-load">Load vs Lazy Load</h3>
+<p>Two loading patterns for different memory constraints:</p>
+<p><strong><code>load()</code></strong> - Load all documents into memory:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">loader</span> <span class="o">=</span> <span class="n">DirectoryLoader</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="n">glob</span><span class="o">=</span><span class="s2">&quot;*.pdf&quot;</span><span class="p">,</span> <span class="n">loader_cls</span><span class="o">=</span><span class="n">PyPDFLoader</span><span class="p">)</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">docs</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>  <span class="c1"># Returns complete list</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="c1"># All documents in memory now</span>
+</span></code></pre></div>
+<p><strong><code>lazy_load()</code></strong> - Stream documents one at a time:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">loader</span> <span class="o">=</span> <span class="n">DirectoryLoader</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="n">glob</span><span class="o">=</span><span class="s2">&quot;*.pdf&quot;</span><span class="p">,</span> <span class="n">loader_cls</span><span class="o">=</span><span class="n">PyPDFLoader</span><span class="p">)</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">docs</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">lazy_load</span><span class="p">()</span>  <span class="c1"># Returns generator</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># Process one document at a time</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">docs</span><span class="p">:</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>    <span class="c1"># Process without loading entire dataset into memory</span>
+</span></code></pre></div>
+<p><strong>When to use each:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Use</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Small dataset (&lt;1000 docs)</td>
+<td><code>load()</code></td>
+<td>Faster, simpler code</td>
+</tr>
+<tr>
+<td>Large dataset (&gt;10k docs)</td>
+<td><code>lazy_load()</code></td>
+<td>Memory efficient</td>
+</tr>
+<tr>
+<td>Need full list upfront</td>
+<td><code>load()</code></td>
+<td>Can count, shuffle, sample</td>
+</tr>
+<tr>
+<td>Streaming ETL pipeline</td>
+<td><code>lazy_load()</code></td>
+<td>Process incrementally</td>
+</tr>
+<tr>
+<td>Development/testing</td>
+<td><code>load()</code></td>
+<td>Easier debugging</td>
+</tr>
+<tr>
+<td>Production batch jobs</td>
+<td><code>lazy_load()</code></td>
+<td>Safer memory usage</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Memory implications:</strong></p>
+<ul>
+<li><code>load()</code>: Memory = number_of_docs × average_doc_size</li>
+<li><code>lazy_load()</code>: Memory = average_doc_size (constant)</li>
+</ul>
+<h3 id="other-loaders">Other Loaders</h3>
+<p>LangChain supports 100+ loaders for various formats:</p>
+<p><strong>Document formats:</strong></p>
+<ul>
+<li><code>Docx2txtLoader</code> - Microsoft Word documents</li>
+<li><code>UnstructuredMarkdownLoader</code> - Markdown files with structure</li>
+<li><code>JSONLoader</code> - JSON data extraction</li>
+<li><code>UnstructuredPowerPointLoader</code> - PowerPoint presentations</li>
+</ul>
+<p><strong>Databases:</strong></p>
+<ul>
+<li><code>SQLDatabaseLoader</code> - Query results as documents</li>
+<li><code>MongoDBLoader</code> - MongoDB collections</li>
+<li><code>GoogleDriveLoader</code> - Files from Google Drive</li>
+</ul>
+<p><strong>APIs and services:</strong></p>
+<ul>
+<li><code>GitHubIssuesLoader</code> - GitHub issues and PRs</li>
+<li><code>SlackDirectoryLoader</code> - Slack channel history</li>
+<li><code>NotionDBLoader</code> - Notion pages</li>
+<li><code>ConfluenceLoader</code> - Confluence pages</li>
+</ul>
+<p><strong>Specialized:</strong></p>
+<ul>
+<li><code>UnstructuredImageLoader</code> - OCR from images</li>
+<li><code>YoutubeLoader</code> - Video transcripts</li>
+<li><code>SitemapLoader</code> - Crawl entire websites</li>
+</ul>
+<p>Browse the full list: <a href="https://python.langchain.com/docs/integrations/document_loaders/">LangChain Loaders Documentation</a></p>
+<h2 id="text-splitting">Text Splitting</h2>
+<h3 id="why-chunking-matters">Why Chunking Matters</h3>
+<p>Raw documents are often too large for LLM contexts or effective retrieval. Text splitting (chunking) breaks documents into smaller, semantically meaningful pieces.</p>
+<p><strong>Why chunking is essential:</strong></p>
+<ol>
+<li><strong>Context window limits</strong> - LLMs have maximum token limits (4k-128k depending on model)</li>
+<li><strong>Retrieval precision</strong> - Smaller chunks → more focused matches → better context</li>
+<li><strong>Embedding quality</strong> - Shorter texts produce more accurate embeddings</li>
+<li><strong>Cost optimization</strong> - Fewer tokens sent to LLM = lower costs</li>
+<li><strong>Response relevance</strong> - Retrieve only the relevant section, not entire document</li>
+</ol>
+<p><strong>Example scenario without chunking:</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Problem: Entire book as one document</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">book</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>  <span class="c1"># 100,000 words</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1"># Embedding this creates &quot;averaged&quot; vector losing specificity</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="c1"># Retrieval returns entire book regardless of what user asks</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="c1"># Can&#39;t fit in LLM context window</span>
+</span></code></pre></div>
+<p><strong>With strategic chunking:</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># Solution: Split into semantic chunks</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">chunks</span> <span class="o">=</span> <span class="n">text_splitter</span><span class="o">.</span><span class="n">split_documents</span><span class="p">(</span><span class="n">book</span><span class="p">)</span>  <span class="c1"># 500 chunks of ~200 words</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="c1"># Each chunk has focused topic</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="c1"># Retrieval returns just the relevant sections</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="c1"># Fits multiple relevant chunks in context</span>
+</span></code></pre></div>
+<h3 id="chunk-size-and-overlap">Chunk Size and Overlap</h3>
+<p>Two critical parameters for all splitters:</p>
+<p><strong>Chunk Size</strong> - Target length per chunk (in characters or tokens):</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">chunk_size</span><span class="o">=</span><span class="mi">500</span>  <span class="c1"># Aim for 500 characters per chunk</span>
+</span></code></pre></div>
+<p><strong>Chunk Overlap</strong> - How much adjacent chunks share:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">50</span>  <span class="c1"># 50 characters overlap between chunks</span>
+</span></code></pre></div>
+<p><strong>Why overlap matters:</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>Without overlap:
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>Chunk 1: &quot;...about quantum mechanics in detail.&quot;
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>Chunk 2: &quot;Einstein proposed that light...&quot; ❌ Context lost
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>With overlap (50 chars):
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>Chunk 1: &quot;...about quantum mechanics in detail. Einstein proposed...&quot;
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>Chunk 2: &quot;...quantum mechanics in detail. Einstein proposed that light...&quot; ✅ Context preserved
+</span></code></pre></div>
+<p><strong>Overlap benefits:</strong></p>
+<ul>
+<li><strong>Prevents context breaks</strong> - Important information spanning chunk boundaries stays together</li>
+<li><strong>Improves retrieval</strong> - Queries matching boundary content find both chunks</li>
+<li><strong>Semantic continuity</strong> - Preserve meaning across splits</li>
+</ul>
+<p><strong>Choosing values:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Use Case</th>
+<th>Chunk Size</th>
+<th>Overlap</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>General QA</td>
+<td>500-1000</td>
+<td>50-100</td>
+<td>Balance detail and context</td>
+</tr>
+<tr>
+<td>Long-context LLMs</td>
+<td>2000-4000</td>
+<td>200-400</td>
+<td>Leverage larger windows</td>
+</tr>
+<tr>
+<td>Short-form content</td>
+<td>200-500</td>
+<td>20-50</td>
+<td>Preserve precision</td>
+</tr>
+<tr>
+<td>Code documentation</td>
+<td>1000-2000</td>
+<td>100-200</td>
+<td>Keep functions intact</td>
+</tr>
+<tr>
+<td>Dense technical</td>
+<td>300-600</td>
+<td>50-100</td>
+<td>Focused retrieval</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Trade-offs:</strong></p>
+<ul>
+<li><strong>Larger chunks</strong> - More context per chunk, fewer total chunks, less precise retrieval</li>
+<li><strong>Smaller chunks</strong> - More precise retrieval, more chunks to manage, risk losing context</li>
+<li><strong>More overlap</strong> - Better context preservation, more redundancy, increased storage</li>
+<li><strong>Less overlap</strong> - Less redundancy, risk losing boundary information</li>
+</ul>
+<h3 id="charactertextsplitter-length-based">CharacterTextSplitter: Length-Based</h3>
+<p>Simplest splitter -- splits on length and separator:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_text_splitters</span><span class="w"> </span><span class="kn">import</span> <span class="n">CharacterTextSplitter</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="n">splitter</span> <span class="o">=</span> <span class="n">CharacterTextSplitter</span><span class="p">(</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>    <span class="n">chunk_size</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>    <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>    <span class="n">separator</span><span class="o">=</span><span class="s2">&quot;&quot;</span>  <span class="c1"># Split anywhere</span>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="p">)</span>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="n">chunks</span> <span class="o">=</span> <span class="n">splitter</span><span class="o">.</span><span class="n">split_documents</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
+</span></code></pre></div>
+<p><strong>How it works:</strong></p>
+<ol>
+<li>Measures text length</li>
+<li>Splits at separator when chunk_size reached</li>
+<li>No awareness of document structure</li>
+</ol>
+<p><strong>Use cases:</strong></p>
+<ul>
+<li>Simple, uniform text</li>
+<li>Quick prototyping</li>
+<li>When structure doesn't matter</li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>Ignores paragraphs, sentences, code blocks</li>
+<li>May split mid-sentence or mid-word</li>
+<li>Not suitable for structured content</li>
+</ul>
+<h3 id="recursivecharactertextsplitter-structure-aware">RecursiveCharacterTextSplitter: Structure-Aware</h3>
+<p>Intelligent splitter that respects text structure:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_text_splitters</span><span class="w"> </span><span class="kn">import</span> <span class="n">RecursiveCharacterTextSplitter</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="n">splitter</span> <span class="o">=</span> <span class="n">RecursiveCharacterTextSplitter</span><span class="p">(</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>    <span class="n">chunk_size</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>    <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">75</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="p">)</span>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="n">chunks</span> <span class="o">=</span> <span class="n">splitter</span><span class="o">.</span><span class="n">split_documents</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
+</span></code></pre></div>
+<p><strong>How it works -- hierarchical splitting:</strong></p>
+<ol>
+<li>Try splitting on <strong>double newlines</strong> (paragraphs) first</li>
+<li>If chunks still too large, try <strong>single newlines</strong> (sentences)</li>
+<li>If still too large, try <strong>spaces</strong> (words)</li>
+<li>If still too large, split by <strong>characters</strong></li>
+</ol>
+<p><strong>Default separator hierarchy:</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">separators</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">]</span>
+</span></code></pre></div>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li><strong>Preserves paragraph boundaries</strong> - Natural semantic units</li>
+<li><strong>Keeps sentences intact</strong> - Better readability</li>
+<li><strong>Maintains meaning</strong> - Doesn't break mid-thought</li>
+<li><strong>Works for general text</strong> - Good default choice</li>
+</ul>
+<p><strong>Use for:</strong></p>
+<ul>
+<li>Articles, blog posts, documentation</li>
+<li>Books and long-form content</li>
+<li>Any prose where structure matters</li>
+<li><strong>Use this as your default splitter</strong></li>
+</ul>
+<h3 id="language-specific-splitters">Language-Specific Splitters</h3>
+<p>Specialized splitters that understand code and markup syntax:</p>
+<p><strong>Python code splitting:</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_text_splitters</span><span class="w"> </span><span class="kn">import</span> <span class="n">RecursiveCharacterTextSplitter</span><span class="p">,</span> <span class="n">Language</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="n">code</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="s2">class Student:</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="s2">    def __init__(self, name, age, grade):</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="s2">        self.name = name</span>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="s2">        self.age = age</span>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="s2">        self.grade = grade</span>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="s2">    def get_details(self):</span>
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a><span class="s2">        return self.name</span>
+</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>
+</span><span id="__span-20-13"><a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a><span class="s2">    def is_passing(self):</span>
+</span><span id="__span-20-14"><a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a><span class="s2">        return self.grade &gt;= 6.0</span>
+</span><span id="__span-20-15"><a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a>
+</span><span id="__span-20-16"><a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a><span class="s2">student1 = Student(&quot;Aarav&quot;, 20, 8.2)</span>
+</span><span id="__span-20-17"><a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a><span class="s2">print(student1.get_details())</span>
+</span><span id="__span-20-18"><a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a><span class="s2">&quot;&quot;&quot;</span>
+</span><span id="__span-20-19"><a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a>
+</span><span id="__span-20-20"><a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a><span class="n">splitter</span> <span class="o">=</span> <span class="n">RecursiveCharacterTextSplitter</span><span class="o">.</span><span class="n">from_language</span><span class="p">(</span>
+</span><span id="__span-20-21"><a id="__codelineno-20-21" name="__codelineno-20-21" href="#__codelineno-20-21"></a>    <span class="n">language</span><span class="o">=</span><span class="n">Language</span><span class="o">.</span><span class="n">PYTHON</span><span class="p">,</span>
+</span><span id="__span-20-22"><a id="__codelineno-20-22" name="__codelineno-20-22" href="#__codelineno-20-22"></a>    <span class="n">chunk_size</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span>
+</span><span id="__span-20-23"><a id="__codelineno-20-23" name="__codelineno-20-23" href="#__codelineno-20-23"></a>    <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">45</span>
+</span><span id="__span-20-24"><a id="__codelineno-20-24" name="__codelineno-20-24" href="#__codelineno-20-24"></a><span class="p">)</span>
+</span><span id="__span-20-25"><a id="__codelineno-20-25" name="__codelineno-20-25" href="#__codelineno-20-25"></a>
+</span><span id="__span-20-26"><a id="__codelineno-20-26" name="__codelineno-20-26" href="#__codelineno-20-26"></a><span class="n">chunks</span> <span class="o">=</span> <span class="n">splitter</span><span class="o">.</span><span class="n">split_text</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+</span><span id="__span-20-27"><a id="__codelineno-20-27" name="__codelineno-20-27" href="#__codelineno-20-27"></a><span class="c1"># Preserves: function boundaries, class structure, logical blocks</span>
+</span></code></pre></div>
+<p><strong>How language splitters work:</strong></p>
+<ul>
+<li><strong>Syntax-aware separators</strong> - Split on class/function boundaries, not mid-definition</li>
+<li><strong>Preserve logical units</strong> - Keep complete methods together</li>
+<li><strong>Comment preservation</strong> - Maintain docstrings with code</li>
+</ul>
+<p><strong>Markdown splitting:</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="n">splitter</span> <span class="o">=</span> <span class="n">RecursiveCharacterTextSplitter</span><span class="o">.</span><span class="n">from_language</span><span class="p">(</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>    <span class="n">language</span><span class="o">=</span><span class="n">Language</span><span class="o">.</span><span class="n">MARKDOWN</span><span class="p">,</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>    <span class="n">chunk_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>    <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">20</span>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="p">)</span>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="n">markdown</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="s2"># Project Name: Smart Student Tracker</span>
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>
+</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a><span class="s2">## Features</span>
+</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a><span class="s2">- Add new students</span>
+</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a><span class="s2">- View student details</span>
+</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>
+</span><span id="__span-21-14"><a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a><span class="s2">## Tech Stack</span>
+</span><span id="__span-21-15"><a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a><span class="s2">- Python 3.10+</span>
+</span><span id="__span-21-16"><a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a><span class="s2">- No dependencies</span>
+</span><span id="__span-21-17"><a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a><span class="s2">&quot;&quot;&quot;</span>
+</span><span id="__span-21-18"><a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a>
+</span><span id="__span-21-19"><a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a><span class="n">chunks</span> <span class="o">=</span> <span class="n">splitter</span><span class="o">.</span><span class="n">split_text</span><span class="p">(</span><span class="n">markdown</span><span class="p">)</span>
+</span><span id="__span-21-20"><a id="__codelineno-21-20" name="__codelineno-21-20" href="#__codelineno-21-20"></a><span class="c1"># Preserves: headers, sections, list items</span>
+</span></code></pre></div>
+<p><strong>Supported languages:</strong></p>
+<ul>
+<li><strong>Programming:</strong> Python, JavaScript, TypeScript, Java, C++, Go, Rust, Ruby, PHP</li>
+<li><strong>Markup:</strong> Markdown, HTML, LaTeX</li>
+<li><strong>Config:</strong> JSON, YAML, TOML</li>
+<li><strong>Query:</strong> SQL</li>
+</ul>
+<p><strong>When to use language splitters:</strong></p>
+<ul>
+<li>Code documentation systems</li>
+<li>Repository search</li>
+<li>Code Q&amp;A bots</li>
+<li>Technical documentation with code examples</li>
+</ul>
+<h3 id="semanticchunker-meaning-based">SemanticChunker: Meaning-Based</h3>
+<p>Advanced splitter that uses embeddings to find semantic boundaries:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_experimental.text_splitter</span><span class="w"> </span><span class="kn">import</span> <span class="n">SemanticChunker</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAIEmbeddings</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="n">splitter</span> <span class="o">=</span> <span class="n">SemanticChunker</span><span class="p">(</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>    <span class="n">OpenAIEmbeddings</span><span class="p">(),</span>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>    <span class="n">breakpoint_threshold_type</span><span class="o">=</span><span class="s2">&quot;standard_deviation&quot;</span><span class="p">,</span>
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>    <span class="n">breakpoint_threshold_amount</span><span class="o">=</span><span class="mi">1</span>
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="p">)</span>
+</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>
+</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a><span class="s2">Farmers were working hard in the fields, preparing the soil and planting</span>
+</span><span id="__span-22-12"><a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a><span class="s2">seeds for the next season. The sun was bright, and the air smelled of</span>
+</span><span id="__span-22-13"><a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a><span class="s2">earth and fresh grass.</span>
+</span><span id="__span-22-14"><a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a>
+</span><span id="__span-22-15"><a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a><span class="s2">The Indian Premier League (IPL) is the biggest cricket league in the world.</span>
+</span><span id="__span-22-16"><a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a><span class="s2">People all over the world watch the matches and cheer for their favourite teams.</span>
+</span><span id="__span-22-17"><a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a>
+</span><span id="__span-22-18"><a id="__codelineno-22-18" name="__codelineno-22-18" href="#__codelineno-22-18"></a><span class="s2">Terrorism is a big danger to peace and safety. It causes harm to people and</span>
+</span><span id="__span-22-19"><a id="__codelineno-22-19" name="__codelineno-22-19" href="#__codelineno-22-19"></a><span class="s2">creates fear in cities and villages.</span>
+</span><span id="__span-22-20"><a id="__codelineno-22-20" name="__codelineno-22-20" href="#__codelineno-22-20"></a><span class="s2">&quot;&quot;&quot;</span>
+</span><span id="__span-22-21"><a id="__codelineno-22-21" name="__codelineno-22-21" href="#__codelineno-22-21"></a>
+</span><span id="__span-22-22"><a id="__codelineno-22-22" name="__codelineno-22-22" href="#__codelineno-22-22"></a><span class="n">docs</span> <span class="o">=</span> <span class="n">splitter</span><span class="o">.</span><span class="n">create_documents</span><span class="p">([</span><span class="n">text</span><span class="p">])</span>
+</span><span id="__span-22-23"><a id="__codelineno-22-23" name="__codelineno-22-23" href="#__codelineno-22-23"></a><span class="c1"># Result: 3 chunks (farming, cricket, terrorism) - split at topic boundaries</span>
+</span></code></pre></div>
+<p><strong>How it works:</strong></p>
+<ol>
+<li><strong>Embed sentences</strong> - Convert each sentence to vector</li>
+<li><strong>Compute similarity</strong> - Measure semantic similarity between adjacent sentences</li>
+<li><strong>Find breakpoints</strong> - Split where similarity drops significantly</li>
+<li><strong>Group semantically similar</strong> - Keep related sentences together</li>
+</ol>
+<p><strong>Breakpoint threshold types:</strong></p>
+<p><strong><code>percentile</code></strong> - Split at bottom X% of similarities:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="n">breakpoint_threshold_type</span><span class="o">=</span><span class="s2">&quot;percentile&quot;</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="n">breakpoint_threshold_amount</span><span class="o">=</span><span class="mi">25</span>  <span class="c1"># Split at bottom 25% (least similar)</span>
+</span></code></pre></div>
+<ul>
+<li>Use when: You want predictable number of chunks</li>
+<li>Effect: Lower percentile = more splits</li>
+</ul>
+<p><strong><code>standard_deviation</code></strong> - Split where similarity drops by X standard deviations:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="n">breakpoint_threshold_type</span><span class="o">=</span><span class="s2">&quot;standard_deviation&quot;</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="n">breakpoint_threshold_amount</span><span class="o">=</span><span class="mf">1.0</span>  <span class="c1"># Split when drop &gt; 1 std dev</span>
+</span></code></pre></div>
+<ul>
+<li>Use when: You want to find topic boundaries automatically</li>
+<li>Effect: Higher value = fewer, larger chunks</li>
+</ul>
+<p><strong><code>interquartile</code></strong> - Split based on interquartile range:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="n">breakpoint_threshold_type</span><span class="o">=</span><span class="s2">&quot;interquartile&quot;</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="n">breakpoint_threshold_amount</span><span class="o">=</span><span class="mf">1.5</span>  <span class="c1"># Split at 1.5 × IQR below median</span>
+</span></code></pre></div>
+<ul>
+<li>Use when: You want robust boundary detection with outliers</li>
+<li>Effect: Balanced approach between percentile and std dev</li>
+</ul>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li><strong>Topic-aware splitting</strong> - Automatically detects when topic changes</li>
+<li><strong>No fixed size</strong> - Chunks are as long as needed for coherent topics</li>
+<li><strong>Better for mixed content</strong> - Handles documents with multiple subjects</li>
+</ul>
+<p><strong>Disadvantages:</strong></p>
+<ul>
+<li><strong>Requires embeddings</strong> - Slower and more expensive than character splitting</li>
+<li><strong>Variable chunk sizes</strong> - Can't guarantee max size (may exceed context limits)</li>
+<li><strong>Complexity</strong> - Harder to tune and understand behavior</li>
+</ul>
+<p><strong>When to use SemanticChunker:</strong></p>
+<ul>
+<li>Multi-topic documents (articles, research papers)</li>
+<li>When semantic coherence is critical</li>
+<li>Content curation and summarization</li>
+<li>When you can afford embedding costs</li>
+</ul>
+<h3 id="choosing-a-splitting-strategy">Choosing a Splitting Strategy</h3>
+<p>Decision tree for selecting a text splitter:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>Do you have structured code/markup?
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>├─ YES → Use language-specific splitter (Python, Markdown, etc.)
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>└─ NO
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>   └─ Is semantic coherence critical and worth embedding cost?
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>      ├─ YES → Use SemanticChunker
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>      └─ NO
+</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a>         └─ Is text structured with paragraphs?
+</span><span id="__span-26-8"><a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a>            ├─ YES → Use RecursiveCharacterTextSplitter (default choice)
+</span><span id="__span-26-9"><a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a>            └─ NO → Use CharacterTextSplitter
+</span></code></pre></div>
+<p><strong>Quick reference:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Splitter</th>
+<th>Best For</th>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CharacterTextSplitter</td>
+<td>Simple, uniform text</td>
+<td>Fast, simple</td>
+<td>Breaks structure</td>
+</tr>
+<tr>
+<td>RecursiveCharacterTextSplitter</td>
+<td>General documents</td>
+<td>Structure-aware, balanced</td>
+<td>Not semantic</td>
+</tr>
+<tr>
+<td>Language-specific</td>
+<td>Code, markup</td>
+<td>Syntax-aware</td>
+<td>Language-specific</td>
+</tr>
+<tr>
+<td>SemanticChunker</td>
+<td>Multi-topic docs</td>
+<td>Topic-aware, coherent</td>
+<td>Slow, expensive, variable size</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Default recommendation:</strong> Start with <code>RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)</code> -- works well for most use cases.</p>
+<h2 id="vector-stores">Vector Stores</h2>
+<h3 id="vector-stores-vs-vector-databases">Vector Stores vs Vector Databases</h3>
+<p><strong>Critical distinction:</strong></p>
+<p><strong>Vector Stores</strong> (like LangChain's Chroma integration):</p>
+<ul>
+<li><strong>In-memory or local storage</strong> - Data persists to disk but runs in your process</li>
+<li><strong>Embedded in application</strong> - No separate server</li>
+<li><strong>Simple</strong> - Easy setup, no infrastructure</li>
+<li><strong>Local operations</strong> - All processing happens locally</li>
+<li><strong>Limited scalability</strong> - Suitable for thousands to low millions of vectors</li>
+</ul>
+<p><strong>Vector Databases</strong> (like Pinecone, Weaviate, Milvus):</p>
+<ul>
+<li><strong>Separate server/service</strong> - Runs as independent database</li>
+<li><strong>Client-server architecture</strong> - Application connects via API</li>
+<li><strong>Production-grade</strong> - High availability, backups, monitoring</li>
+<li><strong>Distributed</strong> - Scale horizontally across machines</li>
+<li><strong>Enterprise scalability</strong> - Handle billions of vectors</li>
+</ul>
+<p><strong>When to use each:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Use</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Development &amp; prototyping</td>
+<td>Vector Store</td>
+<td>Faster, simpler setup</td>
+</tr>
+<tr>
+<td>Small datasets (&lt;100k docs)</td>
+<td>Vector Store</td>
+<td>Sufficient performance</td>
+</tr>
+<tr>
+<td>Single-server deployment</td>
+<td>Vector Store</td>
+<td>No infrastructure overhead</td>
+</tr>
+<tr>
+<td>Embedded applications</td>
+<td>Vector Store</td>
+<td>Self-contained</td>
+</tr>
+<tr>
+<td>Production at scale</td>
+<td>Vector Database</td>
+<td>Reliability, performance</td>
+</tr>
+<tr>
+<td>Multi-tenant applications</td>
+<td>Vector Database</td>
+<td>Isolation, security</td>
+</tr>
+<tr>
+<td>Team/shared access</td>
+<td>Vector Database</td>
+<td>Centralized, consistent</td>
+</tr>
+<tr>
+<td>High availability needs</td>
+<td>Vector Database</td>
+<td>Redundancy, failover</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Storage comparison:</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="c1"># Vector Store (Chroma) - local embeddings</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="n">vector_store</span> <span class="o">=</span> <span class="n">Chroma</span><span class="p">(</span>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>    <span class="n">persist_directory</span><span class="o">=</span><span class="s2">&quot;./chroma-db&quot;</span><span class="p">,</span>  <span class="c1"># Local disk</span>
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>    <span class="n">embedding_function</span><span class="o">=</span><span class="n">OpenAIEmbeddings</span><span class="p">()</span>
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="p">)</span>
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>
+</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="c1"># Vector Database (Pinecone) - remote service</span>
+</span><span id="__span-27-8"><a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pinecone</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pinecone</span>
+</span><span id="__span-27-9"><a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a><span class="n">pc</span> <span class="o">=</span> <span class="n">Pinecone</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;...&quot;</span><span class="p">)</span>
+</span><span id="__span-27-10"><a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a><span class="n">index</span> <span class="o">=</span> <span class="n">pc</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="s2">&quot;my-index&quot;</span><span class="p">)</span>  <span class="c1"># Centralized, cloud-hosted</span>
+</span></code></pre></div>
+<p><strong>LangChain abstracts both</strong> - Same API works with vector stores and vector databases, making it easy to switch.</p>
+<h3 id="basic-operations">Basic Operations</h3>
+<p>Creating and adding documents to a vector store:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_chroma</span><span class="w"> </span><span class="kn">import</span> <span class="n">Chroma</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAIEmbeddings</span>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.documents</span><span class="w"> </span><span class="kn">import</span> <span class="n">Document</span>
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="c1"># Define documents with metadata</span>
+</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="n">doc1</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span>
+</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>    <span class="n">page_content</span><span class="o">=</span><span class="s2">&quot;Virat Kohli is one of the most successful batsmen in IPL history.&quot;</span><span class="p">,</span>
+</span><span id="__span-28-8"><a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a>    <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;team&quot;</span><span class="p">:</span> <span class="s2">&quot;Royal Challengers Bangalore&quot;</span><span class="p">}</span>
+</span><span id="__span-28-9"><a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a><span class="p">)</span>
+</span><span id="__span-28-10"><a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a><span class="n">doc2</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span>
+</span><span id="__span-28-11"><a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a>    <span class="n">page_content</span><span class="o">=</span><span class="s2">&quot;Rohit Sharma is the most successful captain in IPL history.&quot;</span><span class="p">,</span>
+</span><span id="__span-28-12"><a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a>    <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;team&quot;</span><span class="p">:</span> <span class="s2">&quot;Mumbai Indians&quot;</span><span class="p">}</span>
+</span><span id="__span-28-13"><a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a><span class="p">)</span>
+</span><span id="__span-28-14"><a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a><span class="n">doc3</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span>
+</span><span id="__span-28-15"><a id="__codelineno-28-15" name="__codelineno-28-15" href="#__codelineno-28-15"></a>    <span class="n">page_content</span><span class="o">=</span><span class="s2">&quot;MS Dhoni has led Chennai Super Kings to multiple IPL titles.&quot;</span><span class="p">,</span>
+</span><span id="__span-28-16"><a id="__codelineno-28-16" name="__codelineno-28-16" href="#__codelineno-28-16"></a>    <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;team&quot;</span><span class="p">:</span> <span class="s2">&quot;Chennai Super Kings&quot;</span><span class="p">}</span>
+</span><span id="__span-28-17"><a id="__codelineno-28-17" name="__codelineno-28-17" href="#__codelineno-28-17"></a><span class="p">)</span>
+</span><span id="__span-28-18"><a id="__codelineno-28-18" name="__codelineno-28-18" href="#__codelineno-28-18"></a>
+</span><span id="__span-28-19"><a id="__codelineno-28-19" name="__codelineno-28-19" href="#__codelineno-28-19"></a><span class="c1"># Create vector store</span>
+</span><span id="__span-28-20"><a id="__codelineno-28-20" name="__codelineno-28-20" href="#__codelineno-28-20"></a><span class="n">vector_store</span> <span class="o">=</span> <span class="n">Chroma</span><span class="p">(</span>
+</span><span id="__span-28-21"><a id="__codelineno-28-21" name="__codelineno-28-21" href="#__codelineno-28-21"></a>    <span class="n">embedding_function</span><span class="o">=</span><span class="n">OpenAIEmbeddings</span><span class="p">(),</span>
+</span><span id="__span-28-22"><a id="__codelineno-28-22" name="__codelineno-28-22" href="#__codelineno-28-22"></a>    <span class="n">persist_directory</span><span class="o">=</span><span class="s2">&quot;./chroma-db&quot;</span><span class="p">,</span>
+</span><span id="__span-28-23"><a id="__codelineno-28-23" name="__codelineno-28-23" href="#__codelineno-28-23"></a>    <span class="n">collection_name</span><span class="o">=</span><span class="s2">&quot;ipl_players&quot;</span>
+</span><span id="__span-28-24"><a id="__codelineno-28-24" name="__codelineno-28-24" href="#__codelineno-28-24"></a><span class="p">)</span>
+</span><span id="__span-28-25"><a id="__codelineno-28-25" name="__codelineno-28-25" href="#__codelineno-28-25"></a>
+</span><span id="__span-28-26"><a id="__codelineno-28-26" name="__codelineno-28-26" href="#__codelineno-28-26"></a><span class="c1"># Add documents (automatically embeds and stores)</span>
+</span><span id="__span-28-27"><a id="__codelineno-28-27" name="__codelineno-28-27" href="#__codelineno-28-27"></a><span class="n">vector_store</span><span class="o">.</span><span class="n">add_documents</span><span class="p">([</span><span class="n">doc1</span><span class="p">,</span> <span class="n">doc2</span><span class="p">,</span> <span class="n">doc3</span><span class="p">])</span>
+</span></code></pre></div>
+<p><strong>What happens during add_documents:</strong></p>
+<ol>
+<li>Text is sent to embedding model</li>
+<li>Vectors are computed</li>
+<li>Vectors + text + metadata stored locally</li>
+<li>Data persisted to disk</li>
+</ol>
+<p><strong>Inspecting stored data:</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="c1"># Get all documents with their vectors</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="n">result</span> <span class="o">=</span> <span class="n">vector_store</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;embeddings&quot;</span><span class="p">,</span> <span class="s2">&quot;documents&quot;</span><span class="p">,</span> <span class="s2">&quot;metadatas&quot;</span><span class="p">])</span>
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;documents&quot;</span><span class="p">])</span>  <span class="c1"># Original text</span>
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;metadatas&quot;</span><span class="p">])</span>  <span class="c1"># Metadata</span>
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;embeddings&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># Vector: [0.123, -0.456, ...]</span>
+</span></code></pre></div>
+<h3 id="similarity-search">Similarity Search</h3>
+<p>Find documents most similar to a query:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="c1"># Basic similarity search</span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="n">results</span> <span class="o">=</span> <span class="n">vector_store</span><span class="o">.</span><span class="n">similarity_search</span><span class="p">(</span>
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>    <span class="n">query</span><span class="o">=</span><span class="s2">&quot;Who among these are a bowler?&quot;</span><span class="p">,</span>
+</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>    <span class="n">k</span><span class="o">=</span><span class="mi">2</span>  <span class="c1"># Return top 2 matches</span>
+</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="p">)</span>
+</span><span id="__span-30-6"><a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a>
+</span><span id="__span-30-7"><a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a><span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+</span><span id="__span-30-8"><a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">page_content</span><span class="p">)</span>
+</span><span id="__span-30-9"><a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
+</span></code></pre></div>
+<p><strong>With similarity scores:</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="n">results</span> <span class="o">=</span> <span class="n">vector_store</span><span class="o">.</span><span class="n">similarity_search_with_score</span><span class="p">(</span>
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>    <span class="n">query</span><span class="o">=</span><span class="s2">&quot;Who among these are a bowler?&quot;</span><span class="p">,</span>
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>    <span class="n">k</span><span class="o">=</span><span class="mi">2</span>
+</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="p">)</span>
+</span><span id="__span-31-5"><a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>
+</span><span id="__span-31-6"><a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a><span class="k">for</span> <span class="n">doc</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+</span><span id="__span-31-7"><a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Score: </span><span class="si">{</span><span class="n">score</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="__span-31-8"><a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Content: </span><span class="si">{</span><span class="n">doc</span><span class="o">.</span><span class="n">page_content</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<p><strong>Score interpretation:</strong></p>
+<ul>
+<li><strong>Lower scores = more similar</strong> (distance metrics)</li>
+<li>Exact values depend on embedding model and distance metric</li>
+<li>Use scores to set relevance thresholds</li>
+</ul>
+<p><strong>How similarity search works:</strong></p>
+<ol>
+<li><strong>Query embedding</strong> - Convert query to vector</li>
+<li><strong>Distance computation</strong> - Compute distance to all stored vectors</li>
+<li><strong>Ranking</strong> - Sort by distance (closest first)</li>
+<li><strong>Top-k selection</strong> - Return k nearest neighbors</li>
+</ol>
+<p><strong>Distance metrics</strong> (configured at vector store creation):</p>
+<ul>
+<li><strong>Cosine similarity</strong> - Measures angle between vectors (good for text)</li>
+<li><strong>Euclidean distance</strong> - Straight-line distance (sensitive to magnitude)</li>
+<li><strong>Dot product</strong> - Raw similarity (fast but magnitude-sensitive)</li>
+</ul>
+<h3 id="metadata-filtering">Metadata Filtering</h3>
+<p>Filter results by metadata before similarity search:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="c1"># Find documents for a specific team</span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="n">results</span> <span class="o">=</span> <span class="n">vector_store</span><span class="o">.</span><span class="n">similarity_search_with_score</span><span class="p">(</span>
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>    <span class="n">query</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>  <span class="c1"># Empty query - just filter by metadata</span>
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>    <span class="nb">filter</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;team&quot;</span><span class="p">:</span> <span class="s2">&quot;Chennai Super Kings&quot;</span><span class="p">}</span>
+</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span class="p">)</span>
+</span><span id="__span-32-6"><a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a>
+</span><span id="__span-32-7"><a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a><span class="c1"># Combines semantic search with filtering</span>
+</span><span id="__span-32-8"><a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a><span class="n">results</span> <span class="o">=</span> <span class="n">vector_store</span><span class="o">.</span><span class="n">similarity_search</span><span class="p">(</span>
+</span><span id="__span-32-9"><a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a>    <span class="n">query</span><span class="o">=</span><span class="s2">&quot;great captain&quot;</span><span class="p">,</span>
+</span><span id="__span-32-10"><a id="__codelineno-32-10" name="__codelineno-32-10" href="#__codelineno-32-10"></a>    <span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+</span><span id="__span-32-11"><a id="__codelineno-32-11" name="__codelineno-32-11" href="#__codelineno-32-11"></a>    <span class="nb">filter</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;team&quot;</span><span class="p">:</span> <span class="s2">&quot;Mumbai Indians&quot;</span><span class="p">}</span>  <span class="c1"># Only search within Mumbai Indians</span>
+</span><span id="__span-32-12"><a id="__codelineno-32-12" name="__codelineno-32-12" href="#__codelineno-32-12"></a><span class="p">)</span>
+</span></code></pre></div>
+<p><strong>Use cases:</strong></p>
+<ul>
+<li><strong>Temporal filtering</strong> - <code>{"date": {"$gte": "2026-01-01"}}</code></li>
+<li><strong>Source filtering</strong> - <code>{"source": "trusted_docs"}</code></li>
+<li><strong>Category filtering</strong> - <code>{"category": "technical"}</code></li>
+<li><strong>User isolation</strong> - <code>{"user_id": "user123"}</code></li>
+</ul>
+<p><strong>Metadata indexing strategies:</strong></p>
+<ul>
+<li>Keep metadata simple (strings, numbers, dates)</li>
+<li>Index frequently filtered fields</li>
+<li>Use consistent metadata schema across documents</li>
+</ul>
+<h3 id="update-and-delete">Update and Delete</h3>
+<p>Modify and remove documents from vector store:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="c1"># Update existing document</span>
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="n">updated_doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span>
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>    <span class="n">page_content</span><span class="o">=</span><span class="s2">&quot;Virat Kohli, former captain of RCB, holds the record for most runs in IPL history.&quot;</span><span class="p">,</span>
+</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>    <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;team&quot;</span><span class="p">:</span> <span class="s2">&quot;Royal Challengers Bangalore&quot;</span><span class="p">}</span>
+</span><span id="__span-33-5"><a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a><span class="p">)</span>
+</span><span id="__span-33-6"><a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a>
+</span><span id="__span-33-7"><a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a><span class="n">vector_store</span><span class="o">.</span><span class="n">update_document</span><span class="p">(</span>
+</span><span id="__span-33-8"><a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a>    <span class="n">document_id</span><span class="o">=</span><span class="s2">&quot;abc-123&quot;</span><span class="p">,</span>  <span class="c1"># ID from initial add</span>
+</span><span id="__span-33-9"><a id="__codelineno-33-9" name="__codelineno-33-9" href="#__codelineno-33-9"></a>    <span class="n">document</span><span class="o">=</span><span class="n">updated_doc</span>
+</span><span id="__span-33-10"><a id="__codelineno-33-10" name="__codelineno-33-10" href="#__codelineno-33-10"></a><span class="p">)</span>
+</span><span id="__span-33-11"><a id="__codelineno-33-11" name="__codelineno-33-11" href="#__codelineno-33-11"></a>
+</span><span id="__span-33-12"><a id="__codelineno-33-12" name="__codelineno-33-12" href="#__codelineno-33-12"></a><span class="c1"># Delete document</span>
+</span><span id="__span-33-13"><a id="__codelineno-33-13" name="__codelineno-33-13" href="#__codelineno-33-13"></a><span class="n">vector_store</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;abc-123&quot;</span><span class="p">])</span>
+</span></code></pre></div>
+<p><strong>Use cases:</strong></p>
+<ul>
+<li><strong>Content updates</strong> - Reflect changes in source documents</li>
+<li><strong>Data expiration</strong> - Remove outdated information</li>
+<li><strong>GDPR compliance</strong> - Remove user data on request</li>
+<li><strong>Index maintenance</strong> - Clean up test data</li>
+</ul>
+<p><strong>Best practices:</strong></p>
+<ul>
+<li>Track document IDs for updates/deletes</li>
+<li>Batch operations when possible (more efficient)</li>
+<li>Rebuild indexes periodically for performance</li>
+</ul>
+<h3 id="other-vector-stores">Other Vector Stores</h3>
+<p>LangChain supports many vector store backends:</p>
+<p><strong>Local/Embedded:</strong></p>
+<ul>
+<li><strong>Chroma</strong> - Simple, embedded, good for development</li>
+<li><strong>FAISS</strong> - Facebook's similarity search, CPU/GPU support, no persistence by default</li>
+<li><strong>LanceDB</strong> - Embedded columnar database, good for ML workflows</li>
+</ul>
+<p><strong>Managed Services:</strong></p>
+<ul>
+<li><strong>Pinecone</strong> - Fully managed, excellent developer experience, serverless</li>
+<li><strong>Weaviate</strong> - Open source + managed, GraphQL interface, hybrid search</li>
+<li><strong>Qdrant</strong> - High-performance, great for production, good filtering</li>
+<li><strong>Milvus</strong> - Open source, highly scalable, Kubernetes-native</li>
+</ul>
+<p><strong>Cloud Provider:</strong></p>
+<ul>
+<li><strong>AWS OpenSearch</strong> - Integrated with AWS ecosystem</li>
+<li><strong>Azure Cognitive Search</strong> - Microsoft's vector search</li>
+<li><strong>Google Vertex AI Vector Search</strong> - GCP vector search</li>
+</ul>
+<p><strong>Database Extensions:</strong></p>
+<ul>
+<li><strong>pgvector</strong> - PostgreSQL extension for vectors</li>
+<li><strong>ElasticSearch</strong> - KNN search in existing Elasticsearch</li>
+<li><strong>MongoDB Atlas Vector Search</strong> - Vectors in MongoDB</li>
+</ul>
+<p><strong>Choosing a vector store:</strong></p>
+<ul>
+<li><strong>Development:</strong> Chroma (simple, embedded)</li>
+<li><strong>Cost-sensitive:</strong> FAISS or pgvector (self-hosted)</li>
+<li><strong>Scale &amp; reliability:</strong> Pinecone or Qdrant (managed)</li>
+<li><strong>Existing infrastructure:</strong> Database extensions (pg vector, etc.)</li>
+</ul>
+<h2 id="retrievers">Retrievers</h2>
+<p>Retrievers provide a unified interface for fetching relevant documents. They abstract the retrieval mechanism, enabling easy swapping and composition.</p>
+<h3 id="vector-store-retrievers">Vector Store Retrievers</h3>
+<p>Convert any vector store to a retriever:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_chroma</span><span class="w"> </span><span class="kn">import</span> <span class="n">Chroma</span>
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAIEmbeddings</span>
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>
+</span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="c1"># Create vector store</span>
+</span><span id="__span-34-5"><a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a><span class="n">vectorstore</span> <span class="o">=</span> <span class="n">Chroma</span><span class="o">.</span><span class="n">from_documents</span><span class="p">(</span>
+</span><span id="__span-34-6"><a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a>    <span class="n">documents</span><span class="o">=</span><span class="n">docs</span><span class="p">,</span>
+</span><span id="__span-34-7"><a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a>    <span class="n">embedding</span><span class="o">=</span><span class="n">OpenAIEmbeddings</span><span class="p">()</span>
+</span><span id="__span-34-8"><a id="__codelineno-34-8" name="__codelineno-34-8" href="#__codelineno-34-8"></a><span class="p">)</span>
+</span><span id="__span-34-9"><a id="__codelineno-34-9" name="__codelineno-34-9" href="#__codelineno-34-9"></a>
+</span><span id="__span-34-10"><a id="__codelineno-34-10" name="__codelineno-34-10" href="#__codelineno-34-10"></a><span class="c1"># Convert to retriever</span>
+</span><span id="__span-34-11"><a id="__codelineno-34-11" name="__codelineno-34-11" href="#__codelineno-34-11"></a><span class="n">retriever</span> <span class="o">=</span> <span class="n">vectorstore</span><span class="o">.</span><span class="n">as_retriever</span><span class="p">(</span>
+</span><span id="__span-34-12"><a id="__codelineno-34-12" name="__codelineno-34-12" href="#__codelineno-34-12"></a>    <span class="n">search_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;k&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>  <span class="c1"># Return top 3 results</span>
+</span><span id="__span-34-13"><a id="__codelineno-34-13" name="__codelineno-34-13" href="#__codelineno-34-13"></a><span class="p">)</span>
+</span><span id="__span-34-14"><a id="__codelineno-34-14" name="__codelineno-34-14" href="#__codelineno-34-14"></a>
+</span><span id="__span-34-15"><a id="__codelineno-34-15" name="__codelineno-34-15" href="#__codelineno-34-15"></a><span class="c1"># Use retriever</span>
+</span><span id="__span-34-16"><a id="__codelineno-34-16" name="__codelineno-34-16" href="#__codelineno-34-16"></a><span class="n">results</span> <span class="o">=</span> <span class="n">retriever</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;your query here&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<p><strong>Retriever benefits:</strong></p>
+<ul>
+<li><strong>Consistent interface</strong> - All retrievers use <code>.invoke(query)</code></li>
+<li><strong>Composable</strong> - Easy to swap implementations</li>
+<li><strong>Chain-friendly</strong> - Integrate smoothly with LCEL chains</li>
+</ul>
+<h3 id="similarity-search-retrieval">Similarity Search Retrieval</h3>
+<p>Standard semantic search - find most similar documents:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="n">retriever</span> <span class="o">=</span> <span class="n">vectorstore</span><span class="o">.</span><span class="n">as_retriever</span><span class="p">(</span>
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>    <span class="n">search_type</span><span class="o">=</span><span class="s2">&quot;similarity&quot;</span><span class="p">,</span>
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>    <span class="n">search_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;k&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="p">)</span>
+</span><span id="__span-35-5"><a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a>
+</span><span id="__span-35-6"><a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;talk about vectors&quot;</span>
+</span><span id="__span-35-7"><a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a><span class="n">results</span> <span class="o">=</span> <span class="n">retriever</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+</span><span id="__span-35-8"><a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a><span class="c1"># Returns: 3 documents most similar to query</span>
+</span></code></pre></div>
+<p><strong>When to use:</strong></p>
+<ul>
+<li>General semantic search</li>
+<li>Finding relevant context for RAG</li>
+<li>Document discovery</li>
+<li><strong>Use as default retrieval method</strong></li>
+</ul>
+<h3 id="maximum-marginal-relevance-mmr">Maximum Marginal Relevance (MMR)</h3>
+<p>Balances relevance with diversity to avoid redundant results:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.vectorstores</span><span class="w"> </span><span class="kn">import</span> <span class="n">FAISS</span>
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>
+</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="n">vectorstore</span> <span class="o">=</span> <span class="n">FAISS</span><span class="o">.</span><span class="n">from_documents</span><span class="p">(</span><span class="n">docs</span><span class="p">,</span> <span class="n">OpenAIEmbeddings</span><span class="p">())</span>
+</span><span id="__span-36-4"><a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a>
+</span><span id="__span-36-5"><a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a><span class="n">mmr_retriever</span> <span class="o">=</span> <span class="n">vectorstore</span><span class="o">.</span><span class="n">as_retriever</span><span class="p">(</span>
+</span><span id="__span-36-6"><a id="__codelineno-36-6" name="__codelineno-36-6" href="#__codelineno-36-6"></a>    <span class="n">search_type</span><span class="o">=</span><span class="s2">&quot;mmr&quot;</span><span class="p">,</span>
+</span><span id="__span-36-7"><a id="__codelineno-36-7" name="__codelineno-36-7" href="#__codelineno-36-7"></a>    <span class="n">search_kwargs</span><span class="o">=</span><span class="p">{</span>
+</span><span id="__span-36-8"><a id="__codelineno-36-8" name="__codelineno-36-8" href="#__codelineno-36-8"></a>        <span class="s2">&quot;k&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+</span><span id="__span-36-9"><a id="__codelineno-36-9" name="__codelineno-36-9" href="#__codelineno-36-9"></a>        <span class="s2">&quot;lambda_mult&quot;</span><span class="p">:</span> <span class="mf">0.5</span>  <span class="c1"># Balance: 0=max diversity, 1=max relevance</span>
+</span><span id="__span-36-10"><a id="__codelineno-36-10" name="__codelineno-36-10" href="#__codelineno-36-10"></a>    <span class="p">}</span>
+</span><span id="__span-36-11"><a id="__codelineno-36-11" name="__codelineno-36-11" href="#__codelineno-36-11"></a><span class="p">)</span>
+</span><span id="__span-36-12"><a id="__codelineno-36-12" name="__codelineno-36-12" href="#__codelineno-36-12"></a>
+</span><span id="__span-36-13"><a id="__codelineno-36-13" name="__codelineno-36-13" href="#__codelineno-36-13"></a><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;talk about langchain&quot;</span>
+</span><span id="__span-36-14"><a id="__codelineno-36-14" name="__codelineno-36-14" href="#__codelineno-36-14"></a><span class="n">results</span> <span class="o">=</span> <span class="n">mmr_retriever</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+</span></code></pre></div>
+<p><strong>How MMR works:</strong></p>
+<ol>
+<li>Find top-N most similar documents (N &gt; k)</li>
+<li>Select most similar document</li>
+<li>For remaining slots, choose documents that are:</li>
+<li>Similar to query AND</li>
+<li>Diverse from already selected</li>
+<li>Balance controlled by <code>lambda_mult</code></li>
+</ol>
+<p><strong>lambda_mult parameter:</strong></p>
+<ul>
+<li><strong>1.0</strong> - Pure relevance (same as similarity search)</li>
+<li><strong>0.5</strong> - Balance relevance and diversity</li>
+<li><strong>0.0</strong> - Maximum diversity (may sacrifice relevance)</li>
+</ul>
+<p><strong>When to use MMR:</strong></p>
+<ul>
+<li>Query matches many similar documents</li>
+<li>Want diverse perspectives</li>
+<li>Avoid redundant information</li>
+<li>Exploratory search</li>
+</ul>
+<p><strong>Example scenario:</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>Query: &quot;tell me about LangChain&quot;
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>Similarity search might return:
+</span><span id="__span-37-4"><a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a>1. &quot;LangChain makes it easy to work with LLMs.&quot;
+</span><span id="__span-37-5"><a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a>2. &quot;LangChain is used to build LLM applications.&quot;
+</span><span id="__span-37-6"><a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a>3. &quot;LangChain helps with LLM development.&quot;
+</span><span id="__span-37-7"><a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a>← All very similar, redundant
+</span><span id="__span-37-8"><a id="__codelineno-37-8" name="__codelineno-37-8" href="#__codelineno-37-8"></a>
+</span><span id="__span-37-9"><a id="__codelineno-37-9" name="__codelineno-37-9" href="#__codelineno-37-9"></a>MMR returns:
+</span><span id="__span-37-10"><a id="__codelineno-37-10" name="__codelineno-37-10" href="#__codelineno-37-10"></a>1. &quot;LangChain makes it easy to work with LLMs.&quot;
+</span><span id="__span-37-11"><a id="__codelineno-37-11" name="__codelineno-37-11" href="#__codelineno-37-11"></a>2. &quot;Chroma stores embeddings for semantic search.&quot;
+</span><span id="__span-37-12"><a id="__codelineno-37-12" name="__codelineno-37-12" href="#__codelineno-37-12"></a>3. &quot;RAG combines retrieval with generation.&quot;
+</span><span id="__span-37-13"><a id="__codelineno-37-13" name="__codelineno-37-13" href="#__codelineno-37-13"></a>← Similar to query but diverse from each other
+</span></code></pre></div>
+<h3 id="multi-query-retrieval">Multi-Query Retrieval</h3>
+<p>Generates multiple query variations to improve recall:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_classic.retrievers.multi_query</span><span class="w"> </span><span class="kn">import</span> <span class="n">MultiQueryRetriever</span>
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatOpenAI</span>
+</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a>
+</span><span id="__span-38-4"><a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a><span class="c1"># Base vector store retriever</span>
+</span><span id="__span-38-5"><a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a><span class="n">base_retriever</span> <span class="o">=</span> <span class="n">vectorstore</span><span class="o">.</span><span class="n">as_retriever</span><span class="p">(</span><span class="n">search_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;k&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+</span><span id="__span-38-6"><a id="__codelineno-38-6" name="__codelineno-38-6" href="#__codelineno-38-6"></a>
+</span><span id="__span-38-7"><a id="__codelineno-38-7" name="__codelineno-38-7" href="#__codelineno-38-7"></a><span class="c1"># Wrap with multi-query</span>
+</span><span id="__span-38-8"><a id="__codelineno-38-8" name="__codelineno-38-8" href="#__codelineno-38-8"></a><span class="n">multiquery_retriever</span> <span class="o">=</span> <span class="n">MultiQueryRetriever</span><span class="o">.</span><span class="n">from_llm</span><span class="p">(</span>
+</span><span id="__span-38-9"><a id="__codelineno-38-9" name="__codelineno-38-9" href="#__codelineno-38-9"></a>    <span class="n">retriever</span><span class="o">=</span><span class="n">base_retriever</span><span class="p">,</span>
+</span><span id="__span-38-10"><a id="__codelineno-38-10" name="__codelineno-38-10" href="#__codelineno-38-10"></a>    <span class="n">llm</span><span class="o">=</span><span class="n">ChatOpenAI</span><span class="p">()</span>
+</span><span id="__span-38-11"><a id="__codelineno-38-11" name="__codelineno-38-11" href="#__codelineno-38-11"></a><span class="p">)</span>
+</span><span id="__span-38-12"><a id="__codelineno-38-12" name="__codelineno-38-12" href="#__codelineno-38-12"></a>
+</span><span id="__span-38-13"><a id="__codelineno-38-13" name="__codelineno-38-13" href="#__codelineno-38-13"></a><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;talk about health&quot;</span>
+</span><span id="__span-38-14"><a id="__codelineno-38-14" name="__codelineno-38-14" href="#__codelineno-38-14"></a><span class="n">results</span> <span class="o">=</span> <span class="n">multiquery_retriever</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+</span></code></pre></div>
+<p><strong>How it works:</strong></p>
+<ol>
+<li><strong>LLM generates query variations</strong> - Creates 3-5 alternative phrasings</li>
+<li><strong>Retrieve for each variation</strong> - Run similarity search for all queries</li>
+<li><strong>Deduplicate results</strong> - Combine and remove duplicates</li>
+<li><strong>Return merged set</strong> - Union of all retrieval results</li>
+</ol>
+<p><strong>Example query expansion:</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>Original: &quot;talk about health&quot;
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>
+</span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a>LLM generates:
+</span><span id="__span-39-4"><a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a>- &quot;health and wellness information&quot;
+</span><span id="__span-39-5"><a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a>- &quot;staying healthy and fit&quot;
+</span><span id="__span-39-6"><a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a>- &quot;medical advice and health tips&quot;
+</span><span id="__span-39-7"><a id="__codelineno-39-7" name="__codelineno-39-7" href="#__codelineno-39-7"></a>- &quot;health benefits and nutrition&quot;
+</span><span id="__span-39-8"><a id="__codelineno-39-8" name="__codelineno-39-8" href="#__codelineno-39-8"></a>
+</span><span id="__span-39-9"><a id="__codelineno-39-9" name="__codelineno-39-9" href="#__codelineno-39-9"></a>Retrieve for all 4 queries → merge unique results
+</span></code></pre></div>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li><strong>Better recall</strong> - Catches documents that match alternate phrasings</li>
+<li><strong>Handles ambiguity</strong> - Multiple interpretations covered</li>
+<li><strong>Improves for poor queries</strong> - LLM reformulates unclear questions</li>
+</ul>
+<p><strong>Trade-offs:</strong></p>
+<ul>
+<li><strong>More expensive</strong> - Multiple LLM calls + retrievals</li>
+<li><strong>Longer latency</strong> - Sequential query generation + parallel retrieval</li>
+<li><strong>Potential noise</strong> - Might retrieve less relevant documents</li>
+</ul>
+<p><strong>When to use:</strong></p>
+<ul>
+<li>User queries are short or ambiguous</li>
+<li>High recall is critical (don't miss relevant docs)</li>
+<li>Can afford additional latency and cost</li>
+<li>Query quality varies widely</li>
+</ul>
+<h3 id="contextual-compression">Contextual Compression</h3>
+<p>Uses LLM to extract only relevant parts from retrieved documents:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_classic.retrievers.contextual_compression</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>    <span class="n">ContextualCompressionRetriever</span>
+</span><span id="__span-40-3"><a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="p">)</span>
+</span><span id="__span-40-4"><a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_classic.retrievers.document_compressors</span><span class="w"> </span><span class="kn">import</span> <span class="n">LLMChainExtractor</span>
+</span><span id="__span-40-5"><a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatOpenAI</span>
+</span><span id="__span-40-6"><a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a>
+</span><span id="__span-40-7"><a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a><span class="c1"># Base retriever</span>
+</span><span id="__span-40-8"><a id="__codelineno-40-8" name="__codelineno-40-8" href="#__codelineno-40-8"></a><span class="n">base_retriever</span> <span class="o">=</span> <span class="n">vectorstore</span><span class="o">.</span><span class="n">as_retriever</span><span class="p">(</span><span class="n">search_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;k&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+</span><span id="__span-40-9"><a id="__codelineno-40-9" name="__codelineno-40-9" href="#__codelineno-40-9"></a>
+</span><span id="__span-40-10"><a id="__codelineno-40-10" name="__codelineno-40-10" href="#__codelineno-40-10"></a><span class="c1"># Compression with LLM</span>
+</span><span id="__span-40-11"><a id="__codelineno-40-11" name="__codelineno-40-11" href="#__codelineno-40-11"></a><span class="n">compressor</span> <span class="o">=</span> <span class="n">LLMChainExtractor</span><span class="o">.</span><span class="n">from_llm</span><span class="p">(</span><span class="n">ChatOpenAI</span><span class="p">())</span>
+</span><span id="__span-40-12"><a id="__codelineno-40-12" name="__codelineno-40-12" href="#__codelineno-40-12"></a>
+</span><span id="__span-40-13"><a id="__codelineno-40-13" name="__codelineno-40-13" href="#__codelineno-40-13"></a><span class="n">compression_retriever</span> <span class="o">=</span> <span class="n">ContextualCompressionRetriever</span><span class="p">(</span>
+</span><span id="__span-40-14"><a id="__codelineno-40-14" name="__codelineno-40-14" href="#__codelineno-40-14"></a>    <span class="n">base_retriever</span><span class="o">=</span><span class="n">base_retriever</span><span class="p">,</span>
+</span><span id="__span-40-15"><a id="__codelineno-40-15" name="__codelineno-40-15" href="#__codelineno-40-15"></a>    <span class="n">base_compressor</span><span class="o">=</span><span class="n">compressor</span>
+</span><span id="__span-40-16"><a id="__codelineno-40-16" name="__codelineno-40-16" href="#__codelineno-40-16"></a><span class="p">)</span>
+</span><span id="__span-40-17"><a id="__codelineno-40-17" name="__codelineno-40-17" href="#__codelineno-40-17"></a>
+</span><span id="__span-40-18"><a id="__codelineno-40-18" name="__codelineno-40-18" href="#__codelineno-40-18"></a><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;talk about photosynthesis&quot;</span>
+</span><span id="__span-40-19"><a id="__codelineno-40-19" name="__codelineno-40-19" href="#__codelineno-40-19"></a><span class="n">results</span> <span class="o">=</span> <span class="n">compression_retriever</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+</span></code></pre></div>
+<p><strong>How it works:</strong></p>
+<ol>
+<li><strong>Base retrieval</strong> - Get top-k documents via similarity search</li>
+<li><strong>LLM extraction</strong> - For each document, LLM extracts query-relevant sentences</li>
+<li><strong>Compressed output</strong> - Return only relevant excerpts</li>
+</ol>
+<p><strong>Example:</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>Original document:
+</span><span id="__span-41-2"><a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>&quot;The Grand Canyon is one of the most visited natural wonders in the world.
+</span><span id="__span-41-3"><a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a>Photosynthesis is the process by which green plants convert sunlight into energy.
+</span><span id="__span-41-4"><a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a>Millions of tourists travel to see it every year.&quot;
+</span><span id="__span-41-5"><a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a>
+</span><span id="__span-41-6"><a id="__codelineno-41-6" name="__codelineno-41-6" href="#__codelineno-41-6"></a>Query: &quot;talk about photosynthesis&quot;
+</span><span id="__span-41-7"><a id="__codelineno-41-7" name="__codelineno-41-7" href="#__codelineno-41-7"></a>
+</span><span id="__span-41-8"><a id="__codelineno-41-8" name="__codelineno-41-8" href="#__codelineno-41-8"></a>Compressed result:
+</span><span id="__span-41-9"><a id="__codelineno-41-9" name="__codelineno-41-9" href="#__codelineno-41-9"></a>&quot;Photosynthesis is the process by which green plants convert sunlight into energy.&quot;
+</span><span id="__span-41-10"><a id="__codelineno-41-10" name="__codelineno-41-10" href="#__codelineno-41-10"></a>← Only relevant sentence extracted
+</span></code></pre></div>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li><strong>Focused context</strong> - Remove irrelevant information</li>
+<li><strong>Token efficiency</strong> - Less content sent to LLM in RAG</li>
+<li><strong>Better precision</strong> - Reduces noise in retrieved context</li>
+<li><strong>Cost savings</strong> - Fewer tokens in downstream LLM calls</li>
+</ul>
+<p><strong>Trade-offs:</strong></p>
+<ul>
+<li><strong>Additional LLM calls</strong> - One per retrieved document (expensive)</li>
+<li><strong>Latency increase</strong> - Sequential compression step</li>
+<li><strong>Risk of over-compression</strong> - Might remove necessary context</li>
+</ul>
+<p><strong>When to use:</strong></p>
+<ul>
+<li>Retrieved documents are long and noisy</li>
+<li>LLM context window is limited</li>
+<li>Need very precise context extraction</li>
+<li>Cost of compression &lt; cost savings from reduced context</li>
+</ul>
+<h3 id="external-retrievers">External Retrievers</h3>
+<p>Retrieve from sources beyond your vector store:</p>
+<p><strong>Wikipedia retriever:</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.retrievers</span><span class="w"> </span><span class="kn">import</span> <span class="n">WikipediaRetriever</span>
+</span><span id="__span-42-2"><a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a>
+</span><span id="__span-42-3"><a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="n">retriever</span> <span class="o">=</span> <span class="n">WikipediaRetriever</span><span class="p">(</span>
+</span><span id="__span-42-4"><a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a>    <span class="n">top_k_results</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+</span><span id="__span-42-5"><a id="__codelineno-42-5" name="__codelineno-42-5" href="#__codelineno-42-5"></a>    <span class="n">lang</span><span class="o">=</span><span class="s2">&quot;en&quot;</span>
+</span><span id="__span-42-6"><a id="__codelineno-42-6" name="__codelineno-42-6" href="#__codelineno-42-6"></a><span class="p">)</span>
+</span><span id="__span-42-7"><a id="__codelineno-42-7" name="__codelineno-42-7" href="#__codelineno-42-7"></a>
+</span><span id="__span-42-8"><a id="__codelineno-42-8" name="__codelineno-42-8" href="#__codelineno-42-8"></a><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;history of the germanic tribes&quot;</span>
+</span><span id="__span-42-9"><a id="__codelineno-42-9" name="__codelineno-42-9" href="#__codelineno-42-9"></a><span class="n">docs</span> <span class="o">=</span> <span class="n">retriever</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+</span><span id="__span-42-10"><a id="__codelineno-42-10" name="__codelineno-42-10" href="#__codelineno-42-10"></a><span class="c1"># Returns: Top 3 Wikipedia articles</span>
+</span></code></pre></div>
+<p><strong>Other external retrievers:</strong></p>
+<ul>
+<li><strong>ArxivRetriever</strong> - Academic papers from arXiv</li>
+<li><strong>PubMedRetriever</strong> - Medical research papers</li>
+<li><strong>GoogleSearchAPIWrapper</strong> - Web search results</li>
+<li><strong>YouTubeTranscriptRetriever</strong> - Video transcripts</li>
+</ul>
+<p><strong>When to use:</strong></p>
+<ul>
+<li>Need up-to-date information beyond your corpus</li>
+<li>Specialized domains (academic, medical, etc.)</li>
+<li>Augment local knowledge with external sources</li>
+<li>Hybrid retrieval (local + external)</li>
+</ul>
+<p><strong>Combining retrievers:</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="c1"># Hybrid: local + Wikipedia</span>
+</span><span id="__span-43-2"><a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a><span class="n">local_results</span> <span class="o">=</span> <span class="n">local_retriever</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+</span><span id="__span-43-3"><a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a><span class="n">wiki_results</span> <span class="o">=</span> <span class="n">wiki_retriever</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+</span><span id="__span-43-4"><a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a><span class="n">all_results</span> <span class="o">=</span> <span class="n">local_results</span> <span class="o">+</span> <span class="n">wiki_results</span>
+</span></code></pre></div>
+<h3 id="retriever-comparison">Retriever Comparison</h3>
+<p><strong>Choosing the right retriever:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Retriever</th>
+<th>Use Case</th>
+<th>Pros</th>
+<th>Cons</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Similarity Search</strong></td>
+<td>General RAG, default choice</td>
+<td>Fast, simple, reliable</td>
+<td>May return redundant results</td>
+<td>Low (embeddings only)</td>
+</tr>
+<tr>
+<td><strong>MMR</strong></td>
+<td>Diverse perspectives needed</td>
+<td>Reduces redundancy, balanced</td>
+<td>Slightly slower</td>
+<td>Low (embeddings only)</td>
+</tr>
+<tr>
+<td><strong>Multi-Query</strong></td>
+<td>Ambiguous or short queries</td>
+<td>Better recall, handles variations</td>
+<td>Higher latency, more expensive</td>
+<td>High (LLM + embeddings)</td>
+</tr>
+<tr>
+<td><strong>Contextual Compression</strong></td>
+<td>Long, noisy documents</td>
+<td>Precise extraction, saves tokens</td>
+<td>Expensive, slower</td>
+<td>High (LLM per doc)</td>
+</tr>
+<tr>
+<td><strong>External (Wikipedia, etc.)</strong></td>
+<td>Need external knowledge</td>
+<td>Up-to-date, specialized domains</td>
+<td>Dependency on external service</td>
+<td>Variable</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Performance considerations:</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>Latency:
+</span><span id="__span-44-2"><a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>Similarity &lt; MMR &lt; Multi-Query &lt; Contextual Compression
+</span><span id="__span-44-3"><a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a>
+</span><span id="__span-44-4"><a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a>Cost:
+</span><span id="__span-44-5"><a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a>Similarity &lt; MMR &lt; Multi-Query &lt; Contextual Compression
+</span><span id="__span-44-6"><a id="__codelineno-44-6" name="__codelineno-44-6" href="#__codelineno-44-6"></a>
+</span><span id="__span-44-7"><a id="__codelineno-44-7" name="__codelineno-44-7" href="#__codelineno-44-7"></a>Precision:
+</span><span id="__span-44-8"><a id="__codelineno-44-8" name="__codelineno-44-8" href="#__codelineno-44-8"></a>Contextual Compression &gt; Similarity ≈ MMR &gt; Multi-Query
+</span><span id="__span-44-9"><a id="__codelineno-44-9" name="__codelineno-44-9" href="#__codelineno-44-9"></a>
+</span><span id="__span-44-10"><a id="__codelineno-44-10" name="__codelineno-44-10" href="#__codelineno-44-10"></a>Recall:
+</span><span id="__span-44-11"><a id="__codelineno-44-11" name="__codelineno-44-11" href="#__codelineno-44-11"></a>Multi-Query &gt; MMR &gt; Similarity &gt; Contextual Compression
+</span></code></pre></div>
+<h2 id="building-rag-pipelines">Building RAG Pipelines</h2>
+<p>Putting it all together - complete RAG workflow:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.document_loaders</span><span class="w"> </span><span class="kn">import</span> <span class="n">PyPDFLoader</span>
+</span><span id="__span-45-2"><a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_text_splitters</span><span class="w"> </span><span class="kn">import</span> <span class="n">RecursiveCharacterTextSplitter</span>
+</span><span id="__span-45-3"><a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_chroma</span><span class="w"> </span><span class="kn">import</span> <span class="n">Chroma</span>
+</span><span id="__span-45-4"><a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAIEmbeddings</span><span class="p">,</span> <span class="n">ChatOpenAI</span>
+</span><span id="__span-45-5"><a id="__codelineno-45-5" name="__codelineno-45-5" href="#__codelineno-45-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.prompts</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatPromptTemplate</span>
+</span><span id="__span-45-6"><a id="__codelineno-45-6" name="__codelineno-45-6" href="#__codelineno-45-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.output_parsers</span><span class="w"> </span><span class="kn">import</span> <span class="n">StrOutputParser</span>
+</span><span id="__span-45-7"><a id="__codelineno-45-7" name="__codelineno-45-7" href="#__codelineno-45-7"></a>
+</span><span id="__span-45-8"><a id="__codelineno-45-8" name="__codelineno-45-8" href="#__codelineno-45-8"></a><span class="c1"># 1. Load documents</span>
+</span><span id="__span-45-9"><a id="__codelineno-45-9" name="__codelineno-45-9" href="#__codelineno-45-9"></a><span class="n">loader</span> <span class="o">=</span> <span class="n">PyPDFLoader</span><span class="p">(</span><span class="s2">&quot;knowledge-base.pdf&quot;</span><span class="p">)</span>
+</span><span id="__span-45-10"><a id="__codelineno-45-10" name="__codelineno-45-10" href="#__codelineno-45-10"></a><span class="n">docs</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+</span><span id="__span-45-11"><a id="__codelineno-45-11" name="__codelineno-45-11" href="#__codelineno-45-11"></a>
+</span><span id="__span-45-12"><a id="__codelineno-45-12" name="__codelineno-45-12" href="#__codelineno-45-12"></a><span class="c1"># 2. Split into chunks</span>
+</span><span id="__span-45-13"><a id="__codelineno-45-13" name="__codelineno-45-13" href="#__codelineno-45-13"></a><span class="n">splitter</span> <span class="o">=</span> <span class="n">RecursiveCharacterTextSplitter</span><span class="p">(</span>
+</span><span id="__span-45-14"><a id="__codelineno-45-14" name="__codelineno-45-14" href="#__codelineno-45-14"></a>    <span class="n">chunk_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+</span><span id="__span-45-15"><a id="__codelineno-45-15" name="__codelineno-45-15" href="#__codelineno-45-15"></a>    <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">100</span>
+</span><span id="__span-45-16"><a id="__codelineno-45-16" name="__codelineno-45-16" href="#__codelineno-45-16"></a><span class="p">)</span>
+</span><span id="__span-45-17"><a id="__codelineno-45-17" name="__codelineno-45-17" href="#__codelineno-45-17"></a><span class="n">chunks</span> <span class="o">=</span> <span class="n">splitter</span><span class="o">.</span><span class="n">split_documents</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
+</span><span id="__span-45-18"><a id="__codelineno-45-18" name="__codelineno-45-18" href="#__codelineno-45-18"></a>
+</span><span id="__span-45-19"><a id="__codelineno-45-19" name="__codelineno-45-19" href="#__codelineno-45-19"></a><span class="c1"># 3. Create vector store</span>
+</span><span id="__span-45-20"><a id="__codelineno-45-20" name="__codelineno-45-20" href="#__codelineno-45-20"></a><span class="n">vectorstore</span> <span class="o">=</span> <span class="n">Chroma</span><span class="o">.</span><span class="n">from_documents</span><span class="p">(</span>
+</span><span id="__span-45-21"><a id="__codelineno-45-21" name="__codelineno-45-21" href="#__codelineno-45-21"></a>    <span class="n">documents</span><span class="o">=</span><span class="n">chunks</span><span class="p">,</span>
+</span><span id="__span-45-22"><a id="__codelineno-45-22" name="__codelineno-45-22" href="#__codelineno-45-22"></a>    <span class="n">embedding</span><span class="o">=</span><span class="n">OpenAIEmbeddings</span><span class="p">(),</span>
+</span><span id="__span-45-23"><a id="__codelineno-45-23" name="__codelineno-45-23" href="#__codelineno-45-23"></a>    <span class="n">persist_directory</span><span class="o">=</span><span class="s2">&quot;./rag-db&quot;</span>
+</span><span id="__span-45-24"><a id="__codelineno-45-24" name="__codelineno-45-24" href="#__codelineno-45-24"></a><span class="p">)</span>
+</span><span id="__span-45-25"><a id="__codelineno-45-25" name="__codelineno-45-25" href="#__codelineno-45-25"></a>
+</span><span id="__span-45-26"><a id="__codelineno-45-26" name="__codelineno-45-26" href="#__codelineno-45-26"></a><span class="c1"># 4. Create retriever</span>
+</span><span id="__span-45-27"><a id="__codelineno-45-27" name="__codelineno-45-27" href="#__codelineno-45-27"></a><span class="n">retriever</span> <span class="o">=</span> <span class="n">vectorstore</span><span class="o">.</span><span class="n">as_retriever</span><span class="p">(</span><span class="n">search_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;k&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+</span><span id="__span-45-28"><a id="__codelineno-45-28" name="__codelineno-45-28" href="#__codelineno-45-28"></a>
+</span><span id="__span-45-29"><a id="__codelineno-45-29" name="__codelineno-45-29" href="#__codelineno-45-29"></a><span class="c1"># 5. Build RAG chain</span>
+</span><span id="__span-45-30"><a id="__codelineno-45-30" name="__codelineno-45-30" href="#__codelineno-45-30"></a><span class="n">template</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="o">.</span><span class="n">from_messages</span><span class="p">([</span>
+</span><span id="__span-45-31"><a id="__codelineno-45-31" name="__codelineno-45-31" href="#__codelineno-45-31"></a>    <span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;Answer based on this context: </span><span class="si">{context}</span><span class="s2">&quot;</span><span class="p">),</span>
+</span><span id="__span-45-32"><a id="__codelineno-45-32" name="__codelineno-45-32" href="#__codelineno-45-32"></a>    <span class="p">(</span><span class="s2">&quot;human&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{question}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="__span-45-33"><a id="__codelineno-45-33" name="__codelineno-45-33" href="#__codelineno-45-33"></a><span class="p">])</span>
+</span><span id="__span-45-34"><a id="__codelineno-45-34" name="__codelineno-45-34" href="#__codelineno-45-34"></a>
+</span><span id="__span-45-35"><a id="__codelineno-45-35" name="__codelineno-45-35" href="#__codelineno-45-35"></a><span class="n">chain</span> <span class="o">=</span> <span class="p">(</span>
+</span><span id="__span-45-36"><a id="__codelineno-45-36" name="__codelineno-45-36" href="#__codelineno-45-36"></a>    <span class="p">{</span><span class="s2">&quot;context&quot;</span><span class="p">:</span> <span class="n">retriever</span><span class="p">,</span> <span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">}</span>
+</span><span id="__span-45-37"><a id="__codelineno-45-37" name="__codelineno-45-37" href="#__codelineno-45-37"></a>    <span class="o">|</span> <span class="n">template</span>
+</span><span id="__span-45-38"><a id="__codelineno-45-38" name="__codelineno-45-38" href="#__codelineno-45-38"></a>    <span class="o">|</span> <span class="n">ChatOpenAI</span><span class="p">()</span>
+</span><span id="__span-45-39"><a id="__codelineno-45-39" name="__codelineno-45-39" href="#__codelineno-45-39"></a>    <span class="o">|</span> <span class="n">StrOutputParser</span><span class="p">()</span>
+</span><span id="__span-45-40"><a id="__codelineno-45-40" name="__codelineno-45-40" href="#__codelineno-45-40"></a><span class="p">)</span>
+</span><span id="__span-45-41"><a id="__codelineno-45-41" name="__codelineno-45-41" href="#__codelineno-45-41"></a>
+</span><span id="__span-45-42"><a id="__codelineno-45-42" name="__codelineno-45-42" href="#__codelineno-45-42"></a><span class="c1"># 6. Query</span>
+</span><span id="__span-45-43"><a id="__codelineno-45-43" name="__codelineno-45-43" href="#__codelineno-45-43"></a><span class="n">answer</span> <span class="o">=</span> <span class="n">chain</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;What is machine learning?&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<p><strong>Pipeline stages:</strong></p>
+<ol>
+<li><strong>Load</strong> - Get documents from source (PDF, web, database, etc.)</li>
+<li><strong>Split</strong> - Chunk into retrieval-sized pieces</li>
+<li><strong>Embed &amp; Store</strong> - Convert to vectors and store</li>
+<li><strong>Retrieve</strong> - Find relevant chunks for query</li>
+<li><strong>Generate</strong> - LLM synthesizes answer from context</li>
+</ol>
+<h2 id="summary">Summary</h2>
+<p>Building data and retrieval pipelines requires understanding the full workflow:</p>
+<p><strong>Document Loading</strong> - Use appropriate loaders for each format (TextLoader, PyPDFLoader, CSVLoader, WebBaseLoader); leverage DirectoryLoader for bulk loading; use lazy_load() for large datasets; Document class standardizes page_content + metadata.</p>
+<p><strong>Text Splitting</strong> - Chunking is essential for context limits, retrieval precision, and embedding quality; configure chunk_size and chunk_overlap based on use case; RecursiveCharacterTextSplitter is the default choice; use language-specific splitters for code; SemanticChunker for topic-aware splitting but higher cost.</p>
+<p><strong>Vector Stores</strong> - Vector stores (Chroma, FAISS) are embedded/local; vector databases (Pinecone, Weaviate) are production-grade services; use vector stores for development, vector databases for scale; support similarity search, metadata filtering, CRUD operations.</p>
+<p><strong>Retrievers</strong> - Unified interface for document retrieval; similarity search is the default; MMR adds diversity; MultiQueryRetriever improves recall via query expansion; ContextualCompressionRetriever extracts relevant excerpts; external retrievers (Wikipedia, etc.) augment local knowledge.</p>
+<p><strong>Key principles:</strong></p>
+<ul>
+<li>Load → Split → Embed → Store → Retrieve → Generate</li>
+<li>Choose splitter based on content structure</li>
+<li>Balance chunk size (context) vs overlap (continuity)</li>
+<li>Start with similarity search, add sophistication as needed</li>
+<li>Metadata filtering enhances precision</li>
+</ul>
+<p>These components form the foundation for production RAG systems.</p>
+<h2 id="next-steps">Next Steps</h2>
+<ul>
+<li><strong><a href="../orchestration/">Orchestration</a></strong> - Compose these components into chains and workflows using LCEL and Runnables</li>
+<li><strong><a href="../fundamentals/">Fundamentals</a></strong> - Review models, prompts, and output parsing</li>
+</ul>
+<p><strong>Related lab concepts:</strong></p>
+<ul>
+<li><a href="../../../retrieval-augmented-generation/rag-architecture/">RAG Architecture</a> - Framework-agnostic RAG patterns</li>
+<li><a href="../../../embeddings/">Embeddings</a> - Deep dive into embedding theory</li>
+<li><a href="../../../evaluation/">Evaluation</a> - Testing and measuring retrieval quality</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-circle-arrow-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Arc Systems
+
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"../../..","features":["announce.dismiss","content.code.annotate","content.code.copy","content.code.select","content.footnote.tooltips","content.tabs.link","content.tooltips","navigation.footer","navigation.indexes","navigation.instant","navigation.instant.prefetch","navigation.instant.progress","navigation.path","navigation.prune","navigation.top","navigation.tracking","search.highlight","toc.follow"],"search":"../../../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.5fd3284f.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
