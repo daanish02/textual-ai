@@ -27,10 +27,10 @@ nav = [
 
     { "Classical NLP" = [
         "classical-nlp/README.md",
-        { "N-grams and Language Models" = "classical_nlp/ngrams-and-lm.md" },
-        { "Vector Space Models" = "classical_nlp/vector-space-models.md" },
-        { "Topic Modeling" = "classical_nlp/topic-modeling.md" },
-        { "Classical Classification" = "classical_nlp/classical-classification.md" },
+        { "N-grams and Language Models" = "classical-nlp/ngrams-and-lm.md" },
+        { "Vector Space Models" = "classical-nlp/vector-space-models.md" },
+        { "Topic Modeling" = "classical-nlp/topic-modeling.md" },
+        { "Classical Classification" = "classical-nlp/classical-classification.md" },
     ] },
 
     { "Embeddings" = [
