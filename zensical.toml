@@ -35,10 +35,10 @@ nav = [
 
     { "Embeddings" = [
         "embeddings/README.md",
-        { "Embedding Spaces" = "embeddings/embedding-spaces.md" },
         { "Word Embeddings" = "embeddings/word-embeddings.md" },
         { "Sentence Embeddings" = "embeddings/sentence-embeddings.md" },
         { "Contextual Embeddings" = "embeddings/contextual-embeddings.md" },
+        { "Embedding Spaces" = "embeddings/embedding-spaces.md" },
     ] },
 
     { "Language Models" = [
@@ -52,11 +52,11 @@ nav = [
 
     { "LLM Concepts" = [
         "llm-concepts/README.md",
-        { "Capabilities and Limitations" = "llm-concepts/capabilities-limitations.md" },
         { "Scale and Emergence" = "llm-concepts/scale-and-emergence.md" },
         { "In-Context Learning" = "llm-concepts/in-context-learning.md" },
-        { "Instruction Tuning" = "llm-concepts/instruction-tuning.md" },
         { "Chain of Thought" = "llm-concepts/chain-of-thought.md" },
+        { "Instruction Tuning" = "llm-concepts/instruction-tuning.md" },
+        { "Capabilities and Limitations" = "llm-concepts/capabilities-limitations.md" },
     ] },
 
     { "Prompt Engineering" = [
@@ -64,17 +64,17 @@ nav = [
         { "Prompting Fundamentals" = "prompt-engineering/prompting-fundamentals.md" },
         { "Few-Shot Learning" = "prompt-engineering/few-shot-learning.md" },
         { "Chain-of-Thought Prompting" = "prompt-engineering/cot-prompting.md" },
-        { "Advanced Patterns" = "prompt-engineering/advanced-patterns.md" },
-        { "Prompt Optimization" = "prompt-engineering/prompt-optimization.md" },
         { "Structured Output" = "prompt-engineering/structured-output.md" },
+        { "Prompt Optimization" = "prompt-engineering/prompt-optimization.md" },
+        { "Advanced Patterns" = "prompt-engineering/advanced-patterns.md" },
     ] },
 
     { "Retrieval Augmented Generation" = [
         "retrieval-augmented-generation/README.md",
         { "RAG Architecture" = "retrieval-augmented-generation/rag-architecture.md" },
-        { "Retrieval Strategies" = "retrieval-augmented-generation/retrieval-strategies.md" },
-        { "Embedding and Chunking" = "retrieval-augmented-generation/embedding-chunking.md" },
         { "Vector Databases" = "retrieval-augmented-generation/vector-databases.md" },
+        { "Embedding and Chunking" = "retrieval-augmented-generation/embedding-chunking.md" },
+        { "Retrieval Strategies" = "retrieval-augmented-generation/retrieval-strategies.md" },
         { "Reranking and Fusion" = "retrieval-augmented-generation/reranking-fusion.md" },
         { "RAG Evaluation" = "retrieval-augmented-generation/rag-evaluation.md" },
     ] },
@@ -83,18 +83,18 @@ nav = [
         "rlhf-and-alignment/README.md",
         { "Alignment Problem" = "rlhf-and-alignment/alignment-problem.md" },
         { "RLHF" = "rlhf-and-alignment/rlhf.md" },
-        { "Constitutional AI" = "rlhf-and-alignment/constitutional-ai.md" },
         { "Instruction Following" = "rlhf-and-alignment/instruction-following.md" },
-        { "Honesty and Calibration" = "rlhf-and-alignment/honesty-calibration.md" },
         { "Safety and Harmlessness" = "rlhf-and-alignment/safety-harmlessness.md" },
+        { "Constitutional AI" = "rlhf-and-alignment/constitutional-ai.md" },
+        { "Honesty and Calibration" = "rlhf-and-alignment/honesty-calibration.md" },
     ] },
 
     { "Evaluation" = [
         "evaluation/README.md",
-        { "Benchmarks" = "evaluation/benchmarks.md" },
         { "Traditional Metrics" = "evaluation/traditional-metrics.md" },
         { "Neural Metrics" = "evaluation/neural-metrics.md" },
         { "LLM Evaluation" = "evaluation/llm-evaluation.md" },
+        { "Benchmarks" = "evaluation/benchmarks.md" },
         { "Human Evaluation" = "evaluation/human-evaluation.md" },
         { "Failure Analysis" = "evaluation/failure-analysis.md" },
     ] },

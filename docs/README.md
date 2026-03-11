@@ -84,96 +84,91 @@ textual-ai-lab/
 
 ### [Overview](overview/)
 
-- Evolution of NLP: rule-based → statistical → neural → LLMs
-- Understanding vs generation
-- Challenges in NLP: ambiguity, context, commonsense
-- The LLM paradigm shift
+- **Evolution of NLP:** Rule-based, statistical, neural, transformers, and large language models.
+- **Language Understanding Challenges:** Ambiguity, context dependence, world knowledge, and pragmatics.
+- **The LLM Paradigm Shift:** From task-specific models to general-purpose LLMs using pretraining and prompting.
 
 ### [Fundamentals](fundamentals/)
 
-- **Tokenization**: word, subword (BPE, WordPiece), character tokenization
-- **Text preprocessing**: lowercasing, stemming, lemmatization, stopword removal
-- **Part-of-speech tagging**: syntactic categories, tagging algorithms
-- **Named entity recognition**: entity types, sequence labeling
-- **Parsing**: dependency parsing, constituency parsing, syntax trees
-- **Linguistic concepts**: morphology, syntax, semantics, pragmatics
+- **Tokenization:** Breaking text into tokens. Includes word, subword, and character tokenization.
+- **Text Preprocessing:** Preparing raw text with steps like lowercasing, stemming, lemmatization, and stopword removal.
+- **Linguistic Foundations:** Key NLP concepts such as POS tagging, named entity recognition, and parsing.
 
 ### [Classical NLP](classical-nlp/)
 
-- **N-grams**: language modeling, smoothing, perplexity
-- **TF-IDF**: term weighting, document similarity, information retrieval
-- **Bag-of-words**: text representation, limitations
-- **Topic modeling**: LDA, LSA, discovering topics in corpora
-- **Information extraction**: relation extraction, event extraction
-- **Text classification**: Naive Bayes, logistic regression, feature engineering
+- **N-grams and Language Models:** Statistical language modeling with bigrams, trigrams, and probability estimation.
+- **Vector Space Models:** Representing text as vectors using bag-of-words and TF-IDF for similarity and retrieval.
+- **Topic Modeling:** Finding hidden topics in documents with methods like LDA and LSA.
+- **Classical Classification:** Traditional ML methods such as Naive Bayes, logistic regression, and SVMs for text classification.
 
 ### [Embeddings](embeddings/)
 
-- **Word2Vec**: CBOW, Skip-gram, learning word representations
-- **GloVe**: global matrix factorization, word analogies
-- **fastText**: subword embeddings, handling OOV words
-- **Sentence embeddings**: averaging, SBERT, universal sentence encoder
-- **Contextual embeddings**: ELMo, contextualized representations
-- **Embedding spaces**: semantic similarity, analogies, bias in embeddings
+- **Word Embeddings:** Vector representations of words using methods like Word2Vec, GloVe, and fastText.
+- **Sentence Embeddings:** Representing sentences or documents as vectors for semantic similarity and search.
+- **Contextual Embeddings**: Embeddings that change with context, capturing different meanings of the same word.
+- **Embedding spaces**: How embeddings capture similarity, analogies, and other semantic relationships.
 
 ### [Language Models](language-models/)
 
-- **Autoregressive models**: GPT-style, left-to-right generation, causal masking
-- **Masked models**: BERT-style, bidirectional context, masked language modeling
-- **Encoder-decoder**: T5, sequence-to-sequence, translation
-- **Pretraining objectives**: MLM, CLM, NSP, span corruption
-- **Fine-tuning**: task-specific adaptation, full fine-tuning vs LoRA
-- **Transfer learning in NLP**: pretrain-finetune paradigm
+- **LM Fundamentals:** The basics of language modeling and why predicting text enables powerful pretraining.
+- **Autoregressive Models:** Models like GPT that generate text by predicting the next token.
+- **Masked Models:** Models like BERT that predict masked words using bidirectional context.
+- **Encoder-Decoder Models:** Sequence-to-sequence models used for tasks like translation and summarization.
+- **Pretraining and Transfer:** Training models on large text data and adapting them to specific tasks.
 
 ### [LLM Concepts](llm-concepts/)
 
-- **Scale effects**: emergent abilities, scaling laws, bigger models
-- **In-context learning**: learning from examples in the prompt
-- **Chain-of-thought**: reasoning through intermediate steps
-- **Instruction tuning**: following instructions, FLAN, InstructGPT
-- **RLHF**: reinforcement learning from human feedback, alignment
-- **Capabilities**: what LLMs can do, reasoning, knowledge, creativity
-- **Limitations**: hallucination, factuality, reasoning failures, context length
+- **Scale and Emergence:** How larger models gain new capabilities as scale increases.
+- **In-Context Learning:** How larger models gain new capabilities as scale increases.
+- **Chain-of-Thought:** Using step-by-step reasoning to improve complex problem solving.
+- **Instruction Tuning:** Training models to follow instructions and align with human intent.
+- **Capabilities and Limitations:** What LLMs can do well and where they still fail.
 
 ### [Prompt Engineering](prompt-engineering/)
 
-- **Zero-shot prompting**: task description only
-- **Few-shot prompting**: providing examples, in-context learning
-- **Chain-of-thought**: step-by-step reasoning, let's think step by step
-- **Structured output**: JSON, XML, formatting outputs
-- **Prompt decomposition**: breaking complex tasks into steps
-- **Self-consistency**: sampling multiple outputs, voting
-- **Prompt optimization**: iterative refinement, evaluation-driven improvement
+- **Prompting Fundamentals:** Basic principles for writing clear and effective prompts.
+- **Few-Shot Prompting:** Using examples in prompts to teach tasks.
+- **Chain-of-Thought Prompting:** Encouraging step-by-step reasoning in responses.
+- **Structured Output:** Guiding models to produce consistent formats like JSON.
+- **Prompt Optimization:** Improving prompts through testing and refinement.
+- **Advanced Patterns:** Techniques for handling complex tasks with prompts.
 
-### [Retrieval-Augmented Generation](retrieval-augmented-generation/)
+### [Retrieval Augmented Generation](retrieval-augmented-generation/)
 
-- **RAG architecture**: retrieval → augmentation → generation
-- **Vector databases**: Pinecone, Weaviate, Chroma, FAISS
-- **Embedding models**: choosing embeddings for retrieval
-- **Chunking strategies**: document splitting, overlap, semantic chunking
-- **Retrieval strategies**: dense retrieval, sparse retrieval, hybrid search
-- **Reranking**: improving retrieval quality, cross-encoder reranking
-- **RAG evaluation**: retrieval quality, generation quality, end-to-end evaluation
+- **RAG Architecture:** The retrieve–augment–generate workflow for building RAG systems.
+- **Vector Databases:** The retrieve–augment–generate workflow for building RAG systems.
+- **Embedding and Chunking:** Preparing documents with embeddings and effective chunking.
+- **Retrieval Strategies:** Methods like dense, sparse, and hybrid search to find relevant information.
+- **Reranking and Fusion:** Improving retrieval results using reranking and result fusion.
+- **RAG Evaluation:** Measuring and improving RAG system performance.
+
+### [RLHF and Alignment](rlhf-and-alignment/)
+
+- **Alignment Problem:** Challenges in ensuring AI systems match human intent and values.
+- **RLHF:** Using RLHF to train models to be helpful and safe.
+- **Instruction Following:** Teaching models to understand and execute user instructions effectively.
+- **Safety and Harmlessness:** Preventing harmful outputs through guardrails, filtering, and testing.
+- **Constitutional AI:** Models critique and improve their own outputs for scalable alignment.
+- **Honesty and Calibration:** Ensuring models are truthful, well-calibrated, and handle uncertainty.
 
 ### [Evaluation](evaluation/)
 
-- **Traditional metrics**: BLEU, ROUGE, METEOR, BERTScore
-- **LLM evaluation**: accuracy on benchmarks, human evaluation, pairwise comparison
-- **Benchmarks**: MMLU, HellaSwag, TruthfulQA, BigBench
-- **Task-specific evaluation**: classification metrics, generation quality
-- **Human evaluation**: relevance, coherence, factuality, fluency
-- **Failure analysis**: understanding when and why systems fail
-- **Adversarial testing**: edge cases, stress testing, robustness
+- **Traditional Metrics:** Classic measures like accuracy, F1, BLEU, and ROUGE for evaluating NLP tasks.
+- **Neural Metrics:** Embedding-based metrics like BERTScore and BLEURT for semantic evaluation.
+- **LLM Evaluation:** Assessing large language models on open-ended tasks and diverse capabilities.
+- **Benchmarks**: Standard datasets like MMLU, HellaSwag, and BigBench for model comparison.
+- **Human Evaluation:** Collecting human judgments for relevance, coherence, and factuality.
+- **Failure Analysis:** Analyzing errors and edge cases to improve system performance.
 
 ### [Application Patterns](application-patterns/)
 
-- **Classification**: sentiment analysis, intent detection, topic classification
-- **Summarization**: extractive vs abstractive, single-doc vs multi-doc
-- **Information extraction**: named entities, relations, structured extraction
-- **Question answering**: extractive QA, generative QA, open-domain QA
-- **Generation**: creative writing, code generation, content creation
-- **Conversational AI**: dialogue systems, chatbots, multi-turn interaction
-- **Semantic search**: finding relevant documents, similarity search
+- **Text Classification:** Categorizing text into classes like sentiment, topic, or intent.
+- **Summarization:** Condensing text while keeping key information.
+- **Question Answering:** Extracting or generating answers from text, including multi-hop reasoning.
+- **Semantic Search:** Finding information based on meaning using embeddings and hybrid methods.
+- **Information Extraction:** Turning unstructured text into structured data via NER, relations, and events.
+- **Text Generation:** Producing coherent, controlled, or creative text.
+- **Conversational AI:** Managing multi-turn dialogues with context, consistency, and safety.
 
 ## Learning Principles
 

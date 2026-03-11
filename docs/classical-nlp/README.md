@@ -20,6 +20,6 @@ Representing text as vectors for similarity and retrieval. Covers bag-of-words r
 
 Discovering latent topics in document collections. Covers Latent Dirichlet Allocation, Latent Semantic Analysis, model interpretation, choosing the number of topics, and practical applications. Topic modeling reveals document-level themes and provides dimensionality reduction for text.
 
-### [Classical Text Classification](classical-classification.md)
+### [Classical Classification](classical-classification.md)
 
 Traditional machine learning for text classification. Covers feature engineering, Naive Bayes classifiers, logistic regression, support vector machines, and evaluation. Understanding these methods builds intuition for classification tasks that transfers to modern approaches.

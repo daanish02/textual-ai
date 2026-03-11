@@ -34,9 +34,6 @@
         <loc>https://daanish02.github.io/textual-ai/embeddings/</loc>
       </url>
       <url>
-        <loc>https://daanish02.github.io/textual-ai/embeddings/embedding-spaces/</loc>
-      </url>
-      <url>
         <loc>https://daanish02.github.io/textual-ai/embeddings/word-embeddings/</loc>
       </url>
       <url>
@@ -44,6 +41,9 @@
       </url>
       <url>
         <loc>https://daanish02.github.io/textual-ai/embeddings/contextual-embeddings/</loc>
+      </url>
+      <url>
+        <loc>https://daanish02.github.io/textual-ai/embeddings/embedding-spaces/</loc>
       </url>
       <url>
         <loc>https://daanish02.github.io/textual-ai/language-models/</loc>
@@ -67,19 +67,19 @@
         <loc>https://daanish02.github.io/textual-ai/llm-concepts/</loc>
       </url>
       <url>
-        <loc>https://daanish02.github.io/textual-ai/llm-concepts/capabilities-limitations/</loc>
-      </url>
-      <url>
         <loc>https://daanish02.github.io/textual-ai/llm-concepts/scale-and-emergence/</loc>
       </url>
       <url>
         <loc>https://daanish02.github.io/textual-ai/llm-concepts/in-context-learning/</loc>
       </url>
       <url>
+        <loc>https://daanish02.github.io/textual-ai/llm-concepts/chain-of-thought/</loc>
+      </url>
+      <url>
         <loc>https://daanish02.github.io/textual-ai/llm-concepts/instruction-tuning/</loc>
       </url>
       <url>
-        <loc>https://daanish02.github.io/textual-ai/llm-concepts/chain-of-thought/</loc>
+        <loc>https://daanish02.github.io/textual-ai/llm-concepts/capabilities-limitations/</loc>
       </url>
       <url>
         <loc>https://daanish02.github.io/textual-ai/prompt-engineering/</loc>
@@ -94,13 +94,13 @@
         <loc>https://daanish02.github.io/textual-ai/prompt-engineering/cot-prompting/</loc>
       </url>
       <url>
-        <loc>https://daanish02.github.io/textual-ai/prompt-engineering/advanced-patterns/</loc>
+        <loc>https://daanish02.github.io/textual-ai/prompt-engineering/structured-output/</loc>
       </url>
       <url>
         <loc>https://daanish02.github.io/textual-ai/prompt-engineering/prompt-optimization/</loc>
       </url>
       <url>
-        <loc>https://daanish02.github.io/textual-ai/prompt-engineering/structured-output/</loc>
+        <loc>https://daanish02.github.io/textual-ai/prompt-engineering/advanced-patterns/</loc>
       </url>
       <url>
         <loc>https://daanish02.github.io/textual-ai/retrieval-augmented-generation/</loc>
@@ -109,13 +109,13 @@
         <loc>https://daanish02.github.io/textual-ai/retrieval-augmented-generation/rag-architecture/</loc>
       </url>
       <url>
-        <loc>https://daanish02.github.io/textual-ai/retrieval-augmented-generation/retrieval-strategies/</loc>
+        <loc>https://daanish02.github.io/textual-ai/retrieval-augmented-generation/vector-databases/</loc>
       </url>
       <url>
         <loc>https://daanish02.github.io/textual-ai/retrieval-augmented-generation/embedding-chunking/</loc>
       </url>
       <url>
-        <loc>https://daanish02.github.io/textual-ai/retrieval-augmented-generation/vector-databases/</loc>
+        <loc>https://daanish02.github.io/textual-ai/retrieval-augmented-generation/retrieval-strategies/</loc>
       </url>
       <url>
         <loc>https://daanish02.github.io/textual-ai/retrieval-augmented-generation/reranking-fusion/</loc>
@@ -133,22 +133,19 @@
         <loc>https://daanish02.github.io/textual-ai/rlhf-and-alignment/rlhf/</loc>
       </url>
       <url>
-        <loc>https://daanish02.github.io/textual-ai/rlhf-and-alignment/constitutional-ai/</loc>
-      </url>
-      <url>
         <loc>https://daanish02.github.io/textual-ai/rlhf-and-alignment/instruction-following/</loc>
-      </url>
-      <url>
-        <loc>https://daanish02.github.io/textual-ai/rlhf-and-alignment/honesty-calibration/</loc>
       </url>
       <url>
         <loc>https://daanish02.github.io/textual-ai/rlhf-and-alignment/safety-harmlessness/</loc>
       </url>
       <url>
-        <loc>https://daanish02.github.io/textual-ai/evaluation/</loc>
+        <loc>https://daanish02.github.io/textual-ai/rlhf-and-alignment/constitutional-ai/</loc>
       </url>
       <url>
-        <loc>https://daanish02.github.io/textual-ai/evaluation/benchmarks/</loc>
+        <loc>https://daanish02.github.io/textual-ai/rlhf-and-alignment/honesty-calibration/</loc>
+      </url>
+      <url>
+        <loc>https://daanish02.github.io/textual-ai/evaluation/</loc>
       </url>
       <url>
         <loc>https://daanish02.github.io/textual-ai/evaluation/traditional-metrics/</loc>
@@ -158,6 +155,9 @@
       </url>
       <url>
         <loc>https://daanish02.github.io/textual-ai/evaluation/llm-evaluation/</loc>
+      </url>
+      <url>
+        <loc>https://daanish02.github.io/textual-ai/evaluation/benchmarks/</loc>
       </url>
       <url>
         <loc>https://daanish02.github.io/textual-ai/evaluation/human-evaluation/</loc>

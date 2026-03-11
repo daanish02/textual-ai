@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="./assets/images/favicon.png">
-      <meta name="generator" content="zensical-0.0.25">
+      <meta name="generator" content="zensical-0.0.24">
     
     
       
@@ -34,7 +34,7 @@
       
         
       
-      <link rel="stylesheet" href="./assets/stylesheets/modern/main.50057488.min.css">
+      <link rel="stylesheet" href="./assets/stylesheets/modern/main.28978c9b.min.css">
       
         
           
@@ -79,7 +79,7 @@
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" for="__drawer" aria-label="Navigation"></label>
+    <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
         
@@ -105,7 +105,7 @@
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
 
     </a>
-    <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
+    <label class="md-header__button md-icon" for="__drawer">
       
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
     </label>
@@ -145,7 +145,7 @@
     
       
       
-        <label class="md-header__button md-icon" for="__search" aria-label="Search">
+        <label class="md-header__button md-icon" for="__search">
           
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
         </label>
@@ -438,7 +438,18 @@
   <a href="#retrieval-augmented-generation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Retrieval-Augmented Generation
+        Retrieval Augmented Generation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rlhf-and-alignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RLHF and Alignment
       
     </span>
   </a>
@@ -1436,7 +1447,18 @@
   <a href="#retrieval-augmented-generation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Retrieval-Augmented Generation
+        Retrieval Augmented Generation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rlhf-and-alignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RLHF and Alignment
       
     </span>
   </a>
@@ -1588,96 +1610,91 @@
 <h2 id="table-of-contents">Table of Contents</h2>
 <h3 id="overview"><a href="overview/">Overview</a></h3>
 <ul>
-<li>Evolution of NLP: rule-based → statistical → neural → LLMs</li>
-<li>Understanding vs generation</li>
-<li>Challenges in NLP: ambiguity, context, commonsense</li>
-<li>The LLM paradigm shift</li>
+<li><strong>Evolution of NLP:</strong> Rule-based, statistical, neural, transformers, and large language models.</li>
+<li><strong>Language Understanding Challenges:</strong> Ambiguity, context dependence, world knowledge, and pragmatics.</li>
+<li><strong>The LLM Paradigm Shift:</strong> From task-specific models to general-purpose LLMs using pretraining and prompting.</li>
 </ul>
 <h3 id="fundamentals"><a href="fundamentals/">Fundamentals</a></h3>
 <ul>
-<li><strong>Tokenization</strong>: word, subword (BPE, WordPiece), character tokenization</li>
-<li><strong>Text preprocessing</strong>: lowercasing, stemming, lemmatization, stopword removal</li>
-<li><strong>Part-of-speech tagging</strong>: syntactic categories, tagging algorithms</li>
-<li><strong>Named entity recognition</strong>: entity types, sequence labeling</li>
-<li><strong>Parsing</strong>: dependency parsing, constituency parsing, syntax trees</li>
-<li><strong>Linguistic concepts</strong>: morphology, syntax, semantics, pragmatics</li>
+<li><strong>Tokenization:</strong> Breaking text into tokens. Includes word, subword, and character tokenization.</li>
+<li><strong>Text Preprocessing:</strong> Preparing raw text with steps like lowercasing, stemming, lemmatization, and stopword removal.</li>
+<li><strong>Linguistic Foundations:</strong> Key NLP concepts such as POS tagging, named entity recognition, and parsing.</li>
 </ul>
 <h3 id="classical-nlp"><a href="classical-nlp/">Classical NLP</a></h3>
 <ul>
-<li><strong>N-grams</strong>: language modeling, smoothing, perplexity</li>
-<li><strong>TF-IDF</strong>: term weighting, document similarity, information retrieval</li>
-<li><strong>Bag-of-words</strong>: text representation, limitations</li>
-<li><strong>Topic modeling</strong>: LDA, LSA, discovering topics in corpora</li>
-<li><strong>Information extraction</strong>: relation extraction, event extraction</li>
-<li><strong>Text classification</strong>: Naive Bayes, logistic regression, feature engineering</li>
+<li><strong>N-grams and Language Models:</strong> Statistical language modeling with bigrams, trigrams, and probability estimation.</li>
+<li><strong>Vector Space Models:</strong> Representing text as vectors using bag-of-words and TF-IDF for similarity and retrieval.</li>
+<li><strong>Topic Modeling:</strong> Finding hidden topics in documents with methods like LDA and LSA.</li>
+<li><strong>Classical Classification:</strong> Traditional ML methods such as Naive Bayes, logistic regression, and SVMs for text classification.</li>
 </ul>
 <h3 id="embeddings"><a href="embeddings/">Embeddings</a></h3>
 <ul>
-<li><strong>Word2Vec</strong>: CBOW, Skip-gram, learning word representations</li>
-<li><strong>GloVe</strong>: global matrix factorization, word analogies</li>
-<li><strong>fastText</strong>: subword embeddings, handling OOV words</li>
-<li><strong>Sentence embeddings</strong>: averaging, SBERT, universal sentence encoder</li>
-<li><strong>Contextual embeddings</strong>: ELMo, contextualized representations</li>
-<li><strong>Embedding spaces</strong>: semantic similarity, analogies, bias in embeddings</li>
+<li><strong>Word Embeddings:</strong> Vector representations of words using methods like Word2Vec, GloVe, and fastText.</li>
+<li><strong>Sentence Embeddings:</strong> Representing sentences or documents as vectors for semantic similarity and search.</li>
+<li><strong>Contextual Embeddings</strong>: Embeddings that change with context, capturing different meanings of the same word.</li>
+<li><strong>Embedding spaces</strong>: How embeddings capture similarity, analogies, and other semantic relationships.</li>
 </ul>
 <h3 id="language-models"><a href="language-models/">Language Models</a></h3>
 <ul>
-<li><strong>Autoregressive models</strong>: GPT-style, left-to-right generation, causal masking</li>
-<li><strong>Masked models</strong>: BERT-style, bidirectional context, masked language modeling</li>
-<li><strong>Encoder-decoder</strong>: T5, sequence-to-sequence, translation</li>
-<li><strong>Pretraining objectives</strong>: MLM, CLM, NSP, span corruption</li>
-<li><strong>Fine-tuning</strong>: task-specific adaptation, full fine-tuning vs LoRA</li>
-<li><strong>Transfer learning in NLP</strong>: pretrain-finetune paradigm</li>
+<li><strong>LM Fundamentals:</strong> The basics of language modeling and why predicting text enables powerful pretraining.</li>
+<li><strong>Autoregressive Models:</strong> Models like GPT that generate text by predicting the next token.</li>
+<li><strong>Masked Models:</strong> Models like BERT that predict masked words using bidirectional context.</li>
+<li><strong>Encoder-Decoder Models:</strong> Sequence-to-sequence models used for tasks like translation and summarization.</li>
+<li><strong>Pretraining and Transfer:</strong> Training models on large text data and adapting them to specific tasks.</li>
 </ul>
 <h3 id="llm-concepts"><a href="llm-concepts/">LLM Concepts</a></h3>
 <ul>
-<li><strong>Scale effects</strong>: emergent abilities, scaling laws, bigger models</li>
-<li><strong>In-context learning</strong>: learning from examples in the prompt</li>
-<li><strong>Chain-of-thought</strong>: reasoning through intermediate steps</li>
-<li><strong>Instruction tuning</strong>: following instructions, FLAN, InstructGPT</li>
-<li><strong>RLHF</strong>: reinforcement learning from human feedback, alignment</li>
-<li><strong>Capabilities</strong>: what LLMs can do, reasoning, knowledge, creativity</li>
-<li><strong>Limitations</strong>: hallucination, factuality, reasoning failures, context length</li>
+<li><strong>Scale and Emergence:</strong> How larger models gain new capabilities as scale increases.</li>
+<li><strong>In-Context Learning:</strong> How larger models gain new capabilities as scale increases.</li>
+<li><strong>Chain-of-Thought:</strong> Using step-by-step reasoning to improve complex problem solving.</li>
+<li><strong>Instruction Tuning:</strong> Training models to follow instructions and align with human intent.</li>
+<li><strong>Capabilities and Limitations:</strong> What LLMs can do well and where they still fail.</li>
 </ul>
 <h3 id="prompt-engineering"><a href="prompt-engineering/">Prompt Engineering</a></h3>
 <ul>
-<li><strong>Zero-shot prompting</strong>: task description only</li>
-<li><strong>Few-shot prompting</strong>: providing examples, in-context learning</li>
-<li><strong>Chain-of-thought</strong>: step-by-step reasoning, let's think step by step</li>
-<li><strong>Structured output</strong>: JSON, XML, formatting outputs</li>
-<li><strong>Prompt decomposition</strong>: breaking complex tasks into steps</li>
-<li><strong>Self-consistency</strong>: sampling multiple outputs, voting</li>
-<li><strong>Prompt optimization</strong>: iterative refinement, evaluation-driven improvement</li>
+<li><strong>Prompting Fundamentals:</strong> Basic principles for writing clear and effective prompts.</li>
+<li><strong>Few-Shot Prompting:</strong> Using examples in prompts to teach tasks.</li>
+<li><strong>Chain-of-Thought Prompting:</strong> Encouraging step-by-step reasoning in responses.</li>
+<li><strong>Structured Output:</strong> Guiding models to produce consistent formats like JSON.</li>
+<li><strong>Prompt Optimization:</strong> Improving prompts through testing and refinement.</li>
+<li><strong>Advanced Patterns:</strong> Techniques for handling complex tasks with prompts.</li>
 </ul>
-<h3 id="retrieval-augmented-generation"><a href="retrieval-augmented-generation/">Retrieval-Augmented Generation</a></h3>
+<h3 id="retrieval-augmented-generation"><a href="retrieval-augmented-generation/">Retrieval Augmented Generation</a></h3>
 <ul>
-<li><strong>RAG architecture</strong>: retrieval → augmentation → generation</li>
-<li><strong>Vector databases</strong>: Pinecone, Weaviate, Chroma, FAISS</li>
-<li><strong>Embedding models</strong>: choosing embeddings for retrieval</li>
-<li><strong>Chunking strategies</strong>: document splitting, overlap, semantic chunking</li>
-<li><strong>Retrieval strategies</strong>: dense retrieval, sparse retrieval, hybrid search</li>
-<li><strong>Reranking</strong>: improving retrieval quality, cross-encoder reranking</li>
-<li><strong>RAG evaluation</strong>: retrieval quality, generation quality, end-to-end evaluation</li>
+<li><strong>RAG Architecture:</strong> The retrieve–augment–generate workflow for building RAG systems.</li>
+<li><strong>Vector Databases:</strong> The retrieve–augment–generate workflow for building RAG systems.</li>
+<li><strong>Embedding and Chunking:</strong> Preparing documents with embeddings and effective chunking.</li>
+<li><strong>Retrieval Strategies:</strong> Methods like dense, sparse, and hybrid search to find relevant information.</li>
+<li><strong>Reranking and Fusion:</strong> Improving retrieval results using reranking and result fusion.</li>
+<li><strong>RAG Evaluation:</strong> Measuring and improving RAG system performance.</li>
+</ul>
+<h3 id="rlhf-and-alignment"><a href="rlhf-and-alignment/">RLHF and Alignment</a></h3>
+<ul>
+<li><strong>Alignment Problem:</strong> Challenges in ensuring AI systems match human intent and values.</li>
+<li><strong>RLHF:</strong> Using RLHF to train models to be helpful and safe.</li>
+<li><strong>Instruction Following:</strong> Teaching models to understand and execute user instructions effectively.</li>
+<li><strong>Safety and Harmlessness:</strong> Preventing harmful outputs through guardrails, filtering, and testing.</li>
+<li><strong>Constitutional AI:</strong> Models critique and improve their own outputs for scalable alignment.</li>
+<li><strong>Honesty and Calibration:</strong> Ensuring models are truthful, well-calibrated, and handle uncertainty.</li>
 </ul>
 <h3 id="evaluation"><a href="evaluation/">Evaluation</a></h3>
 <ul>
-<li><strong>Traditional metrics</strong>: BLEU, ROUGE, METEOR, BERTScore</li>
-<li><strong>LLM evaluation</strong>: accuracy on benchmarks, human evaluation, pairwise comparison</li>
-<li><strong>Benchmarks</strong>: MMLU, HellaSwag, TruthfulQA, BigBench</li>
-<li><strong>Task-specific evaluation</strong>: classification metrics, generation quality</li>
-<li><strong>Human evaluation</strong>: relevance, coherence, factuality, fluency</li>
-<li><strong>Failure analysis</strong>: understanding when and why systems fail</li>
-<li><strong>Adversarial testing</strong>: edge cases, stress testing, robustness</li>
+<li><strong>Traditional Metrics:</strong> Classic measures like accuracy, F1, BLEU, and ROUGE for evaluating NLP tasks.</li>
+<li><strong>Neural Metrics:</strong> Embedding-based metrics like BERTScore and BLEURT for semantic evaluation.</li>
+<li><strong>LLM Evaluation:</strong> Assessing large language models on open-ended tasks and diverse capabilities.</li>
+<li><strong>Benchmarks</strong>: Standard datasets like MMLU, HellaSwag, and BigBench for model comparison.</li>
+<li><strong>Human Evaluation:</strong> Collecting human judgments for relevance, coherence, and factuality.</li>
+<li><strong>Failure Analysis:</strong> Analyzing errors and edge cases to improve system performance.</li>
 </ul>
 <h3 id="application-patterns"><a href="application-patterns/">Application Patterns</a></h3>
 <ul>
-<li><strong>Classification</strong>: sentiment analysis, intent detection, topic classification</li>
-<li><strong>Summarization</strong>: extractive vs abstractive, single-doc vs multi-doc</li>
-<li><strong>Information extraction</strong>: named entities, relations, structured extraction</li>
-<li><strong>Question answering</strong>: extractive QA, generative QA, open-domain QA</li>
-<li><strong>Generation</strong>: creative writing, code generation, content creation</li>
-<li><strong>Conversational AI</strong>: dialogue systems, chatbots, multi-turn interaction</li>
-<li><strong>Semantic search</strong>: finding relevant documents, similarity search</li>
+<li><strong>Text Classification:</strong> Categorizing text into classes like sentiment, topic, or intent.</li>
+<li><strong>Summarization:</strong> Condensing text while keeping key information.</li>
+<li><strong>Question Answering:</strong> Extracting or generating answers from text, including multi-hop reasoning.</li>
+<li><strong>Semantic Search:</strong> Finding information based on meaning using embeddings and hybrid methods.</li>
+<li><strong>Information Extraction:</strong> Turning unstructured text into structured data via NER, relations, and events.</li>
+<li><strong>Text Generation:</strong> Producing coherent, controlled, or creative text.</li>
+<li><strong>Conversational AI:</strong> Managing multi-turn dialogues with context, consistency, and safety.</li>
 </ul>
 <h2 id="learning-principles">Learning Principles</h2>
 <ul>
@@ -1785,7 +1802,7 @@
       <script id="__config" type="application/json">{"annotate":null,"base":".","features":["announce.dismiss","content.code.annotate","content.code.copy","content.code.select","content.footnote.tooltips","content.tabs.link","content.tooltips","navigation.footer","navigation.indexes","navigation.instant","navigation.instant.prefetch","navigation.instant.progress","navigation.path","navigation.prune","navigation.top","navigation.tracking","search.highlight","toc.follow"],"search":"./assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
     
     
-      <script src="./assets/javascripts/bundle.5fd3284f.min.js"></script>
+      <script src="./assets/javascripts/bundle.16f8adc2.min.js"></script>
       
         <script src="./javascripts/mathjax.js"></script>
       
