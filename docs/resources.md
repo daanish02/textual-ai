@@ -46,7 +46,11 @@
 ## Language Models
 
 <!-- ### Language Modelling Fundamentals -->
-<!-- ### Autoregressive Models -->
+
+### Autoregressive Models
+
+- [nano chat](https://github.com/karpathy/nanochat)
+
 <!-- ### Masked Models -->
 <!-- ### Encoder Decoder Models -->
 <!-- ### Pretraining Transfer -->
@@ -65,7 +69,11 @@
 <!-- ### Few Shot Learning -->
 <!-- ### CoT Prompting -->
 <!-- ### Structured Output -->
-<!-- ### Prompt Optimization -->
+
+### Prompt Optimization
+
+- [Promptfoo](https://github.com/promptfoo/promptfoo)
+
 <!-- ### Advanced Patterns -->
 
 ## Retrieval Augmented Generation
@@ -86,7 +94,9 @@
 <!-- ### Alignment Problem -->
 <!-- ### RLHF -->
 <!-- ### Instruction Following -->
-<!-- ### Safety Harmlessness -->
+### Safety Harmlessness
+- [Heretic](https://github.com/p-e-w/heretic)
+
 <!-- ### Constitutional AI -->
 <!-- ### Honesty Calibration -->
 

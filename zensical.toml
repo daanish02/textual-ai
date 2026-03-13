@@ -110,6 +110,14 @@ nav = [
         { "Conversational AI" = "application-patterns/conversational-ai.md" },
     ] },
 
+    { "Notes" = [
+        "notes/README.md",
+        { "LangChain Fundamentals" = "notes/fundamentals.md" },
+        { "Data and Retrieval" = "notes/data-retrieval.md" },
+        { "Orchestration" = "notes/orchestration.md" },
+        { "Advanved RAG Patterns" = "notes/advanced-rag-patterns.md" },
+    ] },
+
     { "Resources" = "resources.md" },
 ]
 
